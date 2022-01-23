@@ -1,0 +1,1399 @@
+
+  <!DOCTYPE html>
+<html>
+
+  <head>
+
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>  
+
+
+<body>
+<script type="text/javascript" src="script.js"></script><script type="text/javascript" src="script.js"></script>	
+
+<style>
+	
+
+	.form {
+    
+    
+    width: 68%;
+	margin: 0 auto; 
+   
+}
+
+</style>
+	
+
+
+  <script>
+
+
+	window.sessionStorage
+
+	
+var MAXRECORDS = 4;
+const MAXKEYWORDS = 4;
+
+var var1 =1;
+var var2 =1;
+var var3 ;
+var3 = var1 + var2;
+
+</script>
+    
+      <input   id="button7"  type="button" value="checkout"/>
+      <input   name = "search" type="text" id="search" name="search" placeholder= "apple99" value="apple99"/>
+      <input   id="button6" onclick = "displayFromSearch('0')" type="button" value="Search"/>
+	  <input   id="button8" onclick = "resetCall()" type="button" value="Reset"/>
+
+
+      <br>
+      <div id = "firstdiv" ></div>
+      <br>
+      <div id ="buttons"></div>
+      <br>
+      <div id ="templateOneHere"> </div>
+     
+
+      
+     
+      
+      <div id = "lastdiv"></div>
+      
+<script>
+
+
+$(function(){
+
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+//fix this, here
+var searchterm = urlParams.get('displayOrdersTemplateAgain');
+
+
+/////////
+let keys = Object.keys(sessionStorage);
+
+for(let key of keys) {
+		//alert(key);
+		
+			
+		
+		if(key != "sessionUserID")
+        {
+			sessionStorage.removeItem(key);	
+        }
+		
+		
+	}
+	sessionStorage.setItem("numberOfRecordsChosen", "0");
+
+
+
+
+////////////
+
+//erase keywords
+
+
+//erase productID
+
+
+
+//alert("search");
+if (searchterm == "1")
+{
+	//alert("made it");
+	displayOrdersTemplateAgain();
+	//displayFromSearch('0');
+}
+
+return(1);
+////////
+//alert("in fiunction");
+//loadData();
+
+////////
+//  loadajax();
+});
+
+
+//var array1 = [];
+//function insert(pid, quantLeft) {
+//    array1.push({
+//        pid: pid,
+//        quant: quant,
+//       
+//    });        
+//}
+
+
+
+
+
+
+
+/*
+$(document).ready(function () {
+      $('#button3').click(function () {
+
+
+        
+  //https://stackoverflow.com/questions/8951810/how-to-parse-json-data-with-jquery-javascript
+  // https://stackoverflow.com/questions/5061310/jquery-returning-parsererror-for-ajax-request
+    
+        //example
+       $.ajax({
+              url: 'http://localhost:8080/getMessages',
+              type: 'POST',
+              dataType: 'json',
+              contentType: "application/json",
+              //data: { name: "John", age: 30, city: "New York" },
+              data:{post_data: cars}, //JSON.stringify({ "name": name, "city": city }),
+              crossDomain: true,
+             
+            success: function (data1) {
+             // alert(data1);
+              console.log(data1[2].Age);
+              
+              //alert("in here!!!");
+              
+              }
+              });
+          
+         });
+
+    });
+
+*/
+	
+	
+		
+		
+		var array = [];
+		var storedArray  = [];
+		var productIDArray = [];
+		
+		var globtest = 0;
+
+
+		///////////
+
+		
+		//pudhed reset button in index
+		function resetCall()
+		{
+			//sessionStorage.setItem("amtOfKeywords", 0);
+
+
+			//sessionStorage.clear();
+			//program reprints search box and buttons
+			var urlValue = "http://localhost/golangproj/index.html";
+			var val1 = sessionStorage.getItem("sessionUserID");
+			
+			sessionStorage.clear();
+			sessionStorage.setItem("sessionUserID", val1);
+			
+			window.location.assign(urlValue);
+			
+		}
+
+
+
+		///////////
+
+
+
+		//pushed search (button 6) display1
+		function displayFromSearch( )
+		{
+			//alert("z1");
+
+			//keeeps track of keywords displaying, only so many allowed
+			let amt1 = sessionStorage.getItem("amtOfKeywords");
+			if (amt1 != null)
+			{
+			let gAmt1Int = Number(amt1);
+			//this is the maximum record limit
+			if(gAmt1Int >= 5)
+			{
+				alert("At Keyword Limit");
+				return(1);
+			}
+			}	
+			
+
+			//alert("displayFromSearch");
+			
+
+			//alert("keys -A");
+		//check for login
+		alert("sess");
+	
+		var getUser = sessionStorage.getItem("sessionUserID");
+		alert(getUser);
+		
+		if (getUser == null)
+		{
+			alert("You Need to Login First!");
+			return(1);
+		}
+
+
+	  
+		// fix this, here
+		var reloadFlag = 1;
+		
+		var querystring = "";
+		var counter = -1;
+		
+		
+		var string = "";
+        let keys = Object.keys(sessionStorage);
+
+
+		var searchWord = "";
+		
+		alert("keys -A");
+
+		//build query fo main.go display of order template
+		for(let key of keys) {
+		alert(key);
+			
+		
+
+		if(key ==  "numberOfRecordsChosen")
+		{
+			
+			continue;
+		}
+		//if(key ==  "alreadyZero")
+		//{
+	//		
+	//		continue;
+	//	}
+		if(key =="amtOfKeywords")
+		{
+			continue;
+		}
+
+		if(key == "keywords")
+  		{
+		counter++;
+		
+		var item = sessionStorage.getItem(key);
+		
+		
+		array = JSON.parse(item);
+	    
+
+
+		}
+
+		///////////////
+		
+        
+        var wasKeys = "no";
+
+		var keyAsInt =  parseInt(key); 
+		//alert(typeof keyAsInt);
+		//console.log(keyAsInt);
+		if (key != "sessionUserID" && key != "keywords" && key != "numberOfRecordsChosen" && key != "amtOfKeywords") 
+		{
+
+			
+			
+			alert("is here....!");
+			///////////////////
+
+			/*
+			//var item = sessionStorage.getItem(key);
+
+
+			//cehck for duplicates
+			productIDArray = JSON.parse(sessionStorage.getItem(key));
+
+			alert("is in new functionality");
+			var counter = 0;
+			if(productIDArray)
+			{
+			for(var i = 0; i < productIDArray.length ; i++)
+			{
+			if (productIDArray[i] == key)
+			{
+				counter = counter + 1;
+				
+				alert("duplicate product");
+				if(counter > 1)
+				{
+					continue;
+				}
+			}
+
+
+			}
+
+			}
+
+
+			*/
+
+
+
+			////////////////////
+
+
+			
+			var item = sessionStorage.getItem(key);
+			
+			
+       		string =  string + "id=" + key + "&amtTryingToPurchase" + item + "&";
+			
+			
+			reloadFlag = 0;
+  
+       		
+			   
+		}
+		
+		else if(key == "sessionUserID")
+        {
+			//alert("session here");
+			var item = sessionStorage.getItem(key);
+			string = string + "uid="  + item + "&";
+        }
+		else if(key == "keywords")
+		{
+			wasKeys = "yes";
+		}
+
+ 	// keyword checked below after ajax
+	}  //for keyword loop
+
+
+
+	if(reloadFlag == 1)
+	{
+		reloadFlag = 0;
+		
+		//window.location.href = "index.html?";
+    	
+
+	}
+		
+
+		alert("here");
+		alert(string);
+		//from index top gui
+		var searchWord = document.getElementById("search").value;
+
+	  //alert("searchWord");
+	  //alert(searchWord);
+		
+
+
+	  //check if this keyword has any records, already have these records needs to be consideree
+	  //return yes or no to include  this in keyword list
+	  
+	  if(searchWord == "" )
+	  {
+			return(1);
+	  }
+
+	  
+
+		//cehck for duplicates if so returns out
+		storedArray = JSON.parse(sessionStorage.getItem("keywords"));
+
+		//alert("storeddarray0");
+		//alert(storedArray);
+
+		if(storedArray)
+		{
+		for(var i = 0; i < storedArray.length ; i++)
+		{
+		if (storedArray[i] == searchWord)
+		{
+			//alert("storeddarray");
+			//alert(storedArray[i]);
+			
+			return(-1);
+		}
+		
+		
+		}
+		
+	}
+
+	//////////////
+
+
+
+
+
+
+
+
+
+	///////////////
+
+
+
+
+
+
+
+////////
+//alert("is it getting here");
+
+//storedarray has only the relevant keywords
+
+//a new keyword, update here
+let amt2 = sessionStorage.getItem("amtOfKeywords");
+let amt2int = Number(amt2);
+if (amt2 == null )
+{
+	sessionStorage.setItem("amtOfKeywords", 1);
+
+}
+else
+{
+	amt2int++;
+	sessionStorage.setItem("amtOfKeywords", amt2int);
+}
+
+
+//alert("1");
+////////
+
+
+
+
+	  var val2 = [];
+     
+	  //returns flag if already a keyword and the string that is and the built query 
+		val2 = DoesKeywordAlreadyExist(searchWord, string);
+	  
+	  //alert("2");
+		var gflag = val2[0];
+		var querystring = val2[1] + string;
+	  //alert("3");
+		
+		var url = "";
+		
+	  if(reloadFlag == 1)
+	  {
+		  querystring += "leave=1&";
+
+	  }else
+	  {
+
+	  }
+	  
+	  
+	 
+
+	  alert("querystringzz");
+	  alert(querystring);
+
+
+
+
+			
+
+
+
+
+
+			
+			
+
+			 //alert("query1");
+			 //alert(querystring);
+				//searchWord = "here";
+				var b = 0;
+			 $.ajax({
+                url: "http://localhost:8080/displayOrderFormFromTemplate",
+                type: 'POST',
+                dataType: 'html',
+                data: querystring,
+				
+				crossDomain: true,
+                success: function (result) {
+
+
+					if(result == "")
+					{
+						return(1);
+					}
+					
+			//alert("query2");
+			 //alert(querystring);
+					
+
+				//ourNewWord2 = result;
+
+				
+
+				
+                //var result1 = "";
+				let keys = Object.keys(sessionStorage);
+
+				
+				var  gkeywordArray = "";
+				
+				var retVals = [];
+				
+				var toRemove = "null";
+				var result = result.replaceAll(toRemove, '');
+
+
+
+				
+				retVals = forBuildingHTML(result, searchWord);
+				
+				
+				//fix this, here
+				var item1 = retVals[0];  
+				
+				var ourNewWord2 = retVals[1]; //
+				
+				var item = retVals[2]; 
+				
+				
+				
+				
+				
+				
+
+				
+				//fix this, here
+				var val1a = '"' + item1 +  '"';   
+				
+				
+
+////////
+
+
+				
+				
+				
+			  
+
+
+				////////////
+				//displays link for every grouping by product group to go there
+				result1a = "<a href='#" + searchWord + "'>" + searchWord + "</a><br>";
+				
+				
+				document.getElementById('buttons').innerHTML   += result1a;
+			  	
+
+				document.getElementById('templateOneHere').insertAdjacentHTML('beforeend',ourNewWord2);
+
+              
+                }
+         //both jquery
+      });
+		
+
+	  		
+	  		
+		};
+
+
+	  
+
+
+  
+
+  //checkout button from top of index file
+  $(document).ready(function () {
+      $('#button7').click(function () {
+              
+
+             window.location.href = "callTemplateTwo.html";
+
+              
+              
+                });  
+              });
+              ////////////
+
+/*
+//not used...
+function uploadandProcessImage(){
+
+
+///////////////////////////////////
+//https://stackoverflow.com/questions/25493706/ajax-upload-file-to-golang-server-with-content-type-multipart
+var xhr = new XMLHttpRequest();
+   
+
+
+    var input = document.querySelector('input[type=file]'),
+    file = input.files[0];
+
+    
+var formdata = new FormData();
+formdata.append("file", file);
+xhr.open("POST", "localhost:8080/upload", true);
+//xhr.setRequestHeader("content-type", "multipart/form-data; charset=utf-8; boundary=" + boundary);
+xhr.send(formdata);
+
+///////////////////////////////////
+
+}
+*/
+
+var gTotalOfPurchases = 0;
+
+//template number one presses submit this and changes values in quantity and amount purchased
+//needs to reduce numberOfRecordsChosen by one when changed to zero first time
+//template1, enters a zero...
+
+
+
+//////////////////////////////////////
+
+//THERE COULD BE MISTAKES IN NEXT TWO FUNCTIONS
+
+///////////////////////////////////////
+
+//on submit, updates the individual printed interface from same template1
+
+
+function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, amountPurchasingID, amountToPurchaseID)
+{
+
+	
+				
+
+				var makeYellow = document.getElementById(mainDiv);
+				makeYellow.style["background-color"] = "yellow";
+				
+				
+				var amountToBePurchased  = 0;
+				var  amountInPurchasedField = 0;
+				var amountPurchasedToDeductFromToPurchase = 0;
+				var value1 = 0;
+				var value2 = 0;
+				//total of product with server
+				amountInPurchasedField = Number(document.getElementById(amountPurchasedID).value);
+				//already purchased
+				amountPurchasedToDeductFromToPurchase = Number(document.getElementById(amountPurchasingID).value);
+				//amount held for subtraction when submit button pressed
+				amountToBePurchased = Number(document.getElementById(amountToPurchaseID).value);
+
+				
+
+				//if(amountInPurchasedField - amountToBePurchased != 0)
+				//{
+				//	
+				//}
+
+
+				
+
+				
+				//if there is enough product go in here - take from quantity amount
+				if((parseInt(amountInPurchasedField) >= parseInt(amountToBePurchased))   )//&& parseInt(amountToBePurchased) > 0  )
+				{
+
+					
+					//
+					value1 = Number(document.getElementById(amountToPurchaseID).value); 
+					
+					//value2 = amountopurchase + amountpurchaseedsofar
+					value2  = parseInt(value1) + parseInt(amountPurchasedToDeductFromToPurchase);
+					if(value2 < 0)
+					{
+						Number(document.getElementById(amountToPurchaseID).value = 0);
+						return;
+					}
+					
+					
+					//puts total in here
+					Number(document.getElementById(amountPurchasingID).value = value2) ;
+					
+					if(value1 > 0){
+
+						
+						Number(document.getElementById(amountPurchasedID).value = parseInt(amountInPurchasedField) - parseInt(amountToBePurchased)) ;
+					}else if (value1 == 0)
+					{
+						
+					}
+
+					//negative value for amount to purchase
+					//value
+					else if ( (parseInt(amountPurchasedToDeductFromToPurchase) + parseInt(value1)) > -1){
+						
+						Number(document.getElementById(amountPurchasedID).value = parseInt(amountInPurchasedField) - parseInt(amountToBePurchased)) ;
+						
+						Number(document.getElementById(amountToPurchaseID).value = 0);
+					}
+
+
+					
+					
+					gTotalOfPurchases =  parseInt(gTotalOfPurchases) +  parseInt(amountToBePurchased); 
+					
+					
+					
+					//if(gTotalOfPurchases > 0){
+                        Number(document.getElementById(amountToPurchaseID).value = 0);
+                        
+						
+						//so far, so good is still in database!
+						//amount purchased, quantity, amount to purchase
+						//SetDataFromOrderTemplateOnSubmit(amountPurchasedToDeductFromToPurchase, amountInPurchasedField, productID, amountToBePurchased, 0)
+						//var boole = true;
+						SetDataFromOrderTemplateOnSubmit(amountToPurchaseID, amountPurchasedID, productID,	amountPurchasingID);
+
+                        return (1);
+                    //}
+
+					
+
+
+	
+				}
+    
+				
+				
+	
+	
+			}
+
+
+			var alreadyZeroArray = [];
+      //called from submitChangesOnOrderTemplates because of submit button for display1
+	  //numberofrcords is set in logon and should have two new sets in this only fucntion (only)
+	  //in here :  sessionStorage.setItem(parseInt(productID), parseInt(totalquantity));
+ 
+	  //var gLastQuantity = 0
+      //function  SetDataFromOrderTemplateOnSubmit(amountPurchasedToDeductFromToPurchase, quantityOfProduct, productID, amountToPurchase, reduceBool)
+	  
+	   //amountToPurchase = amounttobepurchasedID//
+	   //var boole = true;
+	  
+	   //deals with to many records
+	  function SetDataFromOrderTemplateOnSubmit (amountToPurchaseID, quantityOfProductID, productID, amountPurchasedID) 
+	  {
+
+			  var gLastQuant = false;
+		  	   //amount purchased
+			  var amountPurchasedToDeductFromToPurchase =  document.getElementById(amountPurchasedID).value;
+			   //amount to purchase 
+			  var amountToPurchase  = document.getElementById(amountToPurchaseID).value;
+
+			  var quantityOfProduct  = document.getElementById(quantityOfProductID).value;
+				
+				var firstArray = [];
+				
+				let val = "";
+				//var storedArray = JSON.parse(sessionStorage.getItem("alreadyZero"))
+				
+				let val1 = ""
+				let val1int = 0;
+				let val2int = 0;
+
+				val1 = sessionStorage.getItem("numberOfRecordsChosen")
+
+				//alert("starts here");
+				if (val1 == "0")
+				{
+					//alert("1");
+					if (amountToPurchase == 0 && amountPurchasedToDeductFromToPurchase == 0)
+					{
+						
+					//	if(val1 = sessionStorage.getItem("numberOfRecordsChosen"))
+					//	{
+					//	
+					//	var varIntVal1 = parseInt(val1);
+					//	varIntVal1--;
+					//	
+					//	if(varIntVal1 < 0)
+					//	{
+					//		varIntVal1 = 0;
+					//	}
+					//	sessionStorage.setItem("numberOfRecordsChosen", varIntVal1);
+					//	}
+					//	
+					}
+					else
+					{
+						//alert("in here");
+						//if(val1 = sessionStorage.getItem("numberOfRecordsChosen"))
+						//{
+						//is either amoutnttopurchase or amountpurchasedtodeductfromthepurchase
+						let varIntVal1 = parseInt(val1);
+						gLastQuant = true;
+						//gLastQuantity = varIntVal1;
+						varIntVal1++;
+						
+						
+						sessionStorage.setItem("numberOfRecordsChosen", varIntVal1);
+						//}
+						
+					}
+				
+				}
+				else{
+
+					//are records chosen
+					
+					//alert("wise1");
+					//console.log(amountPurchasedToDeductFromToPurchase + amountToPurchase);
+					
+					//amount putchased
+					let val1int = parseInt(amountPurchasedToDeductFromToPurchase);
+
+					//amount to purchase
+					let val2int = parseInt(amountToPurchase);
+					//alert(val1int);
+					//alert(gLastQuant);
+					//alert(val2int);
+					
+
+					////is either amoutnttopurchase or amountpurchasedtodeductfromthepurchase  && !!!!
+					if (gLastQuant == true  && (val1int) != 0 )
+					{
+						//alert("y");
+					}
+
+					//val1int = 0, no 
+					else if (gLastQuant == true  && (val1int) == 0 )
+					{
+						//alert("z");
+
+						///
+
+						//gLastQuant = 0;
+						
+						let  val1a = 0;
+						if(val1a = sessionStorage.getItem("numberOfRecordsChosen"))
+						var varIntVal1a = parseInt(val1a);
+						
+						//gLastQuantity = varIntVal1a; 
+						varIntVal1a--;
+						
+						sessionStorage.setItem("numberOfRecordsChosen", varIntVal1a);
+
+						////
+
+
+
+					}
+					//else if (gLastQuant != 1  && (val1int > 0) != 0){
+					//
+					//
+					//}
+
+
+
+
+					else if (gLastQuant == false  && (val1int) != 0 )
+					{//alert("2_");
+						//gLastQuant = 1;
+						let val1a = 0;
+						if(val1a = sessionStorage.getItem("numberOfRecordsChosen"))
+						var varIntVal1a = parseInt(val1a);
+						
+						//gLastQuantity = varIntVal1a;
+						varIntVal1a++;
+						
+						sessionStorage.setItem("numberOfRecordsChosen", varIntVal1a);
+						
+					}
+				
+
+					
+				//val1 = sessionStorage.getItem("numberOfRecordsChosen");
+				//alert("------1234---");
+				//alert(val1); 
+				//firstArray.push(productID); 
+				//firstArray.push(quantityOfProduct); 
+				//window.sessionStorage.setItem("alreadyZero", JSON.stringify(firstArray));
+
+				}//else
+				val1 = sessionStorage.getItem("numberOfRecordsChosen");
+				//alert("--+++++-----");
+				alert(val1); 
+
+				//val1 = sessionStorage.getItem("numberOfRecordsChosen");
+				
+
+		//updates everything for to many records
+		if(val1 == sessionStorage.getItem("numberOfRecordsChosen"))
+		{
+		
+		if (val1 == MAXRECORDS-1)
+		{
+			alert("AT RECORD MAXIMUM, NO MORE RECORDS NEFORE PURCHASE!!!");
+		}
+		else if (val1 >= MAXRECORDS){
+
+			alert("AT RECORD MAXIMUM, YOU MUST REMOVE A RECORD TO RETURN TO PURCHASE!!!!");
+		
+
+			alert(document.getElementById(quantityOfProductID).value);
+
+			//quantity
+			document.getElementById(quantityOfProductID).value = document.getElementById(quantityOfProductID).value + parseInt(amountPurchasedToDeductFromToPurchase).value;
+			//amount purchased
+			document.getElementById(amountPurchasedID).value =  document.getElementById(amountPurchasedID).value - parseInt(amountPurchasedToDeductFromToPurchase).value;
+			   //amount to purchase 
+			document.getElementById(amountToPurchaseID).value = document.getElementById(amountToPurchaseID).value - parseInt(amountToPurchase).value ;
+			
+			alert(document.getElementById(quantityOfProductID).value);
+			return(1);
+
+		}
+
+
+			//alert(amountPurchasedToDeduct);
+			
+			//subtract amountpurchased
+			//subtract quantity
+
+
+
+
+			
+		}
+	
+		
+				
+
+
+
+				
+				
+
+//------------------------------------
+				
+				
+
+				let string = "";
+				
+				let keyFlag = "";
+				let bought, totalquantity = 0;
+				val1 = "";
+
+				
+
+				let keys = Object.keys(sessionStorage);
+				//alert("start debug");
+				for(let key of keys) {
+					//alert("start debug2");
+				
+				//total the quantity and overwrite - is already a record
+
+				//is a productid record with an amount to buy
+				if(key == (productID.toString())){
+				
+					
+					keyFlag = "found";
+					
+					
+					
+					bought = sessionStorage.getItem(key);
+					
+					totalquantity = 0;
+					
+					totalquantity = parseInt(bought) + parseInt(amountToPurchase);
+						
+					
+								
+					
+					sessionStorage.removeItem(productID);
+					
+						//sessionStorage.setItem(parseInt(productID), parseInt(totalquantity));
+					sessionStorage.setItem(parseInt(productID), parseInt(amountPurchasedToDeductFromToPurchase));
+
+						
+
+
+
+
+
+				
+					}
+				}//keys for
+
+				
+				//is a productId record with a amount to buy
+				if (keyFlag !=  "found")
+				{
+
+					
+					//sessionStorage.setItem( parseInt(productID),  parseInt(amountPurchasedToDeduct));
+					sessionStorage.setItem( parseInt(productID),  parseInt(amountPurchasedToDeductFromToPurchase));
+				
+					
+
+
+					
+
+					
+				}
+				}
+			
+				
+
+
+			
+
+
+
+//returns querystring
+//thi function checks if a keyword is already used and returns the queystring
+
+//check if keyword exists already
+function DoesKeywordAlreadyExist( searchword, string)
+{//NO URLS
+
+	//this flag means that this is a display that returned from template2, so is a special condition
+	//if(flag2 == "1")
+	//{
+	//	querystring = ("var=" + val1 + "&");
+	//	//cause a reaction by lieing about this
+	//	gflag = "isntin";
+	//	return [gflag, querystring];
+	//
+	//}
+	//else
+	{
+	var isfirst = false;
+	var querystring = "";
+	var counter = 0;
+		var gflag = "isntin";
+		
+		//alert("in here111");
+
+
+		//if no keywords than set search word as keyword. This is a list of keywords 
+		//so that the searhwords cant be used more than once 
+		var storedArray2 = [searchword];
+		var storedArray = [];
+		//alert("arethere");
+		//alert(val1);
+		//puts first variable into sessionStorage
+		if(!( storedArray = JSON.parse(sessionStorage.getItem("keywords"))))
+		{
+			isfirst = true
+			sessionStorage.setItem("keywords", JSON.stringify(storedArray2));
+			storedArray = JSON.parse(sessionStorage.getItem("keywords"));
+			
+		}else
+		{
+			storedArray = JSON.parse(sessionStorage.getItem("keywords"));
+			//sessionStorage.setItem("keywords", JSON.stringify(storedArray));
+		
+		}
+
+		//check for duplicate keywords, if duplicate leave and do nothing
+		for (i = 0; i < storedArray.length; i++) {
+
+			
+			if (storedArray[i] == searchword && isfirst == false)
+			{
+				gflag = "isin"
+				break;
+			}
+			
+		}
+		
+
+		//add a new keyword to session
+		if (gflag == "isntin")
+		{
+		
+		
+			if(isfirst == false)
+			{
+			storedArray.push(searchword);	
+			sessionStorage.setItem("keywords", JSON.stringify(storedArray));
+			}
+
+		
+		
+		//if (areThereUrls)
+		//{
+			querystring = ("var=" + searchword + "&");
+			
+		//}
+		//else
+		//{
+
+		//	querystring = ("var=" + val1 + "&");
+			
+		//}
+
+		alert("querystring1");
+		alert(querystring);
+		
+		}
+		else if(isfirst == true)
+		{
+			querystring = ("var=" + searchword + "&");
+		}
+	
+		alert("querystring2");
+		alert(querystring);
+	
+	return [gflag, querystring];
+	 }
+	}
+
+
+
+//fix this, here   
+function forBuildingHTML(result, val1)
+{
+				var item1 = val1
+				var item = '"' + val1 + '"';
+				
+				var ourNewWord = "";
+				
+				var item2 = result.match(item);
+				
+				ourNewWord = result.replace(item2, '');
+				
+
+				//var string = typeof(item1);
+				
+				//var x = typeof(item1);  // string
+				//var y = typeof(string);	//string
+				
+				
+				
+
+return [item1, ourNewWord, item];				
+}
+
+
+//////
+
+var gKeywordRecordNumber = 0;
+//pressed return to purchase from template2
+function displayOrdersTemplateAgain(){
+
+	debugger;
+
+//alert("check if getting here before panid");
+
+var querystring = "";
+
+
+
+
+var counter = -1;
+var array = [];
+
+alert("A4") ;
+
+var gflag1 = 0;
+var gcounter1 = 0;
+alert("A5") ;
+let keys = Object.keys(sessionStorage);
+
+
+
+alert("A6") ;
+for(let key of keys) {
+
+	alert("getthis");
+	alert(key);
+
+ if(key == "keywords")
+  {
+	counter++;
+	alert("keywords");
+   
+	var item = sessionStorage.getItem(key);
+	
+	
+	array = JSON.parse(item);
+   
+
+	//one iteration on fresh array
+	for(var i = 0; i<array.length ; i++)
+	{
+	
+	  querystring += "var=" + array[i] + "&";
+	}
+
+  }
+
+
+
+  
+  else if(key == "sessionUserID")
+  {
+		var item = sessionStorage.getItem(key);
+		querystring += "uid=" + item + "&";
+  }
+  else if(key == "numberOfRecordsChosen")
+  {
+
+  }
+  //else if(key == "alreadyZero")
+  //{
+//
+ // }
+  else if(key == "amtOfSelectdedRecords")
+  {
+	
+	
+	
+  }
+
+  //product id with amount to purchase
+  else
+  {
+	var val1 = "";
+	var item = sessionStorage.getItem(key);
+	alert(item);
+	if(item == "0")
+	{
+		
+		continue;
+	}
+	else{
+
+		
+		//is a poduct or are products
+		gflag1 = 1;
+		alert("A5") ;
+		
+			querystring += "id=" + key + "&amtTryingToPurchase" + item + "&";
+		
+	}
+	
+  } 
+
+}// end key loop
+
+//no id quant
+if (gflag1 == 0)
+{
+	alert("gflag1 - should be, all sessionlevelvariables were erased...");
+	//return(1);
+}
+//if (gflag1 == 4)
+//{
+//	alert("gflag4");
+//	return(1);
+//}
+
+
+
+alert("now");
+alert(querystring)
+
+
+// 8237 characters tested:
+
+/*
+querystring = "var=" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "&"
++ "var=" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "&"
+*/
+
+/////////
+
+
+
+var url = "http://localhost:8080/displayOrdersTemplateAgain";
+//var queryString = "user_name=jerry&password=666666&user_name=marry&password=11111";
+
+
+
+
+			alert("query3")
+			alert(querystring);
+
+			$.ajax({
+			type:"POST",
+			datatype: 'html',
+			url:url,
+			data:querystring,
+			async:false,
+			success: function (result) {
+
+				alert("query4")
+				alert(querystring);
+				alert("qqq");
+			  
+
+
+			var retVals = [];
+			//fix this, here :  two variables
+			var tempstringfortesting = "banana";
+			//result is html of displaying orders again (after cartTemplate)
+			retVals = forBuildingHTML(result , tempstringfortesting);
+			
+			//fix this, here
+			//var item1 = retVals[0];  
+			
+			var ourNewWord = retVals[1]; 
+			//var item = retVals[2];
+			
+			alert("derived here");
+			alert(ourNewWord);
+			alert(item);
+			alert(item1);
+			
+			
+			  
+		
+
+
+
+
+				//removes [var here],  builds secon cart template html, draws links to different keyword categories
+			  for(var i = 0 ; i < array.length ; i++)
+			  {
+
+				
+				
+
+
+				
+				var val1 = '["' + array[i] +  '"]';
+
+				//html
+				ourNewWord = ourNewWord.replace(val1 , '');
+				//fix this, here
+				retVals = forBuildingHTML(ourNewWord);
+				//create link to each keyword start
+				var result1a = "<a href='#" + array[i] + "'>" + array[i] + "</a><br>";
+
+				//positioning div at top of page
+				document.getElementById('buttons').innerHTML   += result1a;
+			  }
+			  //positioning div at top of page
+			  document.getElementById('templateOneHere').innerHTML   += ourNewWord;
+			 
+			}
+		});
+
+};
+
+
+
+</script>
+
+
+    </body>
+    </html>

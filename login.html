@@ -1,0 +1,96 @@
+<html>
+</body>
+
+  <head>
+
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!DOCTYPE html>
+</head>  
+
+
+<body>
+
+    <!--login gui-->
+    <input   name = "pass" type="pass" id="pass" name="" placeholder= "password" value="password"/>
+    <input   name = "userid" type="text" id="userid" name="userid" placeholder= "userid" value="1"/>
+    <input   type = "button" id="button1"  value="login!"/>
+   
+
+
+<script>
+
+window.sessionStorage
+
+
+var userid = "";
+
+    $(document).ready(function () {
+        $('#button1').click(function () {
+
+
+          //get user data after login button is pressed
+            var pass = document.getElementById("pass").value;
+            
+            userid = document.getElementById("userid").value;
+
+
+            var querystring = "pass=" + pass + "&userid=" + userid;
+
+
+            $.ajax({
+                url: "http://localhost:8080/processLogin",
+                type: 'POST',
+                dataType: 'json',
+                
+                
+                data: querystring,
+                //crossDomain: true,
+                success: function (result) {
+
+                  alert("pass");
+                  alert(result[0].Text);
+                    alert(result[0].UserID);
+                    console.log(result[0].UserID);
+                  //set session level variables if password is correct
+                  if (result[0].Text == "password correct")
+                  {
+                    
+                    sessionStorage.setItem("sessionUserID", result[0].UserID);
+                    
+                    sessionStorage.setItem("numberOfRecordsChosen", "0");
+                    
+                    window.location.href = "index.html";
+
+                    
+
+
+
+                  }
+                  //wrong password, reloads page
+                  else
+                  {
+                    window.location.href = "login.html";
+
+                  }
+                  
+                  
+                
+                 
+               
+                
+                  }
+            });
+
+        });
+    });
+
+    </script>
+
+</body>
+</html>

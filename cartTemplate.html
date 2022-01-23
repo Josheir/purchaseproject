@@ -1,0 +1,724 @@
+<html>
+
+
+<body>
+    <head>
+
+		<title>Bootstrap Example</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	  <!DOCTYPE html>
+
+  </head> 
+
+
+  <script>
+    //a change of gui, such as textbox happens at the end of function or at function failure.
+    //test, "test.html"
+    window.sessionStorage
+    </script>
+
+      <style>
+      table, th, td {
+        border: 1px solid black;
+       
+      }
+
+      
+      
+      td {
+        height: 80px;
+        width: 160px;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      </style>
+ 
+
+<br>
+<div id = "linksHere"></div>
+<br>
+
+<div id = "buttonHere"></div>
+<div id = "removeMe">
+{{range .}}
+<!-- display heading with this condition-->
+{{if(eq .Condition 1)}}
+
+
+<table style="width:60%; border:1px solid black;margin-left:auto;margin-right:auto;">
+
+<tr>
+
+<th><center>Amount to Buy</center></th>
+<th><center>Product ID</center></th>
+<th><center>Product Name</center></th>
+<th><center>Category</center></th>
+<th><center>Available</center></th> 
+<th><center>Buying</center></th> 
+<th><center>Cost for Each</center></th> 
+<th><center>Total Cost Items With Tax</center></th> 
+
+</tr>
+
+{{end}}
+
+
+
+
+ 
+<tr id = "{{.RemoveRecordDivID}}">
+
+<td  > <center><p > <input  class = "V0"  id = "{{.AmountToBuyID}}"   value ="{{.Bought}}"   type="number" name="" placeholder="" size="8">	</p></center></td>
+			
+<!-- <td><center>{{.Condition}}  {{.RemoveRecordDivID}}</center> </td>-->
+
+<td> <center><p> <input id = "{{.ProductIDID}}" value ="{{.ProductID}}"  type="" name="" placeholder="" size="8" readonly >	</p></center></td>
+
+<td> <center><p> <input id = "" value ="{{.ProductName}}"  type="" name="" placeholder="" size="8" readonly >	</p></center></td>
+
+<td> <center><p> <input id = "" value ="{{.ProductCatTitle}}"  type="" name="" placeholder="" size="8" readonly >	</p></center></td>
+
+
+  <td class = "" > <center><p> <input   id = "{{.DivID}}" value ="{{.ProductQuantity}}"  type="" name="" placeholder="" size="8" readonly >	</p></center></td>
+
+  <td> <center><p> <input id = "{{.BoughtID}}" value ="{{.Bought}}"  type="" name="" placeholder="" size="8" readonly >	</p></center></td>
+
+  
+  <td> <center><p> <input id = "{{.CostID}}" value ="${{.ProductCost}}"  type="" name="" placeholder="" size="" >	</p></center></td>
+
+  <td> <center><p> <input id = "{{.TotalCostID}}" value = "${{.TotalCost}}"   type="" name="" placeholder="" size=""  >	</p></center></td>
+
+
+</tr>
+
+
+
+
+
+
+
+
+{{if(eq .Condition2 -1)}}
+
+<!--dispaly totals when condition is -1-->
+
+<tr>
+<td><center> </center>  </td>
+<td><center> </center>  </td>  
+<td><center> </center>  </td>
+<td><center> </center>  </td>  
+<td><center> </center>  </td>
+<td><center> </center>  </td>  
+<td><center> </center>  </td> 
+<td> <center><p> <input id = "{{.GrandTotalStringID}}" value = "Grand Total: ${{.GrandTotalString}}"   type="" name="" placeholder="test" size="40" readonly >	</p></center></td>
+ </tr>
+
+</table>
+<br><br>
+<center><button onclick="checkAllAvailableProducts('{{.DivID}}' , '{{.GrandTotalString}}', '{{.GrandTotalStringID}}' )">Checkout</button></center>
+
+
+    
+    
+{{end}}
+{{end}}
+
+</div><!--removeMe-->
+
+
+<script >
+
+
+
+
+
+  
+
+//function changeColorToBlack(AmountToBuyID)
+//{
+//  document.getElementById(AmountToBuyID).style.color = "black";
+//  document.getElementById(AmountToBuyID).value = "";
+// 
+//}
+
+function hideRow(rowId)
+{
+    document.getElementById(rowId).style.display = "none";
+}
+
+
+///////
+/*
+function sqrt(value) {
+    if (value < 0n) {
+        throw 'square root of negative numbers is not supported'
+    }
+
+    if (value < 2n) {
+        return value;
+    }
+
+    function newtonIteration(n, x0) {
+        const x1 = ((n / x0) + x0) >> 1n;
+        if (x0 === x1 || x0 === (x1 - 1n)) {
+            return x0;
+        }
+        return newtonIteration(n, x1);
+    }
+
+    return newtonIteration(value, 1n);
+}
+*/
+//////
+
+//checkout pressed from template2
+function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
+
+
+
+
+
+  var gtotal = parseFloat(gtotal);
+  
+
+  //leading letter for ids that are used in cart template
+  var val1 = "";
+  
+  var var1 = "A";
+  
+  var var2 = "C";
+ 
+  var var3 = "D"; 
+
+  var var4 = "B";
+
+  var var5 = "V";
+
+  var var6 = "P";
+
+  var counter = -1;
+  var string = "";
+
+  var item = 0;
+  var AmountToBuyID = 0;
+  var AmountOfCostID = 0;
+  var AmountOfQuantityID = 0; 
+  var bought = 0;
+  
+    
+    var flagToReturnOut = false;
+    let keys = Object.keys(sessionStorage);
+    
+    var amtOfHiddenProducts = 0;
+
+    //each iteration is one purchase
+    for(let key of keys) {
+        counter++;
+        if(key =="sessionUserID")
+        {
+          counter--;
+         
+          continue;
+        }
+        
+        if(key =="keywords")
+        {
+          counter--;
+          
+          continue;
+        }
+        if(key =="numberOfRecordsChosen")
+        {
+          counter--;
+         
+          continue;
+        }
+        //if(key =="alreadyZero")
+        //{
+        //  counter--;
+        // 
+        //  continue;
+        //}
+        if(key =="amtOfKeywords")
+        {
+          counter--;
+         
+          continue;
+        }
+
+
+        
+        //if here, is productid and a quantity
+        AmountToBuyID = var1 + counter;
+        AmountOfCostID = var2 + counter;
+        AmountOfQuantityID = var3 + counter;
+        BoughtID = var4 + counter;
+        oneDivID = var5 + counter;
+        ProductIDID = var6 + counter;
+      
+        var bought = (document.getElementById(BoughtID).value);
+        var amtInBuyBox =(document.getElementById(AmountToBuyID).value);
+        var quantityInBox = (document.getElementById(AmountOfQuantityID).value);
+        var costInBox = (document.getElementById(AmountOfCostID).value); 
+        var Product = (document.getElementById(ProductIDID).value); 
+       
+        var item = amtInBuyBox;
+       
+        //because amount to buy is nothing than change buying to nothing
+        if (item == "")
+        { 
+          
+          item = bought;
+        
+        }
+        //check if is decimal
+        if(item % 1 != 0)
+        {
+          
+          return(1);
+          
+        }
+
+        if(item == 0)
+        {
+
+                 
+                  hideRow(oneDivID);
+                  amtOfHiddenProducts++;
+                 
+          //continue;
+          
+        }
+        
+        else if(item < 0 ) 
+        {
+          
+          var str2 = amtInBuyBox.toString();
+         
+          flagToReturnOut= true;
+        }
+        else if (isNaN(item ))
+        {
+          
+          var str2 = amtInBuyBox.toString();
+         
+          flagToReturnOut= true;
+        }
+
+        
+        if (flagToReturnOut == true)
+        {
+          return;
+        }
+
+        //id and amount trying to buy
+        string =  string + "id=" + key + "&amtTryingToPurchase" + item + "&";
+                
+    }
+
+    
+    //all products are hidden, so do this
+    if (amtOfHiddenProducts == (counter + 1))
+    {
+      
+
+      //window.location.href = "index.html";
+      //window.location = "https://localhost/golangproj/index.html?displayOrdersTemplateAgain=1";
+
+      alert("a1");
+      //reset sessio variables because goint baack to index
+      var sessID = sessionStorage.getItem("sessionUserID");
+      sessionStorage.clear();
+      sessionStorage.setItem("sessionUserID", sessID);
+      sessionStorage.setItem("numberOfRecordsChosen", "0");
+
+
+
+      alert("aaa");
+      window.location.href = "index.html";
+      return(1);
+      
+      alert("++++++++++am here you see it!");
+    
+    }
+    //build string
+    string = string + "userid=1&";//sessionStorage.getItem("sessionUserID");
+
+    //removed &
+var queryString = string.substring(0, string.length-1);
+
+let flagisEnoughProduct = true;
+alert("start zzhere");
+alert(queryString);
+              $.ajax({
+              url: 'http://localhost:8080/sendBackNewCartData',
+              type: 'GET',
+              dataType: 'json',
+              
+              
+              data:queryString,
+              crossDomain: true,
+             
+              success: function (data1) {
+                alert("testthis");
+               
+
+                //let enoughFlag = true;
+
+                //no records
+                if(data1.length == null){
+
+                  //for(let key of keys) {
+       //
+         //           alert("keys here...");
+           //         alert(key);
+             //     if(key =="sessionUserID")
+               //   {
+                 //   continue;
+                  //}
+                  //else
+                  //{
+                    
+                      
+
+                  //}
+                //}
+
+                
+
+                alert("am here you see it! - look at this!");
+                window.location.href = "index.html";
+                return(1);
+                //window.location.href = "index.html";
+            
+                }
+
+                      
+                        
+                //var flag = "enough";
+                alert("enough start");
+                for (var i = 0; i< data1.length ;i++)
+                {
+
+                  
+                  
+                if(data1[i].IsEnoughQuantity == false)
+                {
+              
+                  flagisEnoughProduct = false;
+                  break;
+                //flag = "not enough";
+                //alert("is not enough");
+               
+                }
+
+                }
+
+                if (flagisEnoughProduct == true)
+                {
+                  alert("is enough");
+                  window.location.href = "donePurchase.html";
+                  return(1);
+                }
+
+
+                //if here, there is at least one record that doesnt have enough product
+                alert("done purchase");
+
+                //fix this, here
+              var lengthOfData = data1.length;
+
+              alert(lengthOfData);
+              console.log(data1);
+
+
+                var grandTotal = 0;
+                //initalize big ints for money system
+                let GrandTotal = BigInt(0);
+                let GrandTotalDiv = BigInt(0);
+                //from jquery call to main.go functino:sendbackcartdata
+                for(var i = 0; i<(lengthOfData) ; i++)
+                {
+                  
+                 alert("ahere");
+                 alert(i);
+                 alert(lengthOfData); 
+                 alert(typeof(lengthofData))
+                 //GTotalWithTax = 0;
+                
+                 //for ids of carttemplate's ids
+                var boughtid = "B" + i; 
+                var buyThisManyID = "A" + i;
+                var availableID =  "D" + i;
+                var costID = "C" + i;
+                var totalCostID = "TC" + i;
+                var GrandTotalStringID = "GT" + i;
+                var mainDivID =  "V" + i;
+                
+                
+                /////////
+
+                
+                
+                bought1 = 1;
+                //hide any line with a zero for buying
+                if(bought1 == 0)// && (amtBuying1 == "" || (isNaN(amtBuying1)) ))
+                {
+                 
+                  
+                  hideRow(mainDivID);
+                  amtOfHiddenProducts++;
+                  
+                }
+
+
+
+                /////////
+             
+                var isEnoughQuantity = false;
+                //still in loop
+                isEnoughQuantity = data1[i].IsEnoughQuantity;
+
+                
+               
+                //wasnt enough, so make red
+                if (isEnoughQuantity == false)
+                {  
+                  //debugger;
+                  //change settings of cart template if the current record doesn't have enough product in db for request 
+                  var avail = (document.getElementById(availableID).value);
+                  document.getElementById(buyThisManyID).value = 0;
+                  document.getElementById(availableID).value = (parseInt(avail) + parseInt(bought));
+                  
+                  document.getElementById(availableID).style.color = 'red';
+                  
+                  //amount to buy
+                  document.getElementById(buyThisManyID).value = 0;
+                  //buying
+                  document.getElementById(boughtid).value = 0;
+                  //total cost for productID
+                  document.getElementById(totalCostID).value = "$0.00";
+                  alert("here!11");
+
+                }else{
+                
+                  
+                  ///////
+
+                  alert("start debugging");
+                  
+                  //money, id is big ints hold only pennies so that there is less estimation problems, 
+                  //although not perfect money is calculated the same again and again
+                  let totalNoTaxTimes1000 = BigInt(0);
+                  let totalNoTaxOne = BigInt(0);
+                  let nba = BigInt(0);
+                  let taxTimes1000 = BigInt(0);
+                  let becomePenniesTotalOfOneProductlNoTax = BigInt(0);
+                  let tax = BigInt(0);
+                  let thousand = BigInt(0);
+                  let withTaxTimes1000 = BigInt(0);
+                  let n7 = BigInt(0);
+                  let n8 = BigInt(0);
+                  let n9 = BigInt(0);
+
+                  ///let n2b = n2;
+                 
+                  let amountBought = BigInt(0);
+                  //.05
+                  tax = 50;
+                  totalNoTaxTimes1000 = 0;
+                  thousand = 1000;
+                  withTaxTimes1000 = 0;
+
+
+                  ////////////this is when checkout has been pressed from template2
+                  
+                 
+                  ////////
+                  //debugger;
+
+                  let ProductCostString = "";
+
+                  alert("alert big debug!");
+                 
+                  //integer
+                  //n2 = document.getElementById(buyThisManyID).value;
+                  //fix this, here
+                  amountBought = document.getElementById(buyThisManyID).value;
+                  
+                  //total cost decimal tax and pennies - string  $###.##;  has exact 
+                  becomePenniesTotalOfOneProductlNoTax =document.getElementById(costID).value;
+                  //remove $ sign still has decimal place
+                  becomePenniesTotalOfOneProductlNoTax = becomePenniesTotalOfOneProductlNoTax.substring(1);
+
+                  alert("a");//10000.22
+
+
+
+                  var string2a = "";
+                  string1a = n3.toString();
+                  
+                  //remove decimal point
+                  for(var j = 0; j < string1a.length; j++)
+                  {
+                    if(j == string1a.length-3)
+                    {
+                      continue;
+                    }
+                    string2a = string2a + string1a[j];
+
+                  }
+
+
+                  becomePenniesTotalOfOneProductlNoTax = string2a;
+                  alert(n3); //1000022
+                  
+
+
+                  
+
+                  //total pennies, no tax
+                  totalNoTaxOne = becomePenniesTotalOfOneProductlNoTax;
+                  alert(totalNoTaxOne);//1000022
+                  //total without tax in pennies times 1000
+                  totalNoTaxTimes1000 = totalNoTaxOne * thousand * amountBought;
+                  alert(totalNoTaxTimes1000);//2000044000
+
+
+
+
+
+
+                  
+                  tax = amountBought * totalNoTaxOne * tax ;  // was 100
+                 
+                  
+                  //alert("tax");
+                  //alert(tax);//
+                  //alert(totalNoTaxTimes1000);//
+
+
+
+
+
+
+
+
+                  
+                  //add pennies and tax amount without decimal point
+                  withTaxTimes1000 = totalNoTaxTimes1000 + tax;
+                  //alert(withTaxTimes1000);//  
+
+
+
+
+
+
+
+
+
+                  
+
+                  
+                  //GrandTotal = (GrandTotal) + BigInt(parseInt(withTaxTimes1000/1000));
+
+
+                  GrandTotalDiv = BigInt(parseInt(withTaxTimes1000/1000));
+                  GrandTotal = (GrandTotal) + BigInt(GrandTotalDiv);
+                  alert("z");
+                  alert(GrandTotal);//
+
+
+                  //total no decimals with 1000 multiplier
+
+
+                  //ProductCostString = (withTaxTimes1000).toString();
+                  GrandTotalDiv = GrandTotalDiv * BigInt(1000);
+                   ProductCostString = (GrandTotalDiv).toString();
+
+
+                  alert(ProductCostString);//
+
+
+
+
+
+
+
+
+
+                  //for chnanging template cartTemplate
+                  forCostEachFloat = parseFloat(ProductCostString);
+
+                  //total deimals with changed decimal place
+                  
+                  forCostEachFloat = forCostEachFloat / 100000.0;
+                  alert("2");
+                  alert(forCostEachFloat);//
+
+                  
+                  
+
+                  //main division that will be the only off by a possible cent
+                  ProductCostString = (forCostEachFloat.toFixed(2)).toString();
+                  
+                  ProductCostString = "$" + ProductCostString;
+                  alert("3"); //$
+
+                  alert(ProductCostString);
+
+                  document.getElementById(totalCostID).value = ProductCostString;
+
+
+                  alert("at end");
+                 
+
+                }
+
+                
+              }//for
+                
+
+                  alert("GrandTotal");
+                  alert(GrandTotal);//2001044!
+                  //bigint added to above
+                  
+                  
+                  var floatGrandTotal = Number(GrandTotal); 
+                 
+                  floatGrandTotal = floatGrandTotal / 100.0;
+                  floatGrandTotal = floatGrandTotal.toFixed(2);
+                  
+                  
+                  alert(floatGrandTotal);//20010.44!
+                  
+                  
+                 //for updating cart template
+                  stringGrandTotal = "Grand Total:  $" + parseFloat(floatGrandTotal);
+                  alert(stringGrandTotal);//$20010.44!
+                  document.getElementById(GrandTotalStringID).value = stringGrandTotal;
+                
+
+                  
+              
+                alert("end success function");
+            }////sucesss - goto spitback and return values
+
+           
+            
+
+          });//ajax
+
+}//function
+
+
+</script>
+
+</body>
+</html>
