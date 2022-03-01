@@ -1900,7 +1900,7 @@ func main() {
 
 	//
 	one.HandleFunc("/cartTemplate", createCartTemplate)
-	one.HandleFunc("/spitBackAmounts", sendBackNewCartData)
+	one.HandleFunc("/sendBackNewCartData", sendBackNewCartData)
 
 	fmt.Println("this is a test1!")
 
