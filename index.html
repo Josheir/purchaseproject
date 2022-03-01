@@ -1337,16 +1337,18 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 			  
 
 
-			var retVals = [];
-			//fix this, here :  two variables
-			var tempstringfortesting = "banana";
+			//var retVals = [];
+			//fix this, here, done :  two variables
+			//var tempstringfortesting = "banana";
 			//result is html of displaying orders again (after cartTemplate)
-			retVals = forBuildingHTML(result , tempstringfortesting);
+
+			//changed parameter two and commented out
+			//retVals = forBuildingHTML(result , result.globKeyword);
 			
 			//fix this, here
 			//var item1 = retVals[0];  
 			
-			var ourNewWord = retVals[1]; 
+			var ourNewWord = result.globKeyword; 
 			//var item = retVals[2];
 			
 			alert("derived here");
