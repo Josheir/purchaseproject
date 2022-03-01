@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"html/template"
 
-	//"log"
+	
 	//"strings"
 
 	//"bytes"
@@ -274,10 +274,11 @@ func processLogin(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 
+	fmt.Println("test2")
 	//globaltest++
 
 	/*
-		err = r.ParseForm()
+		err = r.ParseForm()D
 
 		array := r.Form["var"][1]
 		fmt.Println(array)
@@ -382,7 +383,7 @@ func processLogin(w http.ResponseWriter, r *http.Request) {
 
 		passFlag = "password wrong"
 	}
-
+	println("test3")
 	MakeUser(passFlag, useridInt)
 
 	json.NewEncoder(w).Encode(User)
@@ -675,8 +676,8 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 		//if thisQuant > 0 && intQuant < ProductQuantity && intQuant > 0  && doUpdatesAndSelects == "yes" {
 
 		//checks if database is altered
-		//fix this, here
-		if quantLeft > 0 && currentPurchase > 0 && doUpdatesAndSelects == true {
+		//fix this, here, done
+		if quantLeft > 0 && currentPurchase > 0 && doUpdatesAndSelects {
 
 			{
 
@@ -1871,10 +1872,15 @@ func getMessages(w http.ResponseWriter, r *http.Request) {
 ////////////
 
 /////////////
+func home(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Hello from Snippetbox")
+}
 
 func main() {
 
+	fmt.Println("this is a test!")
 	one := http.NewServeMux()
+	//one.HandleFunc("/", home)
 
 	//has an id value passed in url
 	//one.HandleFunc("/updateForm/", updateForm)
@@ -1896,6 +1902,12 @@ func main() {
 	one.HandleFunc("/cartTemplate", createCartTemplate)
 	one.HandleFunc("/spitBackAmounts", sendBackNewCartData)
 
-	http.ListenAndServe(":8080", one)
+	fmt.Println("this is a test1!")
+
+	
+
+	serverErr := http.ListenAndServe(":8080", one)
+	fmt.Println(serverErr)
+	fmt.Println("this is a test2!")
 
 }
