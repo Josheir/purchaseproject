@@ -1205,6 +1205,7 @@ func Hello(w http.ResponseWriter, r *http.Request) {
 //this function displays all the keywords in the url, these records are the records already been displayed in displayOrdersTemplate
 func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 
+	counter1B := -1
 	//GlobCounter++
 
 	/////////
@@ -1404,7 +1405,7 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 
 			var i = 0
 
-			counter1 = counter1 + 1
+			
 
 			var prodBoughtInt = 0
 
@@ -1430,8 +1431,11 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 					break
 				}
 			}
+
+			counter1B = counter1B + 1
+			
 			//display orders template again
-			sendToTemplate(&globKeyword, &counter1, &w, &CondYellow, &Link, &Condition1, &AmountPurchased, &ProductID, &ProductCatTitle, &ProductName, &ProductDescription, &ProductCost, &ProductQuantity,
+			sendToTemplate(&globKeyword, &counter1B, &w, &CondYellow, &Link, &Condition1, &AmountPurchased, &ProductID, &ProductCatTitle, &ProductName, &ProductDescription, &ProductCost, &ProductQuantity,
 				&gKeyword1, &gKeyword2, &gKeyword3, &ProductFilename)
 
 		} //row
@@ -1443,12 +1447,12 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 /////////
 
 //var GlobCounter = -1
-var counter1 = 0
+//var counter1 = 0
 
 ////////send to cart template
 func sendToTemplate(globKeyword *string, counter1 *int, w *http.ResponseWriter, CondYellow *int, Link *string, Condition *int, AmountPurchased *int, ProductID *int, ProductCatTitle *string, ProductName *string, ProductDescription *string, ProductCost *string, ProductQuantity *int,
 	gKeyword1 *string, gKeyword2 *string, gKeyword3 *string, ProductFilename *string) {
-	*counter1++
+	//*counter1++
 	//counter1 = 0
 	str := strconv.Itoa(*counter1)
 
@@ -1533,6 +1537,7 @@ type display5 struct {
 
 func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 
+	counter1A := -1;
 	//var savedProductIDs []int
 
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -1693,7 +1698,7 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 		counterOfRecords++
 
 		//marshalFlag = "no"
-		counter1 = counter1 + 1
+		//counter1 = counter1 + 1
 		Condition1++
 
 		var ProductQuantity, CondYellow int
@@ -1811,8 +1816,8 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 
 		//send to twmplate that displays orders
 		//fix this, here
-		counter1++
-		sendToTemplate(&globKeyword, &counter1, &w, &CondYellow, &Link, &Condition1, &AmountPurchased, &ProductID, &ProductCatTitle, &ProductName, &ProductDescription, &ProductCost, &ProductQuantity,
+		counter1A++
+		sendToTemplate(&globKeyword, &counter1A, &w, &CondYellow, &Link, &Condition1, &AmountPurchased, &ProductID, &ProductCatTitle, &ProductName, &ProductDescription, &ProductCost, &ProductQuantity,
 			&gKeyword1, &gKeyword2, &gKeyword3, &ProductFilename)
 
 	}
