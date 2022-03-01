@@ -1433,7 +1433,7 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 			}
 
 			counter1B = counter1B + 1
-			
+
 			//display orders template again
 			sendToTemplate(&globKeyword, &counter1B, &w, &CondYellow, &Link, &Condition1, &AmountPurchased, &ProductID, &ProductCatTitle, &ProductName, &ProductDescription, &ProductCost, &ProductQuantity,
 				&gKeyword1, &gKeyword2, &gKeyword3, &ProductFilename)
@@ -1815,7 +1815,7 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 		}
 
 		//send to twmplate that displays orders
-		//fix this, here
+		//fix this, here, done
 		counter1A++
 		sendToTemplate(&globKeyword, &counter1A, &w, &CondYellow, &Link, &Condition1, &AmountPurchased, &ProductID, &ProductCatTitle, &ProductName, &ProductDescription, &ProductCost, &ProductQuantity,
 			&gKeyword1, &gKeyword2, &gKeyword3, &ProductFilename)
