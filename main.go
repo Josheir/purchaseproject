@@ -677,7 +677,7 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 
 		//checks if database is altered
 		//fix this, here, done
-		if quantLeft > 0 && currentPurchase > 0 && doUpdatesAndSelects {
+		if quantLeft > 0 && currentPurchase > 0 && doUpdatesAndSelects == true {
 
 			{
 
@@ -1900,7 +1900,7 @@ func main() {
 
 	//
 	one.HandleFunc("/cartTemplate", createCartTemplate)
-	one.HandleFunc("/sendBackNewCartData", sendBackNewCartData)
+	one.HandleFunc("/spitBackAmounts", sendBackNewCartData)
 
 	fmt.Println("this is a test1!")
 
