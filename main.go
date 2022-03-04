@@ -311,7 +311,7 @@ func processLogin(w http.ResponseWriter, r *http.Request) {
 	useridInt, err := (strconv.Atoi(userid))
 
 	if err != nil {
-		fmt.Fprint(w, err)
+		fmt.Println(err)
 	}
 
 	//pass, present := query["pass"]
@@ -327,14 +327,14 @@ func processLogin(w http.ResponseWriter, r *http.Request) {
 	stmt, err := db.Prepare("SELECT customers.Password FROM customers WHERE customers.CustomerID = ?")
 
 	if err != nil {
-		fmt.Fprint(w, err)
+		fmt.Println(err)
 	}
 
 	//substituted with ?
 	rows, err := stmt.Query(useridInt)
 
 	if err != nil {
-		fmt.Fprint(w, err)
+		fmt.Println(err)
 	}
 
 	var PasswordID string
