@@ -1046,7 +1046,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 	} //for next loop
 
 	//https://stackoverflow.com/questions/24755509/using-conditions-inside-templates
-	globt = template.Must(template.ParseFiles("C:/wamp64/www/golangproj/cartTemplate.html"))
+	globt = template.Must(template.ParseFiles("C:/wamp64/www/purchaseproject/cartTemplate.html"))
 
 	err1 = globt.Execute(w, ProductListForCartTemplate)
 
@@ -1477,7 +1477,7 @@ func sendToTemplate(globKeyword *string, counter1 *int, w *http.ResponseWriter, 
 
 	fmt.Println(templ1)
 
-	globt = template.Must(template.ParseFiles("C:/wamp64/www/golangproj/template1.html"))
+	globt = template.Must(template.ParseFiles("C:/wamp64/www/purchaseproject/template1.html"))
 
 	//err1 := globt.Execute(w, testvar)
 	var err1 = globt.Execute(*w, templ1)
