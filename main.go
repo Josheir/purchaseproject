@@ -438,7 +438,7 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 		for i = 0; i < (length); i++ {
 
 			allProductIds = append(allProductIds, []string{r.Form["id"][i]}...)
-			allPurchaseAmounts = append(allPurchaseAmounts, []string{r.Form["quant"][i]}...)
+			allPurchaseAmounts = append(allPurchaseAmounts, []string{r.Form["amtTryingToPurchase"][i]}...)
 
 		}
 
