@@ -1259,7 +1259,7 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 		for i = 0; i < (length); i++ {
 
 			ProdID = append(ProdID, []string{r.Form["id"][i]}...)
-			keyTotalAmountBought = append(keyTotalAmountBought, []string{r.Form["quant"][i]}...)
+			keyTotalAmountBought = append(keyTotalAmountBought, []string{r.Form["amtTryingToPurchase"][i]}...)
 
 		}
 
