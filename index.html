@@ -83,17 +83,32 @@ var searchterm = urlParams.get('displayOrdersTemplateAgain');
 let keys = Object.keys(sessionStorage);
 
 for(let key of keys) {
-		//alert(key);
+
+		//alert("right here!!!");
 		
 			
-		
-		if(key != "sessionUserID")
+		//var keyAsInt = Number(key);
+		//alert("key");
+
+		let value = false;
+		if (parseInt(key, 10))
+		{
+			//alert("is int")
+			value = true;
+		}
+
+
+		if(key != "keywords" && key != "sessionUserID" && value == false )
         {
+			alert("nonint")
+			//alert(key);
+		
 			sessionStorage.removeItem(key);	
         }
 		
-		
+		//alert("here!!!!!!");
 	}
+	//alert("finished!!!");
 	sessionStorage.setItem("numberOfRecordsChosen", "0");
 
 
@@ -236,7 +251,7 @@ $(document).ready(function () {
 
 			//alert("keys -A");
 		//check for login
-		alert("sess");
+		//alert("sess");
 	
 		var getUser = sessionStorage.getItem("sessionUserID");
 		alert(getUser);
@@ -262,11 +277,11 @@ $(document).ready(function () {
 
 		var searchWord = "";
 		
-		alert("keys -A");
+		//alert("keys -A");
 
 		//build query fo main.go display of order template
 		for(let key of keys) {
-		alert(key);
+		//alert(key);
 			
 		
 
@@ -390,8 +405,8 @@ $(document).ready(function () {
 	}
 		
 
-		alert("here");
-		alert(string);
+		//alert("here");
+		//alert(string);
 		//from index top gui
 		var searchWord = document.getElementById("search").value;
 
@@ -501,8 +516,8 @@ else
 	  
 	 
 
-	  alert("querystringzz");
-	  alert(querystring);
+	  //alert("querystringzz");
+	  //alert(querystring);
 
 
 
@@ -529,6 +544,9 @@ else
 				crossDomain: true,
                 success: function (result) {
 
+					alert("result");
+					alert(result);
+					console.log(result);
 
 					if(result == "")
 					{
@@ -584,10 +602,10 @@ else
 
 
 				
-				alert("check this!");
-				alert(item1);
-				alert(result);
-				alert(searchWord);
+				//alert("check this!");
+				//alert(item1);
+				//alert(result);
+				//alert(searchWord);
 
 				////////////
 				//displays link for every grouping by product group to go there
@@ -1140,8 +1158,8 @@ function DoesKeywordAlreadyExist( searchword, string)
 			
 		//}
 
-		alert("querystring1");
-		alert(querystring);
+		//alert("querystring1");
+		//alert(querystring);
 		
 		}
 		else if(isfirst == true)
@@ -1149,8 +1167,8 @@ function DoesKeywordAlreadyExist( searchword, string)
 			querystring = ("var=" + searchword + "&");
 		}
 	
-		alert("querystring2");
-		alert(querystring);
+		//alert("querystring2");
+		//alert(querystring);
 	
 	return [gflag, querystring];
 	 }
@@ -1190,6 +1208,7 @@ var gKeywordRecordNumber = 0;
 function displayOrdersTemplateAgain(){
 
 	debugger;
+	//alert("stops here!!!");
 
 //alert("check if getting here before panid");
 
@@ -1201,37 +1220,38 @@ var querystring = "";
 var counter = -1;
 var array = [];
 
-alert("A4") ;
+//alert("A4") ;
 
 var gflag1 = 0;
 //var gcounter1 = 0;
-alert("A5") ;
+//alert("A5") ;
 let keys = Object.keys(sessionStorage);
 
 
 
-alert("A6") ;
+//alert("A6") ;
 for(let key of keys) {
 
-	alert("getthis");
-	alert(key);
+//	alert("getthis");
+//	alert(key);
 
  if(key == "keywords")
   {
 	counter++;
 	alert("keywords");
    
-	var item = sessionStorage.getItem(key);
+	let item = sessionStorage.getItem(key);
 	
-	
+	//alert(item);
 	array = JSON.parse(item);
-   
+   //console.log(array);
 
 	//one iteration on fresh array
 	for(var i = 0; i<array.length ; i++)
 	{
 	
 	  querystring += "var=" + array[i] + "&";
+	  //alert(querystring);
 	}
 
   }
@@ -1264,7 +1284,7 @@ for(let key of keys) {
   {
 	var val1 = "";
 	var item = sessionStorage.getItem(key);
-	alert(item);
+	//alert(item);
 	if(item == "0")
 	{
 		
@@ -1275,7 +1295,7 @@ for(let key of keys) {
 		
 		//is a poduct or are products
 		gflag1 = 1;
-		alert("A5") ;
+		//alert("A5") ;
 		
 			querystring += "id=" + key + "&amtTryingToPurchase=" + item + "&";
 		
@@ -1320,7 +1340,7 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 
 
 
-			alert("query3")
+			alert("query3");
 			alert(querystring);
 
 			$.ajax({
@@ -1334,7 +1354,7 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 				alert("query4")
 				alert(querystring);
 				alert("qqq");
-			  
+				alert(result);
 
 
 			//var retVals = [];
@@ -1348,13 +1368,13 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 			//fix this, here, done
 			//var item1 = retVals[0];  
 			
-			var ourNewWord = result.globKeyword; 
+			var ourNewWord = result; 
 			//var item = retVals[2];
 			
 			alert("derived here");
 			alert(ourNewWord);
 			alert(item);
-			alert(item1);
+			
 			
 			
 			  
@@ -1371,16 +1391,16 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 				
 
 
-				
+				alert("in function");
 				var val1 = '["' + array[i] +  '"]';
-
+				alert(val1);
 				//html
 				ourNewWord = ourNewWord.replace(val1 , '');
 				//fix this, here
 				//retVals = forBuildingHTML(ourNewWord);
 				//create link to each keyword start
 				var result1a = "<a href='#" + array[i] + "'>" + array[i] + "</a><br>";
-
+				alert(result1a);
 				//positioning div at top of page
 				document.getElementById('buttons').innerHTML   += result1a;
 			  }

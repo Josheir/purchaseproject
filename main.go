@@ -1437,9 +1437,11 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 			//display orders template again
 			sendToTemplate(&globKeyword, &counter1B, &w, &CondYellow, &Link, &Condition1, &AmountPurchased, &ProductID, &ProductCatTitle, &ProductName, &ProductDescription, &ProductCost, &ProductQuantity,
 				&gKeyword1, &gKeyword2, &gKeyword3, &ProductFilename)
+			
 
 		} //row
 
+		//json.NewEncoder(w).Encode(globKeyword)
 	} //main loop
 
 }
