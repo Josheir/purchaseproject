@@ -331,7 +331,7 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
       //window.location.href = "index.html";
       //window.location = "https://localhost/golangproj/index.html?displayOrdersTemplateAgain=1";
 
-      alert("a1");
+      //alert("a1");
       //reset sessio variables because goint baack to index
       var sessID = sessionStorage.getItem("sessionUserID");
       sessionStorage.clear();
@@ -340,11 +340,11 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 
 
 
-      alert("aaa");
+      //alert("aaa");
       window.location.href = "index.html";
       return(1);
       
-      alert("++++++++++am here you see it!");
+      //alert("++++++++++am here you see it!");
     
     }
     //build string
@@ -354,7 +354,7 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 var queryString = string.substring(0, string.length-1);
 
 let flagisEnoughProduct = true;
-alert("start zzhere");
+//alert("start zzhere");
 alert(queryString);
               $.ajax({
               url: 'http://localhost:8080/sendBackNewCartData',
@@ -366,7 +366,7 @@ alert(queryString);
               crossDomain: true,
              
               success: function (data1) {
-                alert("testthis");
+                //alert("testthis");
                
 
                 //let enoughFlag = true;
@@ -392,7 +392,7 @@ alert(queryString);
 
                 
 
-                alert("am here you see it! - look at this!");
+                //alert("am here you see it! - look at this!");
                 window.location.href = "index.html";
                 return(1);
                 //window.location.href = "index.html";
@@ -402,7 +402,7 @@ alert(queryString);
                       
                         
                 //var flag = "enough";
-                alert("enough start");
+                //alert("enough start");
                 for (var i = 0; i< data1.length ;i++)
                 {
 
@@ -422,19 +422,19 @@ alert(queryString);
 
                 if (flagisEnoughProduct == true)
                 {
-                  alert("is enough");
+                  //alert("is enough");
                   window.location.href = "donePurchase.html";
                   return(1);
                 }
 
 
                 //if here, there is at least one record that doesnt have enough product
-                alert("done purchase");
+                //alert("done purchase");
 
                 //fix this, here, done
               var lengthOfData = data1.length;
 
-              alert("length");
+              //alert("length");
               alert(lengthOfData);
               console.log(data1);
 
@@ -447,7 +447,7 @@ alert(queryString);
                 for(var i = 0; i<(lengthOfData) ; i++)
                 {
                   
-                 alert("ahere");
+                 //alert("ahere");
                  alert(i);
                  alert(lengthOfData); 
                  alert(typeof(lengthofData))
@@ -505,14 +505,14 @@ alert(queryString);
                   document.getElementById(boughtid).value = 0;
                   //total cost for productID
                   document.getElementById(totalCostID).value = "$0.00";
-                  alert("here!11");
+                  //alert("here!11");
 
                 }else{
                 
                   
                   ///////
 
-                  alert("start debugging");
+                  //alert("start debugging");
                   
                   //money, id is big ints hold only pennies so that there is less estimation problems, 
                   //although not perfect money is calculated the same again and again
@@ -546,7 +546,7 @@ alert(queryString);
 
                   let ProductCostString = "";
 
-                  alert("alert big debug!");
+                  //alert("alert big debug!");
                  
                   //integer
                   //n2 = document.getElementById(buyThisManyID).value;
@@ -578,7 +578,7 @@ alert(queryString);
 
 
                   becomePenniesTotalOfOneProductlNoTax = string2a;
-                  alert(n3); //1000022
+                  //alert(n3); //1000022
                   
 
 
@@ -586,10 +586,10 @@ alert(queryString);
 
                   //total pennies, no tax
                   totalNoTaxOne = becomePenniesTotalOfOneProductlNoTax;
-                  alert(totalNoTaxOne);//1000022
+                  //alert(totalNoTaxOne);//1000022
                   //total without tax in pennies times 1000
                   totalNoTaxTimes1000 = totalNoTaxOne * thousand * amountBought;
-                  alert(totalNoTaxTimes1000);//2000044000
+                  //alert(totalNoTaxTimes1000);//2000044000
 
 
 
@@ -632,7 +632,7 @@ alert(queryString);
 
                   GrandTotalDiv = BigInt(parseInt(withTaxTimes1000/1000));
                   GrandTotal = (GrandTotal) + BigInt(GrandTotalDiv);
-                  alert("z");
+                  //alert("z");
                   alert(GrandTotal);//
 
 
@@ -660,7 +660,7 @@ alert(queryString);
                   //total deimals with changed decimal place
                   
                   forCostEachFloat = forCostEachFloat / 100000.0;
-                  alert("2");
+                  //alert("2");
                   alert(forCostEachFloat);//
 
                   
@@ -670,14 +670,14 @@ alert(queryString);
                   ProductCostString = (forCostEachFloat.toFixed(2)).toString();
                   
                   ProductCostString = "$" + ProductCostString;
-                  alert("3"); //$
+                  //alert("3"); //$
 
                   alert(ProductCostString);
 
                   document.getElementById(totalCostID).value = ProductCostString;
 
 
-                  alert("at end");
+                  //alert("at end");
                  
 
                 }
@@ -686,8 +686,8 @@ alert(queryString);
               }//for
                 
 
-                  alert("GrandTotal");
-                  alert(GrandTotal);//2001044!
+                  //alert("GrandTotal");
+                  //alert(GrandTotal);//2001044!
                   //bigint added to above
                   
                   
@@ -697,18 +697,18 @@ alert(queryString);
                   floatGrandTotal = floatGrandTotal.toFixed(2);
                   
                   
-                  alert(floatGrandTotal);//20010.44!
+                  //alert(floatGrandTotal);//20010.44!
                   
                   
                  //for updating cart template
                   stringGrandTotal = "Grand Total:  $" + parseFloat(floatGrandTotal);
-                  alert(stringGrandTotal);//$20010.44!
+                  //alert(stringGrandTotal);//$20010.44!
                   document.getElementById(GrandTotalStringID).value = stringGrandTotal;
                 
 
                   
               
-                alert("end success function");
+                //alert("end success function");
             }////sucesss - goto spitback and return values
 
            

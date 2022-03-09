@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"html/template"
 
-	
 	//"strings"
 
 	//"bytes"
@@ -641,7 +640,7 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 		//this gets the record for update
 
 		var ProductCost float64
-		var ProductQuantity, ProductID, AdminID, CustomerID, OrderID, ID int
+		var ProductQuantity, ProductID, AdminID, CustomerID, OrderID int
 		var gKeyword1, gKeyword2, gKeyword3, ProductName, ProductDescription, ProductCatTitle, ProductFilename, ProductStatus string
 
 		//if client b is passed this than quantity will be the same as client a, so whole thing needs to be transaction
@@ -651,8 +650,8 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 		//checked at beginnnig if this exists
 		//get all attributes to update with
 		err = tx.QueryRowContext(ctx, "SELECT * FROM products WHERE products.ProductID = ? and products.ProductStatus = 'ready' ", allProductIds[k]).Scan(
-			&ProductFilename, &ProductName, &ProductDescription, &ProductCost, &ProductQuantity, &ProductCatTitle, &gKeyword1, &gKeyword2, &gKeyword3, &CustomerID,
-			&OrderID, &ProductStatus, &AdminID, &ProductID, &ID)
+			&ProductID, &ProductFilename, &ProductName, &ProductDescription, &ProductCost, &ProductQuantity, &ProductCatTitle, &gKeyword1, &gKeyword2, &gKeyword3, &CustomerID,
+			&OrderID, &ProductStatus, &AdminID)
 
 		if err != nil {
 			fmt.Println(err)
@@ -700,7 +699,7 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 
 				//check if there is an order id created for the product record, if there isn't than create the order table
 
-				//err = tx.QueryRowContext(ctx, "SELECT products.OrderID, products.ProductQuantity  FROM products WHERE products.ProductID =  ? and  products.ProductStatus = 'purchased'", allProductIds[j]).Scan(&id1, &productQuant)
+				//err = tx.QueryRowContext(ctx, "SELECT products.OrderID, products.ProductQuantity  FROM products WHERE products.ProductID =  ? and  products.ProductStatus = 'purchased'", allProductIds[j]).(&id1, &productQuant)
 				//if err != nil {
 				//	fmt.Println(err)
 				//}
@@ -733,7 +732,9 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 
 				//create a purchased record
 				ProductStatus = "purchased"
-				_, err = tx.ExecContext(ctx, "INSERT INTO products (ProductFilename, ProductName, ProductDescription, ProductCost, ProductQuantity, ProductCatTitle,ProductKeyword1,ProductKeyword2 , ProductKeyword3, CustomerID, OrderID, ProductStatus, AdminID, ProductID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", ProductFilename, ProductName, ProductDescription, ProductCost /*(*/, int64(quantLeft) /*+ productQuant)*/, ProductCatTitle, gKeyword1, gKeyword2, gKeyword3, CustomerID, currentOrder_ID, ProductStatus, AdminID, ProductID)
+				//_, err = tx.ExecContext(ctx, "INSERT INTO products (ProductFilename, ProductName, ProductDescription, ProductCost, ProductQuantity, ProductCatTitle,ProductKeyword1,ProductKeyword2 , ProductKeyword3, CustomerID, OrderID, ProductStatus, AdminID, ProductID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", ProductFilename, ProductName, ProductDescription, ProductCost /*(*/, int64(quantLeft) /*+ productQuant)*/, ProductCatTitle, gKeyword1, gKeyword2, gKeyword3, CustomerID, currentOrder_ID, ProductStatus, AdminID, ProductID)
+
+				_, err = tx.ExecContext(ctx, "INSERT INTO products (ProductFilename, ProductName, ProductDescription, ProductCost, ProductQuantity, ProductCatTitle,ProductKeyword1,ProductKeyword2 , ProductKeyword3, CustomerID, OrderID, ProductStatus, AdminID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", ProductFilename, ProductName, ProductDescription, ProductCost, currentPurchase, /*int64(quantLeft) + productQuant)*/ ProductCatTitle, gKeyword1, gKeyword2, gKeyword3, CustomerID, currentOrder_ID, ProductStatus, AdminID)
 
 				if err != nil {
 					fmt.Println(err)
@@ -1405,8 +1406,6 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 
 			var i = 0
 
-			
-
 			var prodBoughtInt = 0
 
 			var AmountPurchased = 0
@@ -1437,7 +1436,6 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 			//display orders template again
 			sendToTemplate(&globKeyword, &counter1B, &w, &CondYellow, &Link, &Condition1, &AmountPurchased, &ProductID, &ProductCatTitle, &ProductName, &ProductDescription, &ProductCost, &ProductQuantity,
 				&gKeyword1, &gKeyword2, &gKeyword3, &ProductFilename)
-			
 
 		} //row
 
@@ -1539,7 +1537,7 @@ type display5 struct {
 
 func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 
-	counter1A := -1;
+	counter1A := -1
 	//var savedProductIDs []int
 
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -1910,8 +1908,6 @@ func main() {
 	one.HandleFunc("/sendBackNewCartData", sendBackNewCartData)
 
 	fmt.Println("this is a test1!")
-
-	
 
 	serverErr := http.ListenAndServe(":8080", one)
 	fmt.Println(serverErr)
