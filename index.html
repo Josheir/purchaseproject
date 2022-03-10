@@ -254,7 +254,7 @@ $(document).ready(function () {
 		//alert("sess");
 	
 		var getUser = sessionStorage.getItem("sessionUserID");
-		alert(getUser);
+		//alert(getUser);
 		
 		if (getUser == null)
 		{
@@ -326,7 +326,7 @@ $(document).ready(function () {
 
 			
 			
-			alert("is here....!");
+			//alert("is here....!");
 			///////////////////
 
 			/*
@@ -946,7 +946,7 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 				}//else
 				val1 = sessionStorage.getItem("numberOfRecordsChosen");
 				//alert("--+++++-----");
-				alert(val1); 
+				//alert(val1); 
 
 				//val1 = sessionStorage.getItem("numberOfRecordsChosen");
 				
@@ -1238,7 +1238,7 @@ for(let key of keys) {
  if(key == "keywords")
   {
 	counter++;
-	alert("keywords");
+	//alert("keywords");
    
 	let item = sessionStorage.getItem(key);
 	
@@ -1319,7 +1319,7 @@ if (gflag1 == 0)
 
 
 
-alert("now");
+//alert("now");
 alert(querystring)
 
 
@@ -1340,8 +1340,8 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 
 
 
-			alert("query3");
-			alert(querystring);
+			//alert("query3");
+			//alert(querystring);
 
 			$.ajax({
 			type:"POST",
@@ -1351,10 +1351,10 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 			async:false,
 			success: function (result) {
 
-				alert("query4")
-				alert(querystring);
-				alert("qqq");
-				alert(result);
+				//alert("query4")
+				//alert(querystring);
+				//alert("qqq");
+				//alert(result);
 
 
 			//var retVals = [];
@@ -1371,9 +1371,9 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 			var ourNewWord = result; 
 			//var item = retVals[2];
 			
-			alert("derived here");
-			alert(ourNewWord);
-			alert(item);
+			//alert("derived here");
+			//alert(ourNewWord);
+			//alert(item);
 			
 			
 			
@@ -1391,16 +1391,16 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 				
 
 
-				alert("in function");
+				//alert("in function");
 				var val1 = '["' + array[i] +  '"]';
-				alert(val1);
+				//alert(val1);
 				//html
 				ourNewWord = ourNewWord.replace(val1 , '');
 				//fix this, here
 				//retVals = forBuildingHTML(ourNewWord);
 				//create link to each keyword start
 				var result1a = "<a href='#" + array[i] + "'>" + array[i] + "</a><br>";
-				alert(result1a);
+				//alert(result1a);
 				//positioning div at top of page
 				document.getElementById('buttons').innerHTML   += result1a;
 			  }

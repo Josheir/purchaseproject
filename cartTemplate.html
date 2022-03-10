@@ -355,7 +355,7 @@ var queryString = string.substring(0, string.length-1);
 
 let flagisEnoughProduct = true;
 //alert("start zzhere");
-alert(queryString);
+//alert(queryString);
               $.ajax({
               url: 'http://localhost:8080/sendBackNewCartData',
               type: 'GET',
@@ -446,11 +446,13 @@ alert(queryString);
                 //from jquery call to main.go functino:sendbackcartdata
                 for(var i = 0; i<(lengthOfData) ; i++)
                 {
-                  
+                  debugger
+                  initialAmountToBuy = document.getElementById(buyThisManyID).value;
+
                  //alert("ahere");
-                 alert(i);
-                 alert(lengthOfData); 
-                 alert(typeof(lengthofData))
+                 //alert(i);
+                 //alert(lengthOfData); 
+                 //alert(typeof(lengthofData))
                  //GTotalWithTax = 0;
                 
                  //for ids of carttemplate's ids
@@ -492,10 +494,14 @@ alert(queryString);
                 if (isEnoughQuantity == false)
                 {  
                   //debugger;
+                  //alert("red");
+                  
                   //change settings of cart template if the current record doesn't have enough product in db for request 
                   var avail = (document.getElementById(availableID).value);
                   document.getElementById(buyThisManyID).value = 0;
-                  document.getElementById(availableID).value = (parseInt(avail) + parseInt(bought));
+                  let boughtValue = (document.getElementById(boughtid).value);
+                  
+                  
                   
                   document.getElementById(availableID).style.color = 'red';
                   
@@ -506,12 +512,19 @@ alert(queryString);
                   //total cost for productID
                   document.getElementById(totalCostID).value = "$0.00";
                   //alert("here!11");
+                  document.getElementById(availableID).value = (parseInt(avail) + parseInt(boughtValue) );
 
                 }else{
                 
                   
                   ///////
-
+                  
+                  //amount to buy
+                  let amountToBuy = document.getElementById(buyThisManyID).value;
+                  //buying
+                  document.getElementById(boughtid).value = amountToBuy;
+                  //fill in Available  field
+                  document.getElementById(availableID).value = document.getElementById(availableID).value - amountToBuy +  initialAmountToBuy;
                   //alert("start debugging");
                   
                   //money, id is big ints hold only pennies so that there is less estimation problems, 
@@ -558,11 +571,15 @@ alert(queryString);
                   //remove $ sign still has decimal place
                   becomePenniesTotalOfOneProductlNoTax = becomePenniesTotalOfOneProductlNoTax.substring(1);
 
-                  alert("a");//10000.22
+                  //alert("a");//10000.22
 
 
 
                   var string2a = "";
+
+
+                  //fis this, here
+                  /*
                   string1a = n3.toString();
                   
                   //remove decimal point
@@ -575,7 +592,7 @@ alert(queryString);
                     string2a = string2a + string1a[j];
 
                   }
-
+                  */
 
                   becomePenniesTotalOfOneProductlNoTax = string2a;
                   //alert(n3); //1000022
@@ -633,7 +650,7 @@ alert(queryString);
                   GrandTotalDiv = BigInt(parseInt(withTaxTimes1000/1000));
                   GrandTotal = (GrandTotal) + BigInt(GrandTotalDiv);
                   //alert("z");
-                  alert(GrandTotal);//
+                  //alert(GrandTotal);//
 
 
                   //total no decimals with 1000 multiplier
@@ -644,7 +661,7 @@ alert(queryString);
                    ProductCostString = (GrandTotalDiv).toString();
 
 
-                  alert(ProductCostString);//
+                  //alert(ProductCostString);//
 
 
 
@@ -661,7 +678,7 @@ alert(queryString);
                   
                   forCostEachFloat = forCostEachFloat / 100000.0;
                   //alert("2");
-                  alert(forCostEachFloat);//
+                  //alert(forCostEachFloat);//
 
                   
                   
@@ -672,7 +689,7 @@ alert(queryString);
                   ProductCostString = "$" + ProductCostString;
                   //alert("3"); //$
 
-                  alert(ProductCostString);
+                  //alert(ProductCostString);
 
                   document.getElementById(totalCostID).value = ProductCostString;
 
