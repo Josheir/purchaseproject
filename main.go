@@ -811,7 +811,36 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 			allProductIds = append(allProductIds, []string{r.Form["id"][i]}...)
 			allPurchaseAmounts = append(allPurchaseAmounts, []string{r.Form["amtTryingToPurchase"][i]}...)
 
+			//save to global 
+
+			//////////
+
+			/*
+			//fills in all innital values so can be used to set available with "Amount to buy"
+			for (var i = 0; i< counter+1 ;i++)
+			{
+			alert("begin");
+			//alert(data1.length);
+			var buyThisManyID = "A" + i;
+			let initialValues = document.getElementById(buyThisManyID).value;
+			initialValues.push(initialValues);
+			alert("here");
+			//alert(i);
+			alert(initialValues);
+			console.log(initialValues);
+			alert("1");
+			}
+*/
+
+
+
+			///////////
+	
+	
+	
+	
 		}
+
 
 	} else {
 

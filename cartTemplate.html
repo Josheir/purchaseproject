@@ -177,6 +177,8 @@ function sqrt(value) {
 */
 //////
 
+const initialValues = [];
+
 //checkout pressed from template2
 function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 
@@ -269,6 +271,8 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
         var Product = (document.getElementById(ProductIDID).value); 
        
         var item = amtInBuyBox;
+
+        
        
         //because amount to buy is nothing than change buying to nothing
         if (item == "")
@@ -319,8 +323,33 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 
         //id and amount trying to buy
         string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
-                
-    }
+
+        alert("try this");
+        alert(key);
+        alert(item);
+          
+        
+
+    }//end
+
+
+    /*
+    //fills in all innital values so can be used to set available with "Amount to buy"
+    for (var i = 0; i< counter+1 ;i++)
+                {
+                  alert("begin");
+                  //alert(data1.length);
+                  var buyThisManyID = "A" + i;
+                  let initialValues = document.getElementById(buyThisManyID).value;
+                  initialValues.push(initialValues);
+                  alert("here");
+                  //alert(i);
+                  alert(initialValues);
+                  console.log(initialValues);
+                  alert("1");
+                }
+
+*/
 
     
     //all products are hidden, so do this
@@ -403,14 +432,35 @@ let flagisEnoughProduct = true;
                         
                 //var flag = "enough";
                 //alert("enough start");
+                
+               
+                
+                //fills in all innital values so can be used to set available with "Amount to buy"
+                /*
                 for (var i = 0; i< data1.length ;i++)
                 {
-
+                  alert("begin");
+                  alert(data1.length);
+                  var buyThisManyID = "A" + i;
+                  let initialValues = document.getElementById(buyThisManyID).value;
+                  initialValues.push;
+                  alert("here");
+                  //alert(i);
+                  alert(initialValues);
+                  console.log(initialValues);
+                  alert("1");
+                }
+                */
+                for (var i = 0; i< data1.length ;i++)
+                {
                   
                   
                 if(data1[i].IsEnoughQuantity == false)
                 {
               
+
+                  
+
                   flagisEnoughProduct = false;
                   break;
                 //flag = "not enough";
@@ -447,8 +497,7 @@ let flagisEnoughProduct = true;
                 for(var i = 0; i<(lengthOfData) ; i++)
                 {
                   debugger
-                  initialAmountToBuy = document.getElementById(buyThisManyID).value;
-
+                  
                  //alert("ahere");
                  //alert(i);
                  //alert(lengthOfData); 
@@ -464,6 +513,10 @@ let flagisEnoughProduct = true;
                 var GrandTotalStringID = "GT" + i;
                 var mainDivID =  "V" + i;
                 
+                //alert("here");
+                //let buyThisManyIDBefore = buyThisManyID - ;
+                //let initialAmountToBuy = document.getElementById(buyThisManyID).value;
+                //alert(initialAmountToBuy);
                 
                 /////////
 
@@ -524,7 +577,15 @@ let flagisEnoughProduct = true;
                   //buying
                   document.getElementById(boughtid).value = amountToBuy;
                   //fill in Available  field
-                  document.getElementById(availableID).value = document.getElementById(availableID).value - amountToBuy +  initialAmountToBuy;
+                  alert("starts here");
+                  console.log(document.getElementById(availableID).value);
+                  alert(amountToBuy);
+                  //alert(initialAmountToBuy);
+                  
+                  
+                  //document.getElementById(availableID).value = document.getElementById(availableID).value - amountToBuy +  initialAmountToBuy;
+                  
+                  
                   //alert("start debugging");
                   
                   //money, id is big ints hold only pennies so that there is less estimation problems, 
