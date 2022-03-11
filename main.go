@@ -888,10 +888,10 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 	/////////////////////////////
 
-	for i = 0; i < len(allProductIds); i++ {
+	for i = 0; i < len(gAllProductIds); i++ {
 
 		fmt.Println("length")
-		fmt.Println(len(allProductIds))
+		fmt.Println(len(gAllProductIds))
 		countCounter = countCounter + 1
 
 		//Condition++
@@ -907,7 +907,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 		ProductIDID := var8 + (strconv.Itoa(i))
 		//ID := var8 + (strconv.Itoa(i))
 
-		var prodid, err = (strconv.Atoi(allProductIds[i]))
+		var prodid, err = (strconv.Atoi(gAllProductIds[i]))
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -953,14 +953,14 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 			//Result = ProductCost
 
 			var j = 0
-			for j = 0; j < len(allProductIds); j++ {
+			for j = 0; j < len(gAllProductIds); j++ {
 
-				bought, err = (strconv.Atoi(allPurchaseAmounts[j]))
+				bought, err = (strconv.Atoi(gAllPurchaseAmounts[j]))
 				if err != nil {
 					fmt.Println(err)
 				}
 
-				ID, err = strconv.Atoi(allProductIds[j])
+				ID, err = strconv.Atoi(gAllProductIds[j])
 				if err != nil {
 					fmt.Println(err)
 				}
@@ -986,7 +986,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 			}
 			//if on last record by keyword, display  money totals
-			if i == (len(allProductIds) - 1) {
+			if i == (len(gAllProductIds) - 1) {
 				Condition2 = -1
 			}
 
@@ -1009,7 +1009,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 			var ProductCostString string
 
 			////amount of itmes to purchase
-			quantity, _ = quantity.SetString((allPurchaseAmounts[j]), 10)
+			quantity, _ = quantity.SetString((gAllPurchaseAmounts[j]), 10)
 
 			//string - total in pennies
 			productCost, _ = productCost.SetString(ProductCost, 10)
@@ -1057,7 +1057,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 			forCostEach := fmt.Sprintf("%.2f", forCostEach2)
 
-			if countCounter == (len(allProductIds)) {
+			if countCounter == (len(gAllProductIds)) {
 				////////////////////////////////
 
 				GrandTotalText := GrandTotal.Text(10)
