@@ -783,6 +783,10 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 
 var Condition = 0
 
+
+var gAllProductIds []string
+var gAllPurchaseAmounts []string
+
 func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 	ProductListForCartTemplate = nil
@@ -798,8 +802,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, err1)
 	}
 
-	var allProductIds []string
-	var allPurchaseAmounts []string
+	
 
 	var i = 0
 	length := len(r.Form["id"])
@@ -808,8 +811,8 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 		//save query into arrays
 		for i = 0; i < (length); i++ {
 
-			allProductIds = append(allProductIds, []string{r.Form["id"][i]}...)
-			allPurchaseAmounts = append(allPurchaseAmounts, []string{r.Form["amtTryingToPurchase"][i]}...)
+			gAllProductIds = append(gAllProductIds, []string{r.Form["id"][i]}...)
+			gAllPurchaseAmounts = append(gAllPurchaseAmounts, []string{r.Form["amtTryingToPurchase"][i]}...)
 
 			//save to global 
 
