@@ -98,11 +98,14 @@ type template2Struct struct {
 
 //spit back to last html page
 type Product2 struct {
-	quantPurchasing   int
+	InitialFormAmount int
+	QuantPurchasing   int
 	ID                int
 	QuantityAvailable int
 	IsEnoughQuantity  bool
 }
+
+
 
 type HoldsFlag struct {
 	Flag string
@@ -237,15 +240,19 @@ type Product3 struct {
 	Quant int
 }
 
-func makeListForHTML(amtPurchased int, enough bool, id int, quant int) {
+func makeListForHTML(amtPurchased int, enough bool, id int, quant int, initialvalue int) {
+
+//func makeListForHTML(amtPurchased int, enough bool, id int, quant int, initialValue int) {
 
 	//to spit back to html
 	prod := Product2{
 
-		quantPurchasing:   amtPurchased,
-		IsEnoughQuantity:  enough,
+		InitialFormAmount: initialvalue,
+		QuantPurchasing:   amtPurchased, //
+		ID:                id,           //
 		QuantityAvailable: quant,
-		ID:                id,
+		IsEnoughQuantity:  enough, //
+
 	}
 	//list to spit back to html for rewriting all the quant
 	ProductUpdateCart = append(ProductUpdateCart, prod)
@@ -611,19 +618,32 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 			//}
 
 			/////////
+			var purchaseString = gAllPurchaseAmounts[k]
+			purchaseInt, err := strconv.Atoi(purchaseString)
+			if err != nil {
+				fmt.Println(err)
+			}
 
 			//not enough in database
 			if prodDBAmount-quantPurchasing < 0 {
 				enough = false
 				//for when passing data back to html
-				makeListForHTML(quantPurchasing, enough, (thisProductID), quantPurchasing)
+				makeListForHTML(1, enough, (thisProductID), quantPurchasing, purchaseInt)
 				continue
 
 			} else {
 				enough = true
 			}
 			// val2 is int id
-			makeListForHTML(quantPurchasing, enough, (thisProductID), quantPurchasing)
+
+			/*
+						initialFormAmount: initialValue,
+				quantPurchasing:   amtPurchased,//
+				ID:                id,//
+				QuantityAvailable: quant,
+				IsEnoughQuantity:  enough,//
+			*/
+			makeListForHTML(1, enough, 5, 7, 2)
 
 		}
 
@@ -734,7 +754,7 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 				ProductStatus = "purchased"
 				//_, err = tx.ExecContext(ctx, "INSERT INTO products (ProductFilename, ProductName, ProductDescription, ProductCost, ProductQuantity, ProductCatTitle,ProductKeyword1,ProductKeyword2 , ProductKeyword3, CustomerID, OrderID, ProductStatus, AdminID, ProductID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", ProductFilename, ProductName, ProductDescription, ProductCost /*(*/, int64(quantLeft) /*+ productQuant)*/, ProductCatTitle, gKeyword1, gKeyword2, gKeyword3, CustomerID, currentOrder_ID, ProductStatus, AdminID, ProductID)
 
-				_, err = tx.ExecContext(ctx, "INSERT INTO products (ProductFilename, ProductName, ProductDescription, ProductCost, ProductQuantity, ProductCatTitle,ProductKeyword1,ProductKeyword2 , ProductKeyword3, CustomerID, OrderID, ProductStatus, AdminID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", ProductFilename, ProductName, ProductDescription, ProductCost, currentPurchase, /*int64(quantLeft) + productQuant)*/ ProductCatTitle, gKeyword1, gKeyword2, gKeyword3, CustomerID, currentOrder_ID, ProductStatus, AdminID)
+				_, err = tx.ExecContext(ctx, "INSERT INTO products (ProductFilename, ProductName, ProductDescription, ProductCost, ProductQuantity, ProductCatTitle,ProductKeyword1,ProductKeyword2 , ProductKeyword3, CustomerID, OrderID, ProductStatus, AdminID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", ProductFilename, ProductName, ProductDescription, ProductCost, currentPurchase /*int64(quantLeft) + productQuant)*/, ProductCatTitle, gKeyword1, gKeyword2, gKeyword3, CustomerID, currentOrder_ID, ProductStatus, AdminID)
 
 				if err != nil {
 					fmt.Println(err)
@@ -771,6 +791,7 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 		//json.NewEncoder(w).Encode(ProductList2A)
 	} // k
 
+	fmt.Println(ProductUpdateCart)
 	json.NewEncoder(w).Encode(ProductUpdateCart)
 
 }
@@ -782,7 +803,6 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 //stackoverflow.com/questions/4187146/truncate-number-to-two-decimal-places-without-rounding#:~:text=General%20solution%20to%20truncate%20%28no%20rounding%29%20a%20number,with%20exactly%20n%20decimal%20digits%2C%20for%20any%20n%E2%89%A50.
 
 var Condition = 0
-
 
 var gAllProductIds []string
 var gAllPurchaseAmounts []string
@@ -802,8 +822,6 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, err1)
 	}
 
-	
-
 	var i = 0
 	length := len(r.Form["id"])
 	if length > 0 {
@@ -814,36 +832,30 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 			gAllProductIds = append(gAllProductIds, []string{r.Form["id"][i]}...)
 			gAllPurchaseAmounts = append(gAllPurchaseAmounts, []string{r.Form["amtTryingToPurchase"][i]}...)
 
-			//save to global 
+			//save to global
 
 			//////////
 
 			/*
-			//fills in all innital values so can be used to set available with "Amount to buy"
-			for (var i = 0; i< counter+1 ;i++)
-			{
-			alert("begin");
-			//alert(data1.length);
-			var buyThisManyID = "A" + i;
-			let initialValues = document.getElementById(buyThisManyID).value;
-			initialValues.push(initialValues);
-			alert("here");
-			//alert(i);
-			alert(initialValues);
-			console.log(initialValues);
-			alert("1");
-			}
-*/
-
-
+				//fills in all innital values so can be used to set available with "Amount to buy"
+				for (var i = 0; i< counter+1 ;i++)
+				{
+				alert("begin");
+				//alert(data1.length);
+				var buyThisManyID = "A" + i;
+				let initialValues = document.getElementById(buyThisManyID).value;
+				initialValues.push(initialValues);
+				alert("here");
+				//alert(i);
+				alert(initialValues);
+				console.log(initialValues);
+				alert("1");
+				}
+			*/
 
 			///////////
-	
-	
-	
-	
-		}
 
+		}
 
 	} else {
 

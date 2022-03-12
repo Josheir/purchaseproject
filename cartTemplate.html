@@ -183,7 +183,7 @@ const initialValues = [];
 function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 
 
-
+//alert("in check all available");
 
 
   var gtotal = parseFloat(gtotal);
@@ -324,9 +324,7 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
         //id and amount trying to buy
         string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
 
-        alert("try this");
-        alert(key);
-        alert(item);
+       
           
         
 
@@ -394,47 +392,26 @@ let flagisEnoughProduct = true;
               data:queryString,
               crossDomain: true,
              
-              success: function (data1) {
+              success: function (data) {
                 //alert("testthis");
-               
 
+                //var initialFormAmount = 0;
+                debugger;
+                
+
+                //console.log(data);
+                //alert("consoled");
                 //let enoughFlag = true;
 
                 //no records
-                if(data1.length == null){
-
-                  //for(let key of keys) {
-       //
-         //           alert("keys here...");
-           //         alert(key);
-             //     if(key =="sessionUserID")
-               //   {
-                 //   continue;
-                  //}
-                  //else
-                  //{
-                    
-                      
-
-                  //}
-                //}
-
-                
+                if(data.length == null){
 
                 //alert("am here you see it! - look at this!");
                 window.location.href = "index.html";
                 return(1);
                 //window.location.href = "index.html";
-            
-                }
+                 }
 
-                      
-                        
-                //var flag = "enough";
-                //alert("enough start");
-                
-               
-                
                 //fills in all innital values so can be used to set available with "Amount to buy"
                 /*
                 for (var i = 0; i< data1.length ;i++)
@@ -451,11 +428,11 @@ let flagisEnoughProduct = true;
                   alert("1");
                 }
                 */
-                for (var i = 0; i< data1.length ;i++)
+                for (var i = 0; i< data.length ;i++)
                 {
                   
                   
-                if(data1[i].IsEnoughQuantity == false)
+                if(data[i].IsEnoughQuantity == false)
                 {
               
 
@@ -470,6 +447,9 @@ let flagisEnoughProduct = true;
 
                 }
 
+                
+
+
                 if (flagisEnoughProduct == true)
                 {
                   //alert("is enough");
@@ -482,11 +462,11 @@ let flagisEnoughProduct = true;
                 //alert("done purchase");
 
                 //fix this, here, done
-              var lengthOfData = data1.length;
+              var lengthOfData = data.length;
 
-              //alert("length");
-              alert(lengthOfData);
-              console.log(data1);
+              //alert("is here");
+              //alert(lengthOfData);
+              console.log(data);
 
 
                 var grandTotal = 0;
@@ -496,6 +476,9 @@ let flagisEnoughProduct = true;
                 //from jquery call to main.go functino:sendbackcartdata
                 for(var i = 0; i<(lengthOfData) ; i++)
                 {
+                  var InitialFormAmount = data[i].InitialFormAmount;
+                  alert("here1");
+                  alert(InitialFormAmount);
                   debugger
                   
                  //alert("ahere");
@@ -539,16 +522,19 @@ let flagisEnoughProduct = true;
              
                 var isEnoughQuantity = false;
                 //still in loop
-                isEnoughQuantity = data1[i].IsEnoughQuantity;
-
-                
+                isEnoughQuantity = data[i].IsEnoughQuantity;
+                //alert("...");
+                //var initialFormAmount = "";
+                //debugger;
+                //var initialFormAmount = data1[i].initialFormAmount;
+                //alert(initialFormAmount);
                
                 //wasnt enough, so make red
                 if (isEnoughQuantity == false)
                 {  
                   //debugger;
                   //alert("red");
-                  
+                  //RED
                   //change settings of cart template if the current record doesn't have enough product in db for request 
                   var avail = (document.getElementById(availableID).value);
                   document.getElementById(buyThisManyID).value = 0;
@@ -573,20 +559,17 @@ let flagisEnoughProduct = true;
                   ///////
                   
                   //amount to buy
-                  let amountToBuy = document.getElementById(buyThisManyID).value;
+                  let amountToBuy1 = document.getElementById(buyThisManyID).value;
                   //buying
-                  document.getElementById(boughtid).value = amountToBuy;
-                  //fill in Available  field
-                  alert("starts here");
-                  console.log(document.getElementById(availableID).value);
-                  alert(amountToBuy);
-                  //alert(initialAmountToBuy);
+                  document.getElementById(boughtid).value = amountToBuy1; 
+                  debugger;
+                  var initialAmt1 = 0;
+                  initialAmt1 = data[i].InitialFormAmount;
+                  alert("here");
+                  alert(amountToBuy1);
+                  alert(initialAmt1);
+                  document.getElementById(availableID).value =  (parseInt(amountToBuy1) - (initialAmt1));
                   
-                  
-                  //document.getElementById(availableID).value = document.getElementById(availableID).value - amountToBuy +  initialAmountToBuy;
-                  
-                  
-                  //alert("start debugging");
                   
                   //money, id is big ints hold only pennies so that there is less estimation problems, 
                   //although not perfect money is calculated the same again and again
