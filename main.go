@@ -628,7 +628,10 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 			if prodDBAmount-quantPurchasing < 0 {
 				enough = false
 				//for when passing data back to html
-				makeListForHTML(1, enough, (thisProductID), quantPurchasing, purchaseInt)
+				//quantPurchasing, enough, (thisProductID), quantPurchasing
+				//func makeListForHTML(amtPurchased int, enough bool, id int, quant int, initialvalue int) {
+
+				makeListForHTML(quantPurchasing, enough, (thisProductID), purchaseInt, purchaseInt)
 				continue
 
 			} else {
@@ -643,7 +646,7 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 				QuantityAvailable: quant,
 				IsEnoughQuantity:  enough,//
 			*/
-			makeListForHTML(1, enough, 5, 7, 2)
+			makeListForHTML(quantPurchasing, enough, (thisProductID), purchaseInt, purchaseInt)
 
 		}
 
