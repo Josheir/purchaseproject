@@ -67,6 +67,9 @@ var userid = "";
                     sessionStorage.setItem("sessionUserID", result[0].UserID);
                     
                     sessionStorage.setItem("numberOfRecordsChosen", "0");
+
+                    //used as a flag to set "amount to buy" and "available" right after firsttimethrough, using inital data  
+                    sessionStorage.setItem(firstTimeThrough, "yes"); 
                     
                     window.location.href = "index.html";
 
