@@ -829,6 +829,12 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 	length := len(r.Form["id"])
 	if length > 0 {
 
+		//fmt.Println(gAllProductIds)
+		
+		gAllProductIds = gAllProductIds[:0]
+		gAllPurchaseAmounts = gAllPurchaseAmounts[:0]
+		//fmt.Println(gAllProductIds)
+
 		//save query into arrays
 		for i = 0; i < (length); i++ {
 
@@ -859,6 +865,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 			///////////
 
 		}
+		
 
 	} else {
 

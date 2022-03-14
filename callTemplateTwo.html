@@ -59,7 +59,7 @@ function restoreOriginalOrder()
 $(function(){
 
 ////////
-//alert("in fiunction");
+alert("in fiunction");
 loadData();
 
 ////////
@@ -446,7 +446,8 @@ var queryString= "";
 
 //calls template2, load ProductID/amount of quantity purchasing
 function loadData() {
- 
+ alert("load data");
+ alert(queryString);
 //alert("is it getting here");
  var string = "";
 //////////////////////
@@ -568,8 +569,8 @@ if(gFlagIsSomeRecords == true)
 	//queryString = "";
 //}
 
-/////alert("queryString");
-//alert(queryString);
+alert("queryString");
+alert(queryString);
 
 var url = "http://localhost:8080/cartTemplate";
 //var queryString = "user_name=jerry&password=666666&user_name=marry&password=11111";
@@ -584,7 +585,7 @@ var url = "http://localhost:8080/cartTemplate";
 
   					var val1 = ""
                     $.ajax({
-                    type:'POST',
+                    type:'GET',
 					datatype: 'html',
                     url:url,
                     data:queryString,

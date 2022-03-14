@@ -496,20 +496,20 @@ let flagisEnoughProduct = true;
                 {
 
 
-                  alert("1");
-                  alert(firstTimeThrough1)
+                  //alert("1");
+                  //alert(firstTimeThrough1)
                   if(firstTimeThrough1 == "yes")
                   {
                     InitialFormAmount = data[i].InitialFormAmount;
-                    alert("here1@");
-                    alert(InitialFormAmount);
+                    //alert("here1@");
+                    //alert(InitialFormAmount);
                     
                   }
                   else
                   {
                     InitialFormAmount  = data[i].QuantPurchasing;
-                    alert("test2@!");
-                    alert(InitialFormAmount);
+                    //alert("test2@!");
+                    //alert(InitialFormAmount);
 
                   }
 
@@ -593,7 +593,7 @@ let flagisEnoughProduct = true;
                   //alert("here!11");
                   document.getElementById(availableID).value = (parseInt(avail) + parseInt(boughtValue) );
 
-                  //is enough; two sit
+                  //is enough; two situation
                 }else{
                 
                   document.getElementById(availableID).style.color = 'black';
@@ -603,8 +603,8 @@ let flagisEnoughProduct = true;
                   let amountToBuy1 = document.getElementById(buyThisManyID).value; //3
                   //buying
                   //document.getElementById(boughtid).value = amountToBuy1; // 3
-                  alert("11");
-                  alert(amountToBuy1);
+                  //alert("11");
+                  //alert(amountToBuy1);
                   debugger;
                   //var initialAmt1 = 0;
                   
@@ -622,10 +622,10 @@ let flagisEnoughProduct = true;
                     let parsedAmountToBuy1 = parseInt(amountToBuy1);
                     document.getElementById(boughtid).value = parsedAmountToBuy1;
                   
-                    alert("12");
+                    //alert("12");
                     
-                    alert(parsedBought);//nan : 2
-                    alert(parsedAmountToBuy1);//3
+                    //alert(parsedBought);//nan : 2
+                    //alert(parsedAmountToBuy1);//3
                     
                     //alert(parsedCurrentQuant);
                     
@@ -637,19 +637,19 @@ let flagisEnoughProduct = true;
                   }
                   else
                   {
-                    alert("here");
+                    //alert("here");
                     
                     document.getElementById(boughtid).value = amountToBuy1; // 3
                     
-                    alert(amountToBuy1);
+                    //alert(amountToBuy1);
                     initialAmt1 = data[i].InitialFormAmount;
-                    alert(initialAmt1);
+                    //alert(initialAmt1);
                     let parsedInitialAmt1 = parseInt(initialAmt1)
                     let parsedAmountToBuy1 = parseInt(amountToBuy1);
 
-                    if(parsedInitialAmt1 !=  parsedAmountToBuy1 )
+                    //if(parsedInitialAmt1 !=  parsedAmountToBuy1 )
                     {
-                      document.getElementById(availableID).value = ((parseInt(document.getElementById(availableID).value) - parsedAmountToBuy1) + parsedInitialAmt1 );
+                      document.getElementById(availableID).value = Math.abs((parseInt(document.getElementById(availableID).value) - parsedAmountToBuy1) + parsedInitialAmt1 );
                     }
                   }
 
