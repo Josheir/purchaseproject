@@ -1879,6 +1879,9 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 
 func getArrayOfAllCosts(w http.ResponseWriter, r *http.Request) {
 
+	var testarray[]  string
+	testarray = append(testarray, "testString")
+	json.NewEncoder(w).Encode(testarray)
 
 
 }
