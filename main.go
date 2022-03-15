@@ -1879,6 +1879,8 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 
 func getArrayOfAllCosts(w http.ResponseWriter, r *http.Request) {
 
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
 	var testArray[]  string
 	testArray = append(testArray, "testString")
 	json.NewEncoder(w).Encode(testArray)
