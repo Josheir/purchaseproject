@@ -332,8 +332,10 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
           return;
         }
 
+        parsedAmountBought = parseInt(bought);
+        parsedItem = parseInt(item);
         //id and amount trying to buy
-        string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
+        string =  string + "id=" + key + "&amtTryingToPurchase=" + parsedItem + parsedAmountBought + "&";
 
        
           
@@ -393,6 +395,10 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 
     //removed &
 var queryString = string.substring(0, string.length-1);
+
+
+
+
 
 let flagisEnoughProduct = true;
 //alert("start zzhere");
