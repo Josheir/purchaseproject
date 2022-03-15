@@ -16,7 +16,7 @@
   
 
 
-
+	<p id="demo"></p>
 <div id = "div1"> </div>
   <input type="hidden" id="val" name="val" value="1">
   <div id = "removeButton">
@@ -448,12 +448,13 @@ var queryString= "";
 function loadData() {
  alert("load data");
 
-//////
+ 	
  
 var url = "http://localhost:8080/getArrayOfAllCosts";
 
 
 var val1 = ""
+
 $.ajax({
 type:'GET',
 datatype: 'html',
@@ -462,14 +463,15 @@ data:null,
 async:false,
 success: function (data) {
 
-	let test = data[0].testArray;
-	alert("testD");
-	aler(test);
-//$('#div1').html(val1);
+	alert("A5");
+	//const text = '["apple", "banana"]';
+	const  val = JSON.parse(data);
+	alert(val[0]);
+	//console.log(val[0]);
+
 }
 });
-
-
+	
 //////
 
 
@@ -539,7 +541,7 @@ for(let key of keys) {
 
  
   //total cost for each productID (with tax) 
-  string = string + "tc = " + costWithTax + "&";
+  //string = string + "tc = " + costWithTax + "&";
   //alert(string);
   
   gFlagIsSomeRecords = true;
