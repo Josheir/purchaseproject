@@ -1327,37 +1327,19 @@ if (gflag1 == 0)
 	alert("gflag1 - should be, all sessionlevelvariables were erased...");
 	//return(1);
 }
-//if (gflag1 == 4)
-//{
-//	alert("gflag4");
-//	return(1);
-//}
 
 
 
-//alert("now");
 alert(querystring)
 
 
-// 8237 characters tested:
-
-/*
-querystring = "var=" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "&"
-+ "var=" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "&"
-*/
 
 /////////
 
 
 
 var url = "http://localhost:8080/displayOrdersTemplateAgain";
-//var queryString = "user_name=jerry&password=666666&user_name=marry&password=11111";
 
-
-
-
-			//alert("query3");
-			//alert(querystring);
 
 			$.ajax({
 			type:"POST",
@@ -1367,17 +1349,13 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 			async:false,
 			success: function (result) {
 
-				//alert("query4")
-				//alert(querystring);
-				//alert("qqq");
-				//alert(result);
 
-
-			//var retVals = [];
+			/*var retVals = [];
 			//fix this, here, done :  two variables
 			//var tempstringfortesting = "banana";
 			//result is html of displaying orders again (after cartTemplate)
-
+			*/
+			
 			//changed parameter two and commented out
 			//retVals = forBuildingHTML(result , result.globKeyword);
 			

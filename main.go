@@ -793,7 +793,7 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 		//if !didRollback {
 		//json.NewEncoder(w).Encode(ProductList2A)
 	} // k
-
+		//sendbackcartdata, carttemplate.html
 	fmt.Println(ProductUpdateCart)
 	json.NewEncoder(w).Encode(ProductUpdateCart)
 
