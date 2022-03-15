@@ -1882,9 +1882,61 @@ func getArrayOfAllCosts(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	var testArray[]  string
+	var ids[] int
+	var cost[] string
+	
+	length = len(r.Form["id"])
+	if length > 0 {
+
+		for i = 0; i < (length); i++ {
+
+			cost = append(cost, []string{r.Form["id"][i]}...)
+			
+		}
+
+	}
+	
+	
 	testArray = append(testArray, "testString")
 	json.NewEncoder(w).Encode(testArray)
 
+
+
+	//////////
+
+	db := dbConn()
+
+	stmt, err := db.Prepare("SELECT customers.Password FROM customers WHERE customers.CustomerID = ?")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	//substituted with ?
+	rows, err := stmt.Query(useridInt)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	var PasswordID string
+
+	for rows.Next() {
+
+		//stores password in here from database
+		err = rows.Scan(&PasswordID)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+	}
+
+	passFlag := "no"
+
+	if PasswordID == "" {
+
+
+	/////////
 
 }
 

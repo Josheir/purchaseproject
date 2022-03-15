@@ -450,28 +450,7 @@ function loadData() {
 
  	
  
-var url = "http://localhost:8080/getArrayOfAllCosts";
 
-
-var val1 = ""
-
-$.ajax({
-type:'GET',
-datatype: 'html',
-url:url,
-data:null,
-async:false,
-success: function (data) {
-
-	alert("A5");
-	//const text = '["apple", "banana"]';
-	const  val = JSON.parse(data);
-	alert(val[0]);
-	//console.log(val[0]);
-
-}
-});
-	
 //////
 
 
@@ -479,6 +458,8 @@ success: function (data) {
  alert(queryString);
 //alert("is it getting here");
  var string = "";
+ var string2 = "";
+
 //////////////////////
 
 let keys = Object.keys(sessionStorage);
@@ -534,7 +515,35 @@ for(let key of keys) {
   ////////
 
   string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
-  
+  string2 = string2 +"id=" + key + "&";
+
+  //////////
+
+  var url = "http://localhost:8080/getArrayOfAllCosts";
+
+
+	var val1 = ""
+
+	$.ajax({
+	type:'GET',
+	datatype: 'html',
+	url:url,
+	data:string2,
+	async:false,
+	success: function (data) {
+
+		alert("A5");
+		//const text = '["apple", "banana"]';
+		const  val = JSON.parse(data);
+		alert(val[0]);
+		//console.log(val[0]);
+
+	}
+});
+	
+
+
+  ///////////
 
 
 ///////
