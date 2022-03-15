@@ -1877,6 +1877,12 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func getArrayOfAllCosts(w http.ResponseWriter, r *http.Request) {
+
+
+
+}
+
 //////////
 
 /////////////
@@ -1960,6 +1966,8 @@ func main() {
 	//
 	one.HandleFunc("/cartTemplate", createCartTemplate)
 	one.HandleFunc("/sendBackNewCartData", sendBackNewCartData)
+
+	one.HandleFunc("/getArrayOfAllCosts", getArrayOfAllCosts)
 
 	fmt.Println("this is a test1!")
 
