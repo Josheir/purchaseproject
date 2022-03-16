@@ -105,8 +105,6 @@ type Product2 struct {
 	IsEnoughQuantity  bool
 }
 
-
-
 type HoldsFlag struct {
 	Flag string
 }
@@ -242,7 +240,7 @@ type Product3 struct {
 
 func makeListForHTML(amtPurchased int, enough bool, id int, quant int, initialvalue int) {
 
-//func makeListForHTML(amtPurchased int, enough bool, id int, quant int, initialValue int) {
+	//func makeListForHTML(amtPurchased int, enough bool, id int, quant int, initialValue int) {
 
 	//to spit back to html
 	prod := Product2{
@@ -793,7 +791,7 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 		//if !didRollback {
 		//json.NewEncoder(w).Encode(ProductList2A)
 	} // k
-		//sendbackcartdata, carttemplate.html
+	//sendbackcartdata, carttemplate.html
 	fmt.Println(ProductUpdateCart)
 	json.NewEncoder(w).Encode(ProductUpdateCart)
 
@@ -830,7 +828,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 	if length > 0 {
 
 		//fmt.Println(gAllProductIds)
-		
+
 		gAllProductIds = gAllProductIds[:0]
 		gAllPurchaseAmounts = gAllPurchaseAmounts[:0]
 		//fmt.Println(gAllProductIds)
@@ -865,7 +863,6 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 			///////////
 
 		}
-		
 
 	} else {
 
@@ -1881,62 +1878,69 @@ func getArrayOfAllCosts(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	var testArray[]  string
-	var ids[] int
-	var cost[] string
-	
-	length = len(r.Form["id"])
+	var err = r.ParseForm()
+	if err != nil {
+		fmt.Fprint(w, err)
+	}
+
+	var ids1 []string
+	var costs []string
+
+	length := len(r.Form["id"])
 	if length > 0 {
 
-		for i = 0; i < (length); i++ {
+		for i := 0; i < (length); i++ {
 
-			cost = append(cost, []string{r.Form["id"][i]}...)
+			ids1 = append(ids1, []string{r.Form["id"][i]}...)
 			
 		}
 
 	}
-	
-	
-	testArray = append(testArray, "testString")
-	json.NewEncoder(w).Encode(testArray)
-
-
 
 	//////////
 
 	db := dbConn()
 
-	stmt, err := db.Prepare("SELECT customers.Password FROM customers WHERE customers.CustomerID = ?")
+	for i := 0; i < length; i++ {
+		stmt, err := db.Prepare("SELECT products.ProductCost FROM products WHERE products.productID = ?")
 
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	//substituted with ?
-	rows, err := stmt.Query(useridInt)
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	var PasswordID string
-
-	for rows.Next() {
-
-		//stores password in here from database
-		err = rows.Scan(&PasswordID)
 		if err != nil {
 			fmt.Println(err)
 		}
 
+
+		var ids2 = ids1[i]
+		idsInt1, err := strconv.Atoi(ids2)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		//substituted with ?
+		rows, err := stmt.Query(idsInt1)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		var cost string
+
+		for rows.Next() {
+
+		//stores password in here from database
+		err = rows.Scan(&cost)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		costs = append(costs, cost)
+		}
+		
+		//}
+
 	}
 
-	passFlag := "no"
-
-	if PasswordID == "" {
-
-
-	/////////
+	json.NewEncoder(w).Encode(costs)
 
 }
 

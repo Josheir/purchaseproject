@@ -59,7 +59,7 @@ function restoreOriginalOrder()
 $(function(){
 
 ////////
-alert("in fiunction");
+//alert("in fiunction");
 loadData();
 
 ////////
@@ -515,11 +515,19 @@ for(let key of keys) {
   ////////
 
   string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
-  string2 = string2 +"id=" + key + "&";
+  //string2 = string2 +"id=" + key + "&";
 
   //////////
 
-  var url = "http://localhost:8080/getArrayOfAllCosts";
+  
+  
+  gFlagIsSomeRecords = true;
+
+}
+
+
+
+var url = "http://localhost:8080/getArrayOfAllCosts";
 
 
 	var val1 = ""
@@ -528,39 +536,22 @@ for(let key of keys) {
 	type:'GET',
 	datatype: 'html',
 	url:url,
-	data:string2,
+	data:string,
 	async:false,
 	success: function (data) {
 
 		alert("A5");
 		//const text = '["apple", "banana"]';
-		const  val = JSON.parse(data);
-		alert(val[0]);
-		//console.log(val[0]);
+		const  CostArray = JSON.parse(data);
+		alert(CostArray[0]);
+		alert(CostArray[1]);
 
 	}
 });
 	
 
 
-  ///////////
 
-
-///////
-
- 
-  //total cost for each productID (with tax) 
-  //string = string + "tc = " + costWithTax + "&";
-  //alert(string);
-  
-  gFlagIsSomeRecords = true;
-
-
-  //alert("try this");
-    //    alert(key);
-    //    alert(item);
-  
-}
 
 
 
@@ -618,8 +609,8 @@ if(gFlagIsSomeRecords == true)
 	//queryString = "";
 //}
 
-alert("queryString");
-alert(queryString);
+//alert("queryString");
+//alert(queryString);
 
 
 //initial create cart template 
