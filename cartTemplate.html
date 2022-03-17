@@ -663,9 +663,49 @@ let flagisEnoughProduct = true;
 
                   /////////////////////////
                   
+                  //updates cart here!  :
 
+                  //$xxx.xx
+                  var moneyAmt = GetTotalWithTaxFromAmtProduct(costID, buyThisManyID, totalCostID, GrandTotalStringID);
+                  //$xxx.xx                               //$xxx.xx
+                  //var summedMoneyAmt = GetSummedGrandTotal(moneyAmt);
+
+
+                  return(1);
                   
 
+
+
+                  var amtWithTax = currency(0);
+                  var cost = document.getElementById(costID).value;
+
+
+
+
+                  var amtWithTax = currency(0);
+                  var grandTotal = currency(0);
+                  amountBought = document.getElementById(buyThisManyID).value;
+                  
+
+                  //cost no tax - give this 
+                  var costForProducts = document.getElementById(costID).value;
+                  amtWithTax = currency(costForProducts).multiply(0.05);
+                 
+                  //with tax
+                  document.getElementById(totalCostID).value = amtWithtax;
+
+                  
+                  
+                  
+
+
+
+
+                  var grandTotal = grandTotal.add(amtWithTax); 
+                  
+                  var stringGrandTotal = "Grand Total:  " + grandTotal.format();
+                 
+                  document.getElementById(GrandTotalStringID).value = stringGrandTotal;
 
 
                   /////////////////////////
