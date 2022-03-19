@@ -1,7 +1,8 @@
-alert("test");
+//alert("test");
 var currency = require("./node_modules/currency.js");
-var a = currency(1);
-alert(a);
+//var a = currency(1);
+
+//alert(a);
 
 
 
@@ -12,10 +13,13 @@ alert(a);
 
 
 //updates cart
-function GetTotalWithTaxFromAmtProduct(costID, buyThisManyID, totalCostID, GrandTotalStringID)
+//function GetTotalWithTaxFromAmtProduct(costID, buyThisManyID, totalCostID, GrandTotalStringID)
+function myFunction()
 {
 
     
+    alert("looking good!");
+    debugger;
     var costForEachProducts = document.getElementById(costID).value;
     var buyThisAmt = document.getElementById(buyThisManyID).value;
     
@@ -36,4 +40,11 @@ function GetSummedGrandTotal(moneyAmt)
 
     //$xxx.xx
     return ;
+}
+
+
+if (typeof window !== 'undefined') {
+    window.myExtFunction = function() {
+        return myFunction();
+    }
 }

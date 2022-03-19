@@ -11,7 +11,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	  <!DOCTYPE html>
+	  <script src = "currencyBundle.js"></script>
+    <!DOCTYPE html>
 
   </head> 
 
@@ -416,7 +417,7 @@ let flagisEnoughProduct = true;
                 //alert("testthis");
 
                 //var initialFormAmount = 0;
-                debugger;
+                //debugger;
                 
 
                 //console.log(data);
@@ -525,7 +526,7 @@ let flagisEnoughProduct = true;
 
 
                   //firstTimeThrough = false;
-                  debugger
+                  //debugger
                   
                  //alert("ahere");
                  //alert(i);
@@ -611,7 +612,7 @@ let flagisEnoughProduct = true;
                   //document.getElementById(boughtid).value = amountToBuy1; // 3
                   //alert("11");
                   //alert(amountToBuy1);
-                  debugger;
+                  //debugger;
                   //var initialAmt1 = 0;
                   
                   
@@ -628,7 +629,7 @@ let flagisEnoughProduct = true;
                     let parsedAmountToBuy1 = parseInt(amountToBuy1);
                     document.getElementById(boughtid).value = parsedAmountToBuy1;
                   
-                    //alert("12");
+                    alert("12");
                     
                     //alert(parsedBought);//nan : 2
                     //alert(parsedAmountToBuy1);//3
@@ -643,7 +644,7 @@ let flagisEnoughProduct = true;
                   }
                   else
                   {
-                    //alert("here");
+                    alert("here");
                     
                     document.getElementById(boughtid).value = amountToBuy1; // 3
                     
@@ -665,8 +666,12 @@ let flagisEnoughProduct = true;
                   
                   //updates cart here!  :
 
+                  alert("atdebugger");
                   //$xxx.xx
-                  var moneyAmt = GetTotalWithTaxFromAmtProduct(costID, buyThisManyID, totalCostID, GrandTotalStringID);
+                  //var moneyAmt = GetTotalWithTaxFromAmtProduct(costID, buyThisManyID, totalCostID, GrandTotalStringID);
+                  var zz = myExtFunction();
+                  
+                  
                   //$xxx.xx                               //$xxx.xx
                   //var summedMoneyAmt = GetSummedGrandTotal(moneyAmt);
 
