@@ -186,6 +186,7 @@ var firstTimeThrough = true;
 //checkout pressed from template2
 function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 
+
   //alert("firsttimethrough");
   ///firstTimeThrough = true;
 
@@ -499,6 +500,9 @@ let flagisEnoughProduct = true;
                 var InitialFormAmount = 0;
 
                 var firstTimeThrough1 = sessionStorage.getItem("firstTimeThrough");
+                
+                
+                var gSumGrandTotal = {valueGrandTotal: "0"};
                 for(var i = 0; i<(lengthOfData) ; i++)
                 {
 
@@ -600,6 +604,12 @@ let flagisEnoughProduct = true;
                   //alert("here!11");
                   document.getElementById(availableID).value = (parseInt(avail) + parseInt(boughtValue) );
 
+                  //creates this lines total
+                  myExtFunction1(costID, buyThisManyID, totalCostID, GrandTotalStringID, gSumGrandTotal);
+                  alert("totals");
+                  gSumGrandTotal.valueGrandTotal = "Grand Total: $" + gSumGrandTotal.valueGrandTotal;
+                  document.getElementById(grandTotalID).value = gSumGrandTotal.valueGrandTotal;
+                  
                   //is enough; two situation
                 }else{
                 
@@ -660,22 +670,12 @@ let flagisEnoughProduct = true;
                     }
                   }
 
-
-
-                  /////////////////////////
+                  myExtFunction1(costID, buyThisManyID, totalCostID, GrandTotalStringID, gSumGrandTotal);
+                  alert("totals");
+                  gSumGrandTotal.valueGrandTotal = "Grand Total: $" + gSumGrandTotal.valueGrandTotal;
+                  document.getElementById(grandTotalID).value = gSumGrandTotal.valueGrandTotal;
                   
-                  //updates cart here!  :
-
-                  alert("atdebugger");
-                  //$xxx.xx
-                  //var moneyAmt = GetTotalWithTaxFromAmtProduct(costID, buyThisManyID, totalCostID, GrandTotalStringID);
-                  var zz = myExtFunction();
-                  
-                  
-                  //$xxx.xx                               //$xxx.xx
-                  //var summedMoneyAmt = GetSummedGrandTotal(moneyAmt);
-
-
+                  alert("halt");
                   return(1);
                   
 
