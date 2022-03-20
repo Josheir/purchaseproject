@@ -450,6 +450,8 @@ let flagisEnoughProduct = true;
                   alert("1");
                 }
                 */
+
+                sessionStorage.setItem("firstTimeThrough", "yes");
                 for (var i = 0; i< data.length ;i++)
                 {
                   
@@ -499,10 +501,12 @@ let flagisEnoughProduct = true;
                 
                 var InitialFormAmount = 0;
 
-                var firstTimeThrough1 = sessionStorage.getItem("firstTimeThrough");
+                var firstTimeThrough1 ="yes";
                 
                 
                 var gSumGrandTotal = {valueGrandTotal: "0"};
+                alert("length");
+                alert(lengthOfData);
                 for(var i = 0; i<(lengthOfData) ; i++)
                 {
 
@@ -525,7 +529,8 @@ let flagisEnoughProduct = true;
                   }
 
                   //firstimetrough = false
-                  sessionStorage.setItem("firstTimeThrough", "no"); 
+                  sessionStorage.setItem("firstTimeThrough", "no");
+                  firstTimeThrough1 = sessionStorage.getItem("firstTimeThrough"); 
 
 
 
@@ -618,6 +623,8 @@ let flagisEnoughProduct = true;
                   
                   //amount to buy
                   let amountToBuy1 = document.getElementById(buyThisManyID).value; //3
+                  alert("amount ot buy");
+                  alert(amountToBuy1);
                   //buying
                   //document.getElementById(boughtid).value = amountToBuy1; // 3
                   //alert("11");
@@ -626,17 +633,20 @@ let flagisEnoughProduct = true;
                   //var initialAmt1 = 0;
                   
                   
-                  
+                  alert("ftt");
+                  alert(firstTimeThrough1);
                   if(firstTimeThrough1 == "no")
                   {
+                    alert("made it here");
 
                     let bought = document.getElementById(boughtid).value;
-                    //alert(bought);
+                    alert(bought);
                     let parsedBought = parseInt(bought);
                     
                    //document.getElementById(boughtid).value = amountToBuy1; // 3
                     
                     let parsedAmountToBuy1 = parseInt(amountToBuy1);
+                    alert(parsedAmountToBuy1);
                     document.getElementById(boughtid).value = parsedAmountToBuy1;
                   
                     alert("12");
@@ -677,216 +687,7 @@ let flagisEnoughProduct = true;
                   
                   alert("halt");
                   return(1);
-                  
-
-
-
-                  var amtWithTax = currency(0);
-                  var cost = document.getElementById(costID).value;
-
-
-
-
-                  var amtWithTax = currency(0);
-                  var grandTotal = currency(0);
-                  amountBought = document.getElementById(buyThisManyID).value;
-                  
-
-                  //cost no tax - give this 
-                  var costForProducts = document.getElementById(costID).value;
-                  amtWithTax = currency(costForProducts).multiply(0.05);
-                 
-                  //with tax
-                  document.getElementById(totalCostID).value = amtWithtax;
-
-                  
-                  
-                  
-
-
-
-
-                  var grandTotal = grandTotal.add(amtWithTax); 
-                  
-                  var stringGrandTotal = "Grand Total:  " + grandTotal.format();
-                 
-                  document.getElementById(GrandTotalStringID).value = stringGrandTotal;
-
-
-                  /////////////////////////
-
-
-
-
-                  //money, id is big ints hold only pennies so that there is less estimation problems, 
-                  //although not perfect money is calculated the same again and again
-                  let totalNoTaxTimes1000 = BigInt(0);
-                  let totalNoTaxOne = BigInt(0);
-                  let nba = BigInt(0);
-                  let taxTimes1000 = BigInt(0);
-                  let becomePenniesTotalOfOneProductlNoTax = BigInt(0);
-                  let tax = BigInt(0);
-                  let thousand = BigInt(0);
-                  let withTaxTimes1000 = BigInt(0);
-                  let n7 = BigInt(0);
-                  let n8 = BigInt(0);
-                  let n9 = BigInt(0);
-
-                  ///let n2b = n2;
-                 
-                  let amountBought = BigInt(0);
-                  //.05
-                  tax = 50;
-                  totalNoTaxTimes1000 = 0;
-                  thousand = 1000;
-                  withTaxTimes1000 = 0;
-
-
-                  ////////////this is when checkout has been pressed from template2
-                  
-                 
-                  ////////
-                  //debugger;
-
-                  let ProductCostString = "";
-
-                  //alert("alert big debug!");
-                 
-                  //integer
-                  //n2 = document.getElementById(buyThisManyID).value;
-                  //fix this, here
-                  amountBought = document.getElementById(buyThisManyID).value;
-                  
-                  //total cost decimal tax and pennies - string  $###.##;  has exact 
-                  becomePenniesTotalOfOneProductlNoTax =document.getElementById(costID).value;
-                  //remove $ sign still has decimal place
-                  becomePenniesTotalOfOneProductlNoTax = becomePenniesTotalOfOneProductlNoTax.substring(1);
-
-                  //alert("a");//10000.22
-
-
-
-                  var string2a = "";
-
-
-                  //fis this, here
-                  /*
-                  string1a = n3.toString();
-                  
-                  //remove decimal point
-                  for(var j = 0; j < string1a.length; j++)
-                  {
-                    if(j == string1a.length-3)
-                    {
-                      continue;
-                    }
-                    string2a = string2a + string1a[j];
-
-                  }
-                  */
-
-                  becomePenniesTotalOfOneProductlNoTax = string2a;
-                  //alert(n3); //1000022
-                  
-
-
-                  
-
-                  //total pennies, no tax
-                  totalNoTaxOne = becomePenniesTotalOfOneProductlNoTax;
-                  //alert(totalNoTaxOne);//1000022
-                  //total without tax in pennies times 1000
-                  totalNoTaxTimes1000 = totalNoTaxOne * thousand * amountBought;
-                  //alert(totalNoTaxTimes1000);//2000044000
-
-
-
-
-
-
-                  
-                  tax = amountBought * totalNoTaxOne * tax ;  // was 100
-                 
-                  
-                  //alert("tax");
-                  //alert(tax);//
-                  //alert(totalNoTaxTimes1000);//
-
-
-
-
-
-
-
-
-                  
-                  //add pennies and tax amount without decimal point
-                  withTaxTimes1000 = totalNoTaxTimes1000 + tax;
-                  //alert(withTaxTimes1000);//  
-
-
-
-
-
-
-
-
-
-                  
-
-                  
-                  //GrandTotal = (GrandTotal) + BigInt(parseInt(withTaxTimes1000/1000));
-
-
-                  GrandTotalDiv = BigInt(parseInt(withTaxTimes1000/1000));
-                  GrandTotal = (GrandTotal) + BigInt(GrandTotalDiv);
-                  //alert("z");
-                  //alert(GrandTotal);//
-
-
-                  //total no decimals with 1000 multiplier
-
-
-                  //ProductCostString = (withTaxTimes1000).toString();
-                  GrandTotalDiv = GrandTotalDiv * BigInt(1000);
-                   ProductCostString = (GrandTotalDiv).toString();
-
-
-                  //alert(ProductCostString);//
-
-
-
-
-
-
-
-
-
-                  //for chnanging template cartTemplate
-                  forCostEachFloat = parseFloat(ProductCostString);
-
-                  //total deimals with changed decimal place
-                  
-                  forCostEachFloat = forCostEachFloat / 100000.0;
-                  //alert("2");
-                  //alert(forCostEachFloat);//
-
-                  
-                  
-
-                  //main division that will be the only off by a possible cent
-                  ProductCostString = (forCostEachFloat.toFixed(2)).toString();
-                  
-                  ProductCostString = "$" + ProductCostString;
-                  //alert("3"); //$
-
-                  //alert(ProductCostString);
-
-                  document.getElementById(totalCostID).value = ProductCostString;
-
-
-                  //alert("at end");
-                 
+               
 
                 }
 
@@ -894,29 +695,7 @@ let flagisEnoughProduct = true;
               }//for
                 
 
-                  //alert("GrandTotal");
-                  //alert(GrandTotal);//2001044!
-                  //bigint added to above
                   
-                  
-                  var floatGrandTotal = Number(GrandTotal); 
-                 
-                  floatGrandTotal = floatGrandTotal / 100.0;
-                  floatGrandTotal = floatGrandTotal.toFixed(2);
-                  
-                  
-                  //alert(floatGrandTotal);//20010.44!
-                  
-                  
-                 //for updating cart template
-                  stringGrandTotal = "Grand Total:  $" + parseFloat(floatGrandTotal);
-                  //alert(stringGrandTotal);//$20010.44!
-                  document.getElementById(GrandTotalStringID).value = stringGrandTotal;
-                
-
-                  
-              
-                //alert("end success function");
             }////sucesss - goto spitback and return values
 
            
