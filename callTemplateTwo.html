@@ -13,6 +13,7 @@
 	
 	<script src="https://unpkg.com/currency.js@~2.0.0/dist/currency.min.js"></script>
 	<script src = "currencyBundle2.js"></script>
+	<script src = "currencyBundle3.js"></script>
 	
 	<!DOCTYPE html>
 </head>  
@@ -43,7 +44,7 @@ window.sessionStorage
 
 //this is in callTemplateTwo.html and index.html
 var MAXRECORDS = 20
-
+let gSumGrandTotal = {valueGrandTotal: "0"};
 function restoreOriginalOrder()
 {
 	
@@ -582,6 +583,9 @@ let amountRequesting = item;
 let tax = 0.5;
 //Calls this: CreateLineTotal(amountRequesting, CostArray[index]);
 let total = myExtFunction2(amountRequesting, CostArray[index]);
+
+//sum totals
+myExtFunction3(total, gSumGrandTotal);
 
 
 

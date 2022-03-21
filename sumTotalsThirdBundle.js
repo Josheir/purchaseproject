@@ -2,7 +2,7 @@ const currency = require('currency.js');
 
 function sumTotals(total, gHoldsSum)
 {
-    let totalWithTaxForProductLine = currency(total) + currency(gHoldsSum);
+    let totalWithTaxForProductLine = currency(total) + currency(gHoldsSum.valueGrandTotal);
 }
     
     
