@@ -472,6 +472,46 @@ function loadData() {
 
 //////////////////////
 
+
+
+
+//get costs and quantities for second ajax useage
+
+/////
+
+
+//get costs and no quantities
+//so calculations can be done
+//all elements in order
+var url = "http://localhost:8080/getArrayOfAllCosts";
+
+
+	var val1 = ""
+
+	$.ajax({
+	type:'GET',
+	datatype: 'html',
+	url:url,
+	data:string,
+	async:false,
+	success: function (data) {
+
+		alert("A5");
+		//const text = '["apple", "banana"]';
+		const  CostArray = JSON.parse(data);
+		//100    :  1.00
+		alert(CostArray[0]);
+		alert(CostArray[1]);
+
+	}
+});
+
+
+
+//////
+
+
+
 let keys = Object.keys(sessionStorage);
 var var1 = "hasntBeenHere";
 //alert("is here");
@@ -536,33 +576,6 @@ for(let key of keys) {
 }
 
 
-//const currency = require('currency');
-//let c = currency(1);
-//alert("currency");
-//alert(c);
-
-var url = "http://localhost:8080/getArrayOfAllCosts";
-
-
-	var val1 = ""
-
-	$.ajax({
-	type:'GET',
-	datatype: 'html',
-	url:url,
-	data:string,
-	async:false,
-	success: function (data) {
-
-		alert("A5");
-		//const text = '["apple", "banana"]';
-		const  CostArray = JSON.parse(data);
-		//100    :  1.00
-		alert(CostArray[0]);
-		alert(CostArray[1]);
-
-	}
-});
 	
 
 
@@ -640,7 +653,7 @@ var url = "http://localhost:8080/cartTemplate";
                     data:queryString,
                     async:false,
                     success: function (data1) {
-						//alert("I am here");
+						alert("I am here");
                       
 						//alert(data1);
 					  val1 = data1;
@@ -648,13 +661,21 @@ var url = "http://localhost:8080/cartTemplate";
 					  {
 						  val1 = "<br><center><h3>No Products Were Selected Yet!</center><br></h3>";
 						  
-
+						
 						  val1 = val1 + data1;
 						  $('#div1').html(val1);
+						 
 					  }
 					  else
-					  {//data1 is the html for cart template
+
+					  {
+						  
+					  alert("will it change?");
+					  //data1 is the html for cart template
                       $('#div1').html(data1);
+					  alert("did it change?");
+					  alert("2");
+					  //displays after
 					  }
                    
                     }
