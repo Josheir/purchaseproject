@@ -1,3 +1,4 @@
+var currrency = require('currency.js');
 //alert("test");
 
 //updates cart
