@@ -523,6 +523,7 @@ var url = "http://localhost:8080/getArrayOfAllCosts";
 		//100    :  1.00
 		alert(CostArray[0]);
 		alert(CostArray[1]);
+		alert("end");
 
 	}
 });
@@ -535,9 +536,10 @@ string2 = "";
 
 let keys = Object.keys(sessionStorage);
 var var1 = "hasntBeenHere";
-//alert("is here");
+//index
+let index = -1;
 for(let key of keys) {
-
+index++;
 
   //alert("keys hereaaa");
   //alert(key);
@@ -571,21 +573,17 @@ for(let key of keys) {
   
 
 
-  //alert(key);
   
-  
-  //check for not an integer
 
-  var item = sessionStorage.getItem(key);
+let item = sessionStorage.getItem(key);
 
-//alert(item);
 
-  //alert("item");
-  //alert(item);
+let amountRequesting = item;
+let tax = 0.5;
+let total = CreateLineTotal(amountRequesting, CostArray[index]);
 
-  ////////
 
-  string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
+string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&total=" + total + "&" ;
   //string2 = string2 +"id=" + key + "&";
 
   //////////
