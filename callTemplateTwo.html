@@ -600,70 +600,16 @@ string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&total=" + to
 
 }
 
-
-	
-
+string = string + "grandtotal=" + gSumGrandTotal + "&";
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-// no ur//parameters from search at index.html - checkout pressed with nothing selected
-
-
-//not any  ids and quants
-//if(var1 == "hasntBeenHere")
-//  {
-	  //if checkout has no quant... than here DoesKeywordAlreadyExist checkout to removeKeyword
-	  //if search pressed get checkout from session
-	  //and remove keyword
-	 
-
-	  //var val1 = document.getElementById(dispalyMessage).value;
-	  //document.getElementById("displayMessage").innerHTML = "No products were selected!";
-	
-//	  gFlagIsSomeRecords = true;
-	  //var storedArray = [];
-	  //sessionStorage.setItem("checkoutPressed", "pressed");
-	 
-	  //storedArray = JSON.parse(sessionStorage.getItem("keywords"))
-	  //storedArray.push(val1);
-	  //sessionStorage.removeItem
-
-
-	
-    //alert("no!");
-    //window.location.href = "index.html?displayOrdersTemplateAgain=1&";
-    //return(1);
- // }
-
-  //alert("queryString0");
-  //alert(gFlag1);
-//overWrites"&
 if(gFlagIsSomeRecords == true)
 {
 	queryString = string.substring(0, string.length-1);
 	//alert("queryString100");
 	//alert(queryString);
 }
-//else
-//{
-	//alert("queryString2");
-	//queryString = "";
-//}
-
-//alert("queryString");
-//alert(queryString);
 
 
 //initial create cart template 
