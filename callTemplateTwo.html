@@ -12,7 +12,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	
 	<script src="https://unpkg.com/currency.js@~2.0.0/dist/currency.min.js"></script>
-	
+	<script src = "currencyBundle2.js"></script>
 	
 	<!DOCTYPE html>
 </head>  
@@ -580,7 +580,9 @@ let item = sessionStorage.getItem(key);
 
 let amountRequesting = item;
 let tax = 0.5;
-let total = CreateLineTotal(amountRequesting, CostArray[index]);
+//Calls this: CreateLineTotal(amountRequesting, CostArray[index]);
+let total = myExtFunction2(amountRequesting, CostArray[index]);
+
 
 
 string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&total=" + total + "&" ;

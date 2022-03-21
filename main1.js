@@ -67,30 +67,17 @@ function GetSummedGrandTotal(totalforProductsWithTax, grandTotal)
 if (typeof window !== 'undefined') 
     {
 
-    //alert("undefined, here");
-
-    //if(window.name == "1")
-    //{
-     
         alert("gettotal");
         window.myExtFunction1 = function(costID, buyThisManyID, totalCostID, GrandTotalStringID, grandTotal)
         {
             return getTaxedAmount(costID, buyThisManyID, totalCostID, GrandTotalStringID, grandTotal);
         }
-    //}
-    //else if (window.name == "getGrandTotal")
-    //{
-        
+    
         alert("grand total");
-    //window.myExtFunction2 = function(totalforProductsWithTax, grandTotal) {
-    //return GetSummedGrandTotal(totalforProductsWithTax, grandTotal);
-    //}
-
-
+    
     }
 
     alert("bypassed");
-    //console.log(window.name);
-    //alert(window.name);
+    
 
 
