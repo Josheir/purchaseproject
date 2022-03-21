@@ -450,7 +450,7 @@ loadData();
 //restoring past order screen
 var gFlagIsSomeRecords = false;
 var queryString= ""; 
-
+let arrayOfInts
 //calls template2, load ProductID/amount of quantity purchasing
 function loadData() {
  alert("load data");
@@ -477,22 +477,43 @@ function loadData() {
 
 //get costs and quantities for second ajax useage
 
-/////
+/////get IDs for getarray
 
+let keys1 = Object.keys(sessionStorage);
+for(let key of keys1) {
+	let intKey = parseInt(key);
+	//alert("error check here");
+	//alert(intKey);
+	//alert(typeof intKey);
+	if(Number.isNaN(intKey) )
+	{
+		alert("here");
+		continue;
+	}
+	
+	//let item = sessionStorage.getItem(key);
+	
+	string2 = string2 + "id=" + key + "&";
+	
+	
+
+}
+alert("string2");
+alert(string2);
 
 //get costs and no quantities
 //so calculations can be done
 //all elements in order
 var url = "http://localhost:8080/getArrayOfAllCosts";
 
-
+//needs string with ids
 	var val1 = ""
 
 	$.ajax({
 	type:'GET',
 	datatype: 'html',
 	url:url,
-	data:string,
+	data:string2,
 	async:false,
 	success: function (data) {
 
@@ -510,7 +531,7 @@ var url = "http://localhost:8080/getArrayOfAllCosts";
 
 //////
 
-
+string2 = "";
 
 let keys = Object.keys(sessionStorage);
 var var1 = "hasntBeenHere";
