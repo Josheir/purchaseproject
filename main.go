@@ -807,8 +807,22 @@ var Condition = 0
 
 var gAllProductIds []string
 var gAllPurchaseAmounts []string
-
+var gAllTotalAmounts []string
+var gGrandTotal []string
 func createCartTemplate(w http.ResponseWriter, r *http.Request) {
+////////
+
+//grandtotal
+//total
+
+
+//////////
+
+  
+  
+  
+
+//////////
 
 	ProductListForCartTemplate = nil
 
@@ -827,40 +841,21 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 	length := len(r.Form["id"])
 	if length > 0 {
 
-		//fmt.Println(gAllProductIds)
+		
 
 		gAllProductIds = gAllProductIds[:0]
 		gAllPurchaseAmounts = gAllPurchaseAmounts[:0]
-		//fmt.Println(gAllProductIds)
-
+		gAllTotalAmounts = gAllTotalAmounts[:0]
+		gGrandTotal = gGrandTotal[:0]
+		
 		//save query into arrays
 		for i = 0; i < (length); i++ {
 
 			gAllProductIds = append(gAllProductIds, []string{r.Form["id"][i]}...)
 			gAllPurchaseAmounts = append(gAllPurchaseAmounts, []string{r.Form["amtTryingToPurchase"][i]}...)
+			gAllTotalAmounts = append(gAllTotalAmounts, []string{r.Form["total"][i]}...)
 
-			//save to global
-
-			//////////
-
-			/*
-				//fills in all innital values so can be used to set available with "Amount to buy"
-				for (var i = 0; i< counter+1 ;i++)
-				{
-				alert("begin");
-				//alert(data1.length);
-				var buyThisManyID = "A" + i;
-				let initialValues = document.getElementById(buyThisManyID).value;
-				initialValues.push(initialValues);
-				alert("here");
-				//alert(i);
-				alert(initialValues);
-				console.log(initialValues);
-				alert("1");
-				}
-			*/
-
-			///////////
+			
 
 		}
 
