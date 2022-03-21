@@ -14,7 +14,6 @@ import (
 	"net/http"
 
 	"context"
-	"math/big"
 
 	//"os"
 	"strconv"
@@ -809,20 +808,16 @@ var gAllProductIds []string
 var gAllPurchaseAmounts []string
 var gAllTotalAmounts []string
 var gGrandTotal []string
+
 func createCartTemplate(w http.ResponseWriter, r *http.Request) {
-////////
+	////////
 
-//grandtotal
-//total
+	//grandtotal
+	//total
 
+	//////////
 
-//////////
-
-  
-  
-  
-
-//////////
+	//////////
 
 	ProductListForCartTemplate = nil
 
@@ -841,21 +836,17 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 	length := len(r.Form["id"])
 	if length > 0 {
 
-		
-
 		gAllProductIds = gAllProductIds[:0]
 		gAllPurchaseAmounts = gAllPurchaseAmounts[:0]
-		gAllTotalAmounts = gAllTotalAmounts[:0]
+		//gAllTotalAmounts = gAllTotalAmounts[:0]
 		gGrandTotal = gGrandTotal[:0]
-		
+
 		//save query into arrays
 		for i = 0; i < (length); i++ {
 
 			gAllProductIds = append(gAllProductIds, []string{r.Form["id"][i]}...)
 			gAllPurchaseAmounts = append(gAllPurchaseAmounts, []string{r.Form["amtTryingToPurchase"][i]}...)
 			gAllTotalAmounts = append(gAllTotalAmounts, []string{r.Form["total"][i]}...)
-
-			
 
 		}
 
@@ -884,16 +875,10 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 	ID := 0
 	bought := 0
-	
+
 	var countCounter = 0
 
-	
-
-	
-
 	/////////////////////////////
-
-	//LEFT OFF HERE!!!
 
 	/////////////////////////////
 
@@ -999,10 +984,9 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 				Condition2 = -1
 			}
 
-
 			/////////////////////////////////////////////////
 			//this function populates a template2struct variable and appends it to productListForCartTemplate
-			addProduct(ProductIDID, RemoveRecordDivID, GrandTotalStringID, GrandTotalString, BoughtID, bought, ProductCostString, TotalCostID, ProductQuantity, CostID, AmountToBuyID, Condition, Condition2, prodid, ProductQuantity, ProductName, DivID, ProductCatTitle, forCostEach)
+			addProduct(ProductIDID, RemoveRecordDivID, GrandTotalStringID, GrandTotalString, BoughtID, bought, gAllTotalAmounts[i], TotalCostID, ProductQuantity, CostID, AmountToBuyID, Condition, Condition2, prodid, ProductQuantity, ProductName, DivID, ProductCatTitle, ProductCost)
 
 		}
 
@@ -1803,7 +1787,7 @@ func getArrayOfAllCosts(w http.ResponseWriter, r *http.Request) {
 		for i := 0; i < (length); i++ {
 
 			ids1 = append(ids1, []string{r.Form["id"][i]}...)
-			
+
 		}
 
 	}
@@ -1818,7 +1802,6 @@ func getArrayOfAllCosts(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			fmt.Println(err)
 		}
-
 
 		var ids2 = ids1[i]
 		idsInt1, err := strconv.Atoi(ids2)
@@ -1837,16 +1820,16 @@ func getArrayOfAllCosts(w http.ResponseWriter, r *http.Request) {
 
 		for rows.Next() {
 
-		//stores password in here from database
-		err = rows.Scan(&cost)
+			//stores password in here from database
+			err = rows.Scan(&cost)
 
-		if err != nil {
-			fmt.Println(err)
+			if err != nil {
+				fmt.Println(err)
+			}
+
+			costs = append(costs, cost)
 		}
 
-		costs = append(costs, cost)
-		}
-		
 		//}
 
 	}
