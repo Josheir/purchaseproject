@@ -884,17 +884,12 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 	ID := 0
 	bought := 0
-	//numTotal := 0.0
-
+	
 	var countCounter = 0
 
-	//n11 := new(big.Int)
-	//n12 := new(big.Int)
+	
 
-	//below are big ints for the totaling on bottom of cart template
-	GrandTotal := new(big.Int)
-	GrandTotalDiv := new(big.Int)
-	GrandTotal, _ = GrandTotal.SetString("0", 10)
+	
 
 	/////////////////////////////
 
@@ -1004,85 +999,6 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 				Condition2 = -1
 			}
 
-			///////////////////////////////////////////////////////////////////////////////
-
-			//Using Big to do money system, the idea is to store as cents in a bigint and than
-			//move the decimal place after calculations are done
-			quantity := new(big.Int)
-			tax := new(big.Int)
-			tax2 := new(big.Int)
-
-			productCost := new(big.Int)
-
-			thousand := new(big.Int)
-
-			totalNoTaxNo1000 := new(big.Int)
-
-			withTaxTimes1000 := new(big.Int)
-
-			var ProductCostString string
-
-			////amount of itmes to purchase
-			quantity, _ = quantity.SetString((gAllPurchaseAmounts[j]), 10)
-
-			//string - total in pennies
-			productCost, _ = productCost.SetString(ProductCost, 10)
-
-			thousand, _ = thousand.SetString("1000", 10)
-			//tenthousand, _ =hundred.SetString("10000", 10)
-
-			tax, _ = tax.SetString("50", 10)
-
-			//total without tax in pennies times 1000
-			totalNoTaxNo1000.Mul(productCost, thousand)
-			totalNoTaxNo1000.Mul(totalNoTaxNo1000, quantity)
-
-			tax2.Mul(quantity, productCost)
-			tax2.Mul(tax2, tax)
-
-			//add pennies and tax amount without decimal point
-			withTaxTimes1000.Add(totalNoTaxNo1000, tax2)
-
-			GrandTotalDiv.Div(withTaxTimes1000, thousand)
-			GrandTotal.Add((GrandTotal), (GrandTotalDiv))
-
-			//n11GrandTotal.Div(n11GrandTotal, thousand)
-
-			//total no decimals with 1000 multiplier
-
-			GrandTotalDiv.Mul(GrandTotalDiv, thousand)
-			//totals:
-			//ProductCostString = withTaxTimes1000.Text(10)
-			ProductCostString = GrandTotalDiv.Text(10)
-
-			forCostEachFloat, _ := strconv.ParseFloat(ProductCostString, 64)
-
-			//total deimals with changed decimal place
-			forCostEachFloat = forCostEachFloat / 100000.0
-
-			//make a string with two deciaml places
-			ProductCostString = fmt.Sprintf("%.2f", forCostEachFloat)
-
-			///////////
-
-			forCostEach2, _ := strconv.ParseFloat(ProductCost, 64)
-
-			forCostEach2 = forCostEach2 / 100.0
-
-			forCostEach := fmt.Sprintf("%.2f", forCostEach2)
-
-			if countCounter == (len(gAllProductIds)) {
-				////////////////////////////////
-
-				GrandTotalText := GrandTotal.Text(10)
-
-				n11GrandTotalFloat, _ := strconv.ParseFloat(GrandTotalText, 64)
-
-				n11GrandTotalFloat = n11GrandTotalFloat / 100.0
-
-				GrandTotalString = fmt.Sprintf("%.2f", n11GrandTotalFloat)
-
-			}
 
 			/////////////////////////////////////////////////
 			//this function populates a template2struct variable and appends it to productListForCartTemplate
