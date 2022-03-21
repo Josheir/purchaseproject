@@ -5,38 +5,17 @@ var currrency = require('currency.js');
 //function GetTotalWithTaxFromAmtProduct(costID, buyThisManyID, totalCostID, GrandTotalStringID)
 function getTaxedAmount(costID, buyThisManyID, totalCostID, grandTotalStringID, grandTotal)
 {
-
-    
-    alert("looking good!");
-    
-    
-
+   alert("looking good!");
     debugger;
-    var costForEachProducts = document.getElementById(costID).value;
-    var buyThisAmt = document.getElementById(buyThisManyID).value;
-
-
-//put a flag here to denote if first tiem through if not look at amount to buy  as buythisamt
-//grand total is looking at all starting values
-
-
-
-    
-    //$xxx.xx
-    //alert("check this");
-    //alert(costForEachProducts);
-    //alert(buyThisAmt);
-    costWithoutTax = currency(costForEachProducts).multiply(currency(buyThisAmt));
-    var tax = (costWithoutTax).multiply(.05);
+    let costForEachProducts = document.getElementById(costID).value;
+    let buyThisAmt = document.getElementById(buyThisManyID).value;
+    let costWithoutTax = currency(costForEachProducts).multiply(currency(buyThisAmt));
+    let tax = (costWithoutTax).multiply(.05);
     //alert(tax);
-    var taxCurrency = currency(tax);
+    let taxCurrency = currency(tax);
     //alert(taxCurrency);
-    var total = taxCurrency.add(currency(costWithoutTax)).format();
-    //alert(total);
-    //document.getElementById(GrandTotalStringID).value;
-    //$xxx.xx
+    let total = taxCurrency.add(currency(costWithoutTax)).format();
     document.getElementById(totalCostID).value = total;
-   
     alert("yes");
     GetSummedGrandTotal(total, grandTotal);
 
