@@ -10,7 +10,9 @@ function getTotal(quantityBuying, costForEach){
     return(currency(total));
 }
 
-
+function sumTotals(total, gHoldsSum){
+let totalWithTaxForProductLine = currency(total) + currency(gHoldsSum);
+}
 
 
 if (typeof window !== 'undefined') {

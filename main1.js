@@ -5,7 +5,7 @@ var currrency = require('currency.js');
 //function GetTotalWithTaxFromAmtProduct(costID, buyThisManyID, totalCostID, GrandTotalStringID)
 function getTaxedAmount(costID, buyThisManyID, totalCostID, grandTotalStringID, grandTotal)
 {
-   alert("looking good!");
+   
     debugger;
     let costForEachProducts = document.getElementById(costID).value;
     let buyThisAmt = document.getElementById(buyThisManyID).value;
