@@ -338,8 +338,8 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
         parsedItem = parseInt(item);
         //fix this, here
         //id and amount trying to buy
-        //string =  string + "id=" + key + "&amtTryingToPurchase=" + parsedItem + parsedAmountBought + "&";
-        string =  string + "id=" + key + "&amtTryingToPurchase=" + parsedItem + "&";
+        string =  string + "id=" + key + "&amtTryingToPurchase=" + parsedItem + parsedAmountBought + "&";
+        //string =  string + "id=" + key + "&amtTryingToPurchase=" + parsedItem + "&";
 
        
           
@@ -507,8 +507,8 @@ let flagisEnoughProduct = true;
                 
                 
                 var gSumGrandTotal = {valueGrandTotal: "0"};
-                alert("length");
-                alert(lengthOfData);
+                //alert("length");
+                //alert(lengthOfData);
                 for(var i = 0; i<(lengthOfData) ; i++)
                 {
 
@@ -599,9 +599,9 @@ let flagisEnoughProduct = true;
                   let boughtValue = (document.getElementById(boughtid).value);
                   
                   
-                  alert("start here");
+                  //alert("start here");
                   document.getElementById(availableID).style.color = 'red';
-                  alert("end here");
+                  //alert("end here");
 
                   //amount to buy
                   document.getElementById(buyThisManyID).value = 0;
@@ -614,7 +614,7 @@ let flagisEnoughProduct = true;
 
                   //creates this lines total
                   myExtFunction1(costID, buyThisManyID, totalCostID, GrandTotalStringID, gSumGrandTotal);
-                  alert("totals");
+                  //alert("totals");
                   gSumGrandTotal.valueGrandTotal = "Grand Total: $" + gSumGrandTotal.valueGrandTotal;
                   document.getElementById(grandTotalID).value = gSumGrandTotal.valueGrandTotal;
                   
@@ -626,8 +626,8 @@ let flagisEnoughProduct = true;
                   
                   //amount to buy
                   let amountToBuy1 = document.getElementById(buyThisManyID).value; //3
-                  alert("amount ot buy");
-                  alert(amountToBuy1);
+                  //alert("amount ot buy");
+                  //alert(amountToBuy1);
                   //buying
                   //document.getElementById(boughtid).value = amountToBuy1; // 3
                   //alert("11");
@@ -636,20 +636,20 @@ let flagisEnoughProduct = true;
                   //var initialAmt1 = 0;
                   
                   
-                  alert("ftt");
+                  //alert("ftt");
                   alert(firstTimeThrough1);
                   if(firstTimeThrough1 == "no")
                   {
-                    alert("made it here");
+                    //alert("made it here");
 
                     let bought = document.getElementById(boughtid).value;
-                    alert(bought);
+                    //alert(bought);
                     let parsedBought = parseInt(bought);
                     
                    //document.getElementById(boughtid).value = amountToBuy1; // 3
                     
                     let parsedAmountToBuy1 = parseInt(amountToBuy1);
-                    alert(parsedAmountToBuy1);
+                    //alert(parsedAmountToBuy1);
                     document.getElementById(boughtid).value = parsedAmountToBuy1;
                   
                     alert("12");
@@ -667,7 +667,7 @@ let flagisEnoughProduct = true;
                   }
                   else
                   {
-                    alert("here");
+                    //alert("here");
                     
                     document.getElementById(boughtid).value = amountToBuy1; // 3
                     
@@ -684,11 +684,11 @@ let flagisEnoughProduct = true;
                   }
 
                   myExtFunction1(costID, buyThisManyID, totalCostID, GrandTotalStringID, gSumGrandTotal);
-                  alert("totals");
+                  //alert("totals");
                   gSumGrandTotal.valueGrandTotal = "Grand Total: $" + gSumGrandTotal.valueGrandTotal;
                   document.getElementById(grandTotalID).value = gSumGrandTotal.valueGrandTotal;
                   
-                  alert("halt");
+                  //alert("halt");
                  
                
 

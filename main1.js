@@ -5,21 +5,21 @@ var currrency = require('currency.js');
 //function GetTotalWithTaxFromAmtProduct(costID, buyThisManyID, totalCostID, GrandTotalStringID)
 function getTaxedAmount(costID, buyThisManyID, totalCostID, grandTotalStringID, grandTotal)
 {
-   
+    //test
+    alert("3rdFunction");
     debugger;
     let costForEachProducts = document.getElementById(costID).value;
+    //alert(costForEachProducts);
     let buyThisAmt = document.getElementById(buyThisManyID).value;
-    let costWithoutTax = currency(costForEachProducts).multiply(currency(buyThisAmt));
-    let tax = (costWithoutTax).multiply(.05);
+    //alert(buyThisAmt);
+    let total = currency(buyThisAmt).multiply(currency(costForEachProducts));
+    //alert(total);
+    let tax = currency(total).multiply(.05);
     //alert(tax);
-    let taxCurrency = currency(tax);
-    //alert(taxCurrency);
-    let total = taxCurrency.add(currency(costWithoutTax)).format();
-    document.getElementById(totalCostID).value = total;
-    alert("yes");
+    let totalWithTax = (total).add(tax);
+    //alert(totalWithTax);
     GetSummedGrandTotal(total, grandTotal);
-
-//$xxx.xx    
+    
 return ;
 
 }
@@ -46,17 +46,17 @@ function GetSummedGrandTotal(totalforProductsWithTax, grandTotal)
 if (typeof window !== 'undefined') 
     {
 
-        alert("gettotal");
+       // alert("gettotal");
         window.myExtFunction1 = function(costID, buyThisManyID, totalCostID, GrandTotalStringID, grandTotal)
         {
             return getTaxedAmount(costID, buyThisManyID, totalCostID, GrandTotalStringID, grandTotal);
         }
     
-        alert("grand total");
+        //alert("grand total");
     
     }
 
-    alert("bypassed");
+    //alert("bypassed");
     
 
 

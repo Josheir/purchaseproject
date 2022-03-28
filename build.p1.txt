@@ -1,0 +1,8 @@
+
+browserify main1.js -o currencyBundle.js -d
+browserify currencySecondToBundle.js -o currencyBundle2.js -d
+browserify sumTotalsThirdBundle.js -o currencyBundle3 -d 
+go build main.go
+go run main.go
+Write-Host "Successfull - running!"
+

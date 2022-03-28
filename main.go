@@ -809,6 +809,8 @@ var gAllPurchaseAmounts []string
 var gAllTotalAmounts []string
 var gGrandTotal []string
 
+var gLength = 0
+
 func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 	////////
 
@@ -833,22 +835,44 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var i = 0
-	length := len(r.Form["id"])
-	if length > 0 {
+	gLength := len(r.Form["id"])
+	gGrandTotal := ""
+	if gLength > 0 {
 
 		gAllProductIds = gAllProductIds[:0]
 		gAllPurchaseAmounts = gAllPurchaseAmounts[:0]
 		//gAllTotalAmounts = gAllTotalAmounts[:0]
-		gGrandTotal = gGrandTotal[:0]
+		//gGrandTotal = gGrandTotal[:0]
 
+		//grandTotal, err := strconv.Atoi(r.URL.Query().Get("grandtotal"))
+		//if err != nil {
+		//	fmt.Println(err)
+		//}
+		//fmt.Println(grandTotal)
 		//save query into arrays
-		for i = 0; i < (length); i++ {
+		 
+		for i = 0; i < (gLength); i++ {
 
 			gAllProductIds = append(gAllProductIds, []string{r.Form["id"][i]}...)
 			gAllPurchaseAmounts = append(gAllPurchaseAmounts, []string{r.Form["amtTryingToPurchase"][i]}...)
 			gAllTotalAmounts = append(gAllTotalAmounts, []string{r.Form["total"][i]}...)
+			//gGrandTotal = append(gAllTotalAmounts, []string{r.Form["grandtotal"][i]}...)
 
 		}
+		gGrandTotal = (r.URL.Query().Get("grandtotal"))
+
+		fmt.Println("--------")
+		//fmt.Println(err)
+
+		//fmt.Println(gGrandTotal[0])
+		//fmt.Println(gGrandTotal[1])
+		//fmt.Println(gGrandTotal[2])
+		//fmt.Println("--------")
+
+		//gGrandTotal = append(gAllTotalAmounts, []string{r.Form["grandtotal"][length]}...)
+		//gGrandTotal := r.Form["grandtotal"][0]
+		//fmt.Println(gGrandTotal[1])
+		//gGrandTotal = append(gAllTotalAmounts, []string{r.Form["grandtotal"][1]}...)
 
 	} else {
 
@@ -927,7 +951,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 		var ProductName, ProductCatTitle, ProductCost string
 
-		var GrandTotalString = ""
+		//var GrandTotalString = ""
 
 		//jumps past this, first run through
 		//var numTotal = 0
@@ -986,7 +1010,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 			/////////////////////////////////////////////////
 			//this function populates a template2struct variable and appends it to productListForCartTemplate
-			addProduct(ProductIDID, RemoveRecordDivID, GrandTotalStringID, GrandTotalString, BoughtID, bought, gAllTotalAmounts[i], TotalCostID, ProductQuantity, CostID, AmountToBuyID, Condition, Condition2, prodid, ProductQuantity, ProductName, DivID, ProductCatTitle, ProductCost)
+			addProduct(ProductIDID, RemoveRecordDivID, GrandTotalStringID, gGrandTotal, BoughtID, bought, gAllTotalAmounts[i], TotalCostID, ProductQuantity, CostID, AmountToBuyID, Condition, Condition2, prodid, ProductQuantity, ProductName, DivID, ProductCatTitle, ProductCost)
 
 		}
 

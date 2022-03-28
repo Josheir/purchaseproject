@@ -44,7 +44,7 @@ window.sessionStorage
 
 //this is in callTemplateTwo.html and index.html
 var MAXRECORDS = 20
-let gSumGrandTotal = {valueGrandTotal: "0"};
+let gSumGrandTotal = {valueGrandTotal: 0.0};
 function restoreOriginalOrder()
 {
 	
@@ -454,7 +454,7 @@ var queryString= "";
 let arrayOfInts
 //calls template2, load ProductID/amount of quantity purchasing
 function loadData() {
- alert("load data");
+ //alert("load data");
  //const price = Dinero({ amount: 5000, currency: 'EUR' })
  //var a = Dinero;
 //alert(price); 
@@ -466,7 +466,7 @@ function loadData() {
 
 
 
- alert(queryString);
+ ///alert(queryString);
 //alert("is it getting here");
  var string = "";
  var string2 = "";
@@ -488,7 +488,7 @@ for(let key of keys1) {
 	//alert(typeof intKey);
 	if(Number.isNaN(intKey) )
 	{
-		alert("here");
+		//alert("here");
 		continue;
 	}
 	
@@ -499,8 +499,8 @@ for(let key of keys1) {
 	
 
 }
-alert("string2");
-alert(string2);
+//alert("string2");
+//alert(string2);
 
 //get costs and no quantities
 //so calculations can be done
@@ -509,7 +509,8 @@ var url = "http://localhost:8080/getArrayOfAllCosts";
 
 //needs string with ids
 	var val1 = ""
-
+    //const CostArray = [];
+	let CostArray ;
 	$.ajax({
 	type:'GET',
 	datatype: 'html',
@@ -518,13 +519,19 @@ var url = "http://localhost:8080/getArrayOfAllCosts";
 	async:false,
 	success: function (data) {
 
-		alert("A5");
+		//alert("A5");
 		//const text = '["apple", "banana"]';
-		const  CostArray = JSON.parse(data);
+		
+		
+		CostArray = JSON.parse(data);
+		
+		
+		
 		//100    :  1.00
-		alert(CostArray[0]);
-		alert(CostArray[1]);
-		alert("end");
+		//alert("costarray");
+		//alert(CostArray[0]);
+		//alert(CostArray[1]);
+		//alert("end");
 
 	}
 });
@@ -540,7 +547,7 @@ var var1 = "hasntBeenHere";
 //index
 let index = -1;
 for(let key of keys) {
-index++;
+
 
   //alert("keys hereaaa");
   //alert(key);
@@ -574,7 +581,7 @@ index++;
   
 
 
-  
+index++;
 
 let item = sessionStorage.getItem(key);
 
@@ -582,10 +589,41 @@ let item = sessionStorage.getItem(key);
 let amountRequesting = item;
 let tax = 0.5;
 //Calls this: CreateLineTotal(amountRequesting, CostArray[index]);
-let total = myExtFunction2(amountRequesting, CostArray[index]);
+//alert("function2");
+//alert(index);
+//alert(amountRequesting);
+//alert(CostArray[index]);
 
+
+let cost = CostArray[index];
+
+
+
+//alert(cost);
+let costInt = parseInt(cost);
+let amountRequestingInt = parseInt(amountRequesting);
+
+
+//sets product line
+let total = myExtFunction2(amountRequestingInt, costInt);
+alert("through function 2");
+alert(total);
+
+
+
+
+//alert(gSumGrandTotal);
 //sum totals
-myExtFunction3(total, gSumGrandTotal);
+//alert("function3");
+//totalInt = parseInt(total);
+//gSumGrandTotalInt = parseInt(gSumGrandTotal);
+
+//with a string of :  $1.00, worked.
+//total = "$2.00";
+var gTotal = myExtFunction3(total, gSumGrandTotal);
+//alert ("gtotal");
+//alert(gTotal);
+
 
 
 
@@ -600,13 +638,17 @@ string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&total=" + to
 
 }
 
-string = string + "grandtotal=" + gSumGrandTotal + "&";
+string = string + "grandtotal=" + gSumGrandTotal.valueGrandTotal + "&";
+
+alert("grand");
+alert(gSumGrandTotal.valueGrandTotal);   // 315.00
 
 
 
 if(gFlagIsSomeRecords == true)
 {
-	queryString = string.substring(0, string.length-1);
+	//queryString = string.substring(0, string.length-1);
+	queryString = string;
 	//alert("queryString100");
 	//alert(queryString);
 }
@@ -624,7 +666,7 @@ var url = "http://localhost:8080/cartTemplate";
                     data:queryString,
                     async:false,
                     success: function (data1) {
-						alert("I am here");
+						//alert("I am here");
                       
 						//alert(data1);
 					  val1 = data1;
@@ -641,11 +683,11 @@ var url = "http://localhost:8080/cartTemplate";
 
 					  {
 						  
-					  alert("will it change?");
+					  //alert("will it change?");
 					  //data1 is the html for cart template
                       $('#div1').html(data1);
-					  alert("did it change?");
-					  alert("2");
+					  //alert("did it change?");
+					  //alert("2");
 					  //displays after
 					  }
                    
