@@ -1326,6 +1326,13 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 
 			///////////
 
+
+
+
+
+
+
+			/*
 			var statement = ""
 			//var ProductCostString = ""
 			//ProductCostString = strconv.FormatFloat(ProductCost, 'f' ,0, 64)
@@ -1373,7 +1380,14 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 				//ProductCost, err = strconv.ParseFloat(ProductCostString, 64)
 			}
 
-			/////////////
+			/////////////*/
+
+
+
+
+
+
+
 
 			var i = 0
 
@@ -1682,7 +1696,7 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 		///////////
 
 
-		
+
 		/*var statement = ""	
 		//////////
 
