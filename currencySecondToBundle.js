@@ -14,7 +14,7 @@ function getTotal(quantityBuying, costForEach){
     alert("function2");
     alert(totalWithTax);
     //alert(tax);
-    return((totalWithTax.format()));
+    //return((totalWithTax.format()));
 }
 
 if (typeof window !== 'undefined') {

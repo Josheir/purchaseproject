@@ -3,6 +3,10 @@ var currrency = require('currency.js');
 
 //updates cart
 //function GetTotalWithTaxFromAmtProduct(costID, buyThisManyID, totalCostID, GrandTotalStringID)
+
+//is same with counterpart just return value different
+
+//costID :  get string for costforeachproducts and use currnecy to change it at end 
 function getTaxedAmount(costID, buyThisManyID, totalCostID, grandTotalStringID, grandTotal)
 {
     //test
