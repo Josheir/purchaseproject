@@ -68,7 +68,7 @@ type product struct {
 	ProductQuantity int
 	ProductName     string
 	ProductCatTitle string
-	ProductCost     int
+	ProductCost     string
 }
 
 //for template two
@@ -659,7 +659,8 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 
 		//this gets the record for update
 
-		var ProductCost float64
+		
+		var ProductCost string
 		var ProductQuantity, ProductID, AdminID, CustomerID, OrderID int
 		var gKeyword1, gKeyword2, gKeyword3, ProductName, ProductDescription, ProductCatTitle, ProductFilename, ProductStatus string
 
