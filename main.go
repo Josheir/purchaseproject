@@ -1681,12 +1681,9 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 
 		///////////
 
-		var statement = ""
 
 		
-		
-		
-		
+		/*var statement = ""	
 		//////////
 
 		//add zeros for samaller numbers
@@ -1730,7 +1727,7 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 			ProductCost = statement
 		}
 
-		//////////
+		//////////*/
 
 
 
