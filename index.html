@@ -15,7 +15,7 @@
 
 
 <body>
-<script type="text/javascript" src="script.js"></script><script type="text/javascript" src="script.js"></script>	
+	
 
 <style>
 	
@@ -72,7 +72,7 @@ var3 = var1 + var2;
 
 $(function(){
 
-
+alert("B");
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 //fix this, here
@@ -126,7 +126,7 @@ for(let key of keys) {
 //alert("search");
 if (searchterm == "1")
 {
-	//alert("made it");
+	alert("made it");
 	displayOrdersTemplateAgain();
 	//displayFromSearch('0');
 }
@@ -374,7 +374,7 @@ $(document).ready(function () {
 			var item = sessionStorage.getItem(key);
 			
 			
-       		string =  string + "id=" + key + "&amtTryingToPurchase" + item + "&";
+       		string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
 			
 			
 			reloadFlag = 0;
@@ -409,7 +409,7 @@ $(document).ready(function () {
 	}
 		
 
-		//alert("here");
+		alert("here");
 		//alert(string);
 		//from index top gui
 		var searchWord = document.getElementById("search").value;
@@ -432,9 +432,9 @@ $(document).ready(function () {
 		//cehck for duplicates if so returns out
 		storedArray = JSON.parse(sessionStorage.getItem("keywords"));
 
-		//alert("storeddarray0");
-		//alert(storedArray);
-
+		alert("storeddarray0");
+		alert(storedArray);  //apple1,apple2
+	  	alert(searchWord);//apple1
 		if(storedArray)
 		{
 		for(var i = 0; i < storedArray.length ; i++)
@@ -444,7 +444,7 @@ $(document).ready(function () {
 			//alert("storeddarray");
 			//alert(storedArray[i]);
 			
-			return(-1);
+			//return(-1);
 		}
 		
 		
@@ -471,7 +471,7 @@ $(document).ready(function () {
 
 
 ////////
-//alert("is it getting here");
+alert("is it getting here");
 
 //storedarray has only the relevant keywords
 
@@ -498,13 +498,21 @@ else
 
 	  var val2 = [];
      
+	  alert("3");
+		alert(searchWord);//apple1
+		alert(string);//uid=1&
 	  //returns flag if already a keyword and the string that is and the built query 
 		val2 = DoesKeywordAlreadyExist(searchWord, string);
 	  
-	  //alert("2");
+	    alert("2");
+		alert(searchWord);//apple1
+		alert(string);//uid=1&
 		var gflag = val2[0];
+		alert("gflag");
+		alert(gflag);//isin
 		var querystring = val2[1] + string;
-	  //alert("3");
+	    alert(string);
+		alert(val2[1]);//empty
 		
 		var url = "";
 		
@@ -520,8 +528,8 @@ else
 	  
 	 
 
-	  //alert("querystringzz");
-	  //alert(querystring);
+	  alert("querystringzz");
+	  alert(querystring);
 
 
 
@@ -535,7 +543,7 @@ else
 			
 			
 
-			 //alert("query1");
+			 alert("query1");
 			 //alert(querystring);
 				//searchWord = "here";
 				var b = 0;
@@ -548,8 +556,8 @@ else
 				crossDomain: true,
                 success: function (result) {
 
-					//alert("result");
-					//alert(result);
+					alert("result");
+					alert(result);
 					console.log(result);
 
 					if(result == "")
@@ -609,7 +617,7 @@ else
 
 
 				
-				//alert("check this!");
+				alert("check this!");
 				//alert(item1);
 				//alert(result);
 				//alert(searchWord);
@@ -1088,6 +1096,9 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 function DoesKeywordAlreadyExist( searchword, string)
 {//NO URLS
 
+	alert("search word");
+	alert(searchword);//apple1
+	alert(string);//uid=1&
 	//this flag means that this is a display that returned from template2, so is a special condition
 	//if(flag2 == "1")
 	//{
@@ -1114,9 +1125,11 @@ function DoesKeywordAlreadyExist( searchword, string)
 		//alert("arethere");
 		//alert(val1);
 		//puts first variable into sessionStorage
+		
 		if(!( storedArray = JSON.parse(sessionStorage.getItem("keywords"))))
 		{
-			isfirst = true
+			isfirst = true;
+			//put searchword into sessionstorage
 			sessionStorage.setItem("keywords", JSON.stringify(storedArray2));
 			storedArray = JSON.parse(sessionStorage.getItem("keywords"));
 			
@@ -1130,9 +1143,12 @@ function DoesKeywordAlreadyExist( searchword, string)
 		//check for duplicate keywords, if duplicate leave and do nothing
 		for (i = 0; i < storedArray.length; i++) {
 
-			
+			alert("4");
+			alert(storedArray[i]);//apple1
+			alert(searchword);//apple1
 			if (storedArray[i] == searchword && isfirst == false)
 			{
+				alert("isin");
 				gflag = "isin"
 				break;
 			}
@@ -1144,7 +1160,7 @@ function DoesKeywordAlreadyExist( searchword, string)
 		if (gflag == "isntin")
 		{
 		
-		
+			alert("isnt in");
 			if(isfirst == false)
 			{
 			storedArray.push(searchword);	
@@ -1174,8 +1190,8 @@ function DoesKeywordAlreadyExist( searchword, string)
 			querystring = ("var=" + searchword + "&");
 		}
 	
-		//alert("querystring2");
-		//alert(querystring);
+		alert("querystring2");
+		alert(querystring);
 	
 	return [gflag, querystring];
 	 }
@@ -1350,7 +1366,7 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 
 
 
-			//alert("query3");
+			alert("query3");
 			//alert(querystring);
 
 			$.ajax({

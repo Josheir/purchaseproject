@@ -105,8 +105,6 @@ type Product2 struct {
 	IsEnoughQuantity  bool
 }
 
-
-
 type HoldsFlag struct {
 	Flag string
 }
@@ -242,7 +240,7 @@ type Product3 struct {
 
 func makeListForHTML(amtPurchased int, enough bool, id int, quant int, initialvalue int) {
 
-//func makeListForHTML(amtPurchased int, enough bool, id int, quant int, initialValue int) {
+	//func makeListForHTML(amtPurchased int, enough bool, id int, quant int, initialValue int) {
 
 	//to spit back to html
 	prod := Product2{
@@ -1094,7 +1092,9 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 	} //for next loop
 
 	//https://stackoverflow.com/questions/24755509/using-conditions-inside-templates
-	globt = template.Must(template.ParseFiles("C:/wamp64/www/purchaseproject/cartTemplate.html"))
+
+	//"C:/_wamp64/www/purchaseproject/cartTemplate.html
+	globt = template.Must(template.ParseFiles("C:/_wamp64/www/purchaseproject/cartTemplate.html"))
 
 	err1 = globt.Execute(w, ProductListForCartTemplate)
 
@@ -1258,6 +1258,7 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 
 	/////////
 
+	println("testZ")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	var err1 = r.ParseForm()
@@ -1524,7 +1525,7 @@ func sendToTemplate(globKeyword *string, counter1 *int, w *http.ResponseWriter, 
 
 	fmt.Println(templ1)
 
-	globt = template.Must(template.ParseFiles("C:/wamp64/www/purchaseproject/template1.html"))
+	globt = template.Must(template.ParseFiles("C:/_wamp64/www/purchaseproject/template1.html"))
 
 	//err1 := globt.Execute(w, testvar)
 	var err1 = globt.Execute(*w, templ1)
@@ -1593,7 +1594,7 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 	//return
 
 	//////
-
+	println("testY")
 	var err1 = r.ParseForm()
 	if err1 != nil {
 		fmt.Fprint(w, err1)
