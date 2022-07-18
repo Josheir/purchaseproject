@@ -445,7 +445,7 @@ $(document).ready(function () {
 			//alert("storeddarray");
 			//alert(storedArray[i]);
 			
-			//return(-1);
+			return(-1);
 		}
 		
 		
@@ -724,6 +724,9 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 				amountInPurchasedField = Number(document.getElementById(amountPurchasedID).value);
 				//already purchased
 				amountPurchasedToDeductFromToPurchase = Number(document.getElementById(amountPurchasingID).value);
+
+				alert("test");
+				alert(amountPurchasedToDeductFromToPurchase);
 				//amount held for subtraction when submit button pressed
 				amountToBePurchased = Number(document.getElementById(amountToPurchaseID).value);
 
@@ -841,9 +844,40 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 				let val1int = 0;
 				let val2int = 0;
 
+				//product line that has been purchased
 				val1 = sessionStorage.getItem("numberOfRecordsChosen")
 
-				//alert("starts here");
+
+			///////////////
+
+			//amountpurchased
+			val1int = parseInt(amountPurchasedToDeductFromToPurchase);
+
+			//amount to purchase
+			val2int = parseInt(amountToPurchase);
+
+			totaledPurchased = val1int + val2int;
+
+			if (computedNewAmtPurchased <= 0 && val1 == 0)
+			{
+				numOfRecords = 0;
+			}
+			else if (computedNewAmtPurchased <= 0 && val1 > 0)
+			{
+				val1++;
+
+			}
+			
+
+
+
+
+			///////////////
+
+
+
+
+				//no records yet
 				if (val1 == "0")
 				{
 					//alert("1");
@@ -875,13 +909,14 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 						//gLastQuantity = varIntVal1;
 						varIntVal1++;
 						
-						
+						//sets nofrecochos to one
 						sessionStorage.setItem("numberOfRecordsChosen", varIntVal1);
 						//}
 						
 					}
 				
 				}
+				//are records
 				else{
 
 					//are records chosen
@@ -1123,10 +1158,9 @@ function DoesKeywordAlreadyExist( searchword, string)
 		//so that the searhwords cant be used more than once 
 		var storedArray2 = [searchword];
 		var storedArray = [];
-		//alert("arethere");
-		//alert(val1);
-		//puts first variable into sessionStorage
 		
+		
+		//are there any keywords, set searchword as new keyword
 		if(!( storedArray = JSON.parse(sessionStorage.getItem("keywords"))))
 		{
 			isfirst = true;
@@ -1134,20 +1168,28 @@ function DoesKeywordAlreadyExist( searchword, string)
 			sessionStorage.setItem("keywords", JSON.stringify(storedArray2));
 			storedArray = JSON.parse(sessionStorage.getItem("keywords"));
 			
+		//there already are keyword/s
 		}else
 		{
 			storedArray = JSON.parse(sessionStorage.getItem("keywords"));
 			//sessionStorage.setItem("keywords", JSON.stringify(storedArray));
+			
+			
+
+
 		
 		}
 
 		//check for duplicate keywords, if duplicate leave and do nothing
 		for (i = 0; i < storedArray.length; i++) {
 
-			alert("4");
-			alert(storedArray[i]);//apple1
-			alert(searchword);//apple1
-			if (storedArray[i] == searchword && isfirst == false)
+			//alert("4");
+			//alert(storedArray[i]);//apple1
+			//alert(searchword);//apple1
+			//isfirst == false: not a new keyword : just check keywords already saved
+			
+			//if (storedArray[i] == searchword && isfirst == false)
+			if (storedArray[i] == searchword )
 			{
 				alert("isin");
 				gflag = "isin"
@@ -1155,41 +1197,23 @@ function DoesKeywordAlreadyExist( searchword, string)
 			}
 			
 		}
+
 		
 
-		//add a new keyword to session
-		if (gflag == "isntin")
+		if(gflag == "isntin")
 		{
-		
 			alert("isnt in");
-			if(isfirst == false)
-			{
-			storedArray.push(searchword);	
+			storedArray.push(searchword);
+			sessionStorage.clear();	
 			sessionStorage.setItem("keywords", JSON.stringify(storedArray));
-			}
-
-		
-		
-		//if (areThereUrls)
-		//{
-			querystring = ("var=" + searchword + "&");
-			
-		//}
-		//else
-		//{
-
-		//	querystring = ("var=" + val1 + "&");
-			
-		//}
-
-		//alert("querystring1");
-		//alert(querystring);
-		
-		}
-		else if(isfirst == true)
-		{
 			querystring = ("var=" + searchword + "&");
 		}
+		
+		
+		
+		
+		
+		
 	
 		alert("querystring2");
 		alert(querystring);
