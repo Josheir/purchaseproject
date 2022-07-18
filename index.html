@@ -265,8 +265,6 @@ $(document).ready(function () {
 
 
 	  
-		// fix this, here
-		var reloadFlag = 1;
 		
 		var querystring = "";
 		var counter = -1;
@@ -378,7 +376,7 @@ $(document).ready(function () {
        		string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
 			
 			
-			reloadFlag = 0;
+			
   
        		
 			   
@@ -400,14 +398,6 @@ $(document).ready(function () {
 
 
 
-	if(reloadFlag == 1)
-	{
-		reloadFlag = 0;
-		
-		//window.location.href = "index.html?";
-    	
-
-	}
 		
 
 		alert("here");
@@ -516,15 +506,7 @@ else
 		alert(val2[1]);//empty
 		
 		var url = "";
-		
-	  if(reloadFlag == 1)
-	  {
-		  querystring += "leave=1&";
-
-	  }else
-	  {
-
-	  }
+	
 	  
 	  
 	 
