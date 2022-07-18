@@ -827,6 +827,7 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 	  function SetDataFromOrderTemplateOnSubmit (amountToPurchaseID, quantityOfProductID, productID, amountPurchasedID) 
 	  {
 
+			  let storedArray = [];
 			  var gLastQuant = false;
 		  	   //amount purchased
 			  var amountPurchasedToDeductFromToPurchase =  document.getElementById(amountPurchasedID).value;
@@ -858,148 +859,56 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 
 			totaledPurchased = val1int + val2int;
 
-			if (computedNewAmtPurchased <= 0 && val1 == 0)
+			//no records yet
+			if(val1 == 0)
 			{
-				numOfRecords = 0;
-			}
-			else if (computedNewAmtPurchased <= 0 && val1 > 0)
-			{
-				val1++;
 
-			}
-			
+				
+				if (totaledPurchased <= 0 )
+				{
+					sessionStorage.setItem("numberOfRecordsChosen", 0);
+				}
+				else 
+				{
 
+					sessionStorage.setItem("numberOfRecordsChosen", totaledPurchased);
+					
+				}
+
+				
+				
+
+
+			}//already has records
+			else{
+
+
+				if (totaledPurchased <= 0 )
+				{
+					
+					sessionStorage.setItem("numberOfRecordsChosen", 0);
+				}
+				else 
+				{
+					
+					
+					let numRecords = sessionStorage.getItem("numberOfRecordsChosen");
+					let intNumRecords = parseInt(numRecords);
+					intNumRecords++;
+					sessionStorage.setItem("numberOfRecordsChosen", intnumRecords);
+
+					
+				
+				}
+
+					
+			}
 
 
 
 			///////////////
 
 
-
-
-				//no records yet
-				if (val1 == "0")
-				{
-					//alert("1");
-					if (amountToPurchase == 0 && amountPurchasedToDeductFromToPurchase == 0)
-					{
-						
-					//	if(val1 = sessionStorage.getItem("numberOfRecordsChosen"))
-					//	{
-					//	
-					//	var varIntVal1 = parseInt(val1);
-					//	varIntVal1--;
-					//	
-					//	if(varIntVal1 < 0)
-					//	{
-					//		varIntVal1 = 0;
-					//	}
-					//	sessionStorage.setItem("numberOfRecordsChosen", varIntVal1);
-					//	}
-					//	
-					}
-					else
-					{
-						//alert("in here");
-						//if(val1 = sessionStorage.getItem("numberOfRecordsChosen"))
-						//{
-						//is either amoutnttopurchase or amountpurchasedtodeductfromthepurchase
-						let varIntVal1 = parseInt(val1);
-						gLastQuant = true;
-						//gLastQuantity = varIntVal1;
-						varIntVal1++;
-						
-						//sets nofrecochos to one
-						sessionStorage.setItem("numberOfRecordsChosen", varIntVal1);
-						//}
-						
-					}
-				
-				}
-				//are records
-				else{
-
-					//are records chosen
-					
-					//alert("wise1");
-					//console.log(amountPurchasedToDeductFromToPurchase + amountToPurchase);
-					
-					//amount putchased
-					let val1int = parseInt(amountPurchasedToDeductFromToPurchase);
-
-					//amount to purchase
-					let val2int = parseInt(amountToPurchase);
-					//alert(val1int);
-					//alert(gLastQuant);
-					//alert(val2int);
-					
-
-					////is either amoutnttopurchase or amountpurchasedtodeductfromthepurchase  && !!!!
-					if (gLastQuant == true  && (val1int) != 0 )
-					{
-						//alert("y");
-					}
-
-					//val1int = 0, no 
-					else if (gLastQuant == true  && (val1int) == 0 )
-					{
-						//alert("z");
-
-						///
-
-						//gLastQuant = 0;
-						
-						let  val1a = 0;
-						if(val1a = sessionStorage.getItem("numberOfRecordsChosen"))
-						var varIntVal1a = parseInt(val1a);
-						
-						//gLastQuantity = varIntVal1a; 
-						varIntVal1a--;
-						
-						sessionStorage.setItem("numberOfRecordsChosen", varIntVal1a);
-
-						////
-
-
-
-					}
-					//else if (gLastQuant != 1  && (val1int > 0) != 0){
-					//
-					//
-					//}
-
-
-
-
-					else if (gLastQuant == false  && (val1int) != 0 )
-					{//alert("2_");
-						//gLastQuant = 1;
-						let val1a = 0;
-						if(val1a = sessionStorage.getItem("numberOfRecordsChosen"))
-						var varIntVal1a = parseInt(val1a);
-						
-						//gLastQuantity = varIntVal1a;
-						varIntVal1a++;
-						
-						sessionStorage.setItem("numberOfRecordsChosen", varIntVal1a);
-						
-					}
-				
-
-					
-				//val1 = sessionStorage.getItem("numberOfRecordsChosen");
-				//alert("------1234---");
-				//alert(val1); 
-				//firstArray.push(productID); 
-				//firstArray.push(quantityOfProduct); 
-				//window.sessionStorage.setItem("alreadyZero", JSON.stringify(firstArray));
-
-				}//else
-				val1 = sessionStorage.getItem("numberOfRecordsChosen");
-				//alert("--+++++-----");
-				//alert(val1); 
-
-				//val1 = sessionStorage.getItem("numberOfRecordsChosen");
 				
 
 		//updates everything for to many records
