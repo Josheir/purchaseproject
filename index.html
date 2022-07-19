@@ -400,7 +400,7 @@ $(document).ready(function () {
 
 		
 
-		alert("here");
+		//alert("here");
 		//alert(string);
 		//from index top gui
 		var searchWord = document.getElementById("search").value;
@@ -421,11 +421,14 @@ $(document).ready(function () {
 	  
 
 		//cehck for duplicates if so returns out
-		storedArray = JSON.parse(sessionStorage.getItem("keywords"));
+		//storedArray = JSON.parse(sessionStorage.getItem("keywords"));
 
-		alert("storeddarray0");
-		alert(storedArray);  //apple1,apple2
-	  	alert(searchWord);//apple1
+		//alert("storeddarray0");
+		//alert(storedArray);  //apple1,apple2
+	  	//alert(searchWord);//apple1
+		
+		
+		/*now in doeskeywordalreadyexist
 		if(storedArray)
 		{
 		for(var i = 0; i < storedArray.length ; i++)
@@ -441,7 +444,7 @@ $(document).ready(function () {
 		
 		}
 		
-	}
+	}*/
 
 	//////////////
 
@@ -462,7 +465,7 @@ $(document).ready(function () {
 
 
 ////////
-alert("is it getting here");
+//alert("is it getting here");
 
 //storedarray has only the relevant keywords
 
@@ -496,14 +499,10 @@ else
 		val2 = DoesKeywordAlreadyExist(searchWord, string);
 	  
 	    alert("2");
-		alert(searchWord);//apple1
-		alert(string);//uid=1&
-		var gflag = val2[0];
-		alert("gflag");
-		alert(gflag);//isin
-		var querystring = val2[1] + string;
-	    alert(string);
-		alert(val2[1]);//empty
+		alert(val2[0]);
+		alert(val2[1]);
+		querystring = string;
+		querystring += val2[1];
 		
 		var url = "";
 	
@@ -526,7 +525,7 @@ else
 			
 			
 
-			 alert("query1");
+			 //alert("query1");
 			 //alert(querystring);
 				//searchWord = "here";
 				var b = 0;
@@ -600,7 +599,7 @@ else
 
 
 				
-				alert("check this!");
+				//alert("check this!");
 				//alert(item1);
 				//alert(result);
 				//alert(searchWord);
@@ -707,7 +706,7 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 				//already purchased
 				amountPurchasedToDeductFromToPurchase = Number(document.getElementById(amountPurchasingID).value);
 
-				alert("test");
+				//alert("test");
 				alert(amountPurchasedToDeductFromToPurchase);
 				//amount held for subtraction when submit button pressed
 				amountToBePurchased = Number(document.getElementById(amountToPurchaseID).value);
@@ -962,11 +961,11 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 				//is a productid record with an amount to buy
 				if(key == (productID.toString())){
 				
-					
+					//alert("this is being called:1");
 					keyFlag = "found";
 					
 					
-					
+					//quantity - set in doekeywordalreadyexist
 					bought = sessionStorage.getItem(key);
 					
 					totalquantity = 0;
@@ -978,8 +977,9 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 					
 					sessionStorage.removeItem(productID);
 					
-						//sessionStorage.setItem(parseInt(productID), parseInt(totalquantity));
-					sessionStorage.setItem(parseInt(productID), parseInt(amountPurchasedToDeductFromToPurchase));
+					//updates
+					sessionStorage.setItem(parseInt(productID), parseInt(totalquantity));
+					//sessionStorage.setItem(parseInt(productID), parseInt(amountPurchasedToDeductFromToPurchase));
 
 						
 
@@ -996,6 +996,7 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 				if (keyFlag !=  "found")
 				{
 
+					//alert("this is being called:2");
 					
 					//sessionStorage.setItem( parseInt(productID),  parseInt(amountPurchasedToDeduct));
 					sessionStorage.setItem( parseInt(productID),  parseInt(amountPurchasedToDeductFromToPurchase));
@@ -1037,7 +1038,7 @@ function DoesKeywordAlreadyExist( searchword, string)
 	//}
 	//else
 	{
-	var isfirst = false;
+	var KeyWordExistsAlreadyFlag = true;
 	var querystring = "";
 	var counter = 0;
 		var gflag = "isntin";
@@ -1051,10 +1052,10 @@ function DoesKeywordAlreadyExist( searchword, string)
 		var storedArray = [];
 		
 		
-		//are there any keywords, set searchword as new keyword
+		//there are no keywords
 		if(!( storedArray = JSON.parse(sessionStorage.getItem("keywords"))))
 		{
-			isfirst = true;
+			KeyWordExistsAlreadyFlag = false;
 			//put searchword into sessionstorage
 			sessionStorage.setItem("keywords", JSON.stringify(storedArray2));
 			storedArray = JSON.parse(sessionStorage.getItem("keywords"));
@@ -1072,6 +1073,9 @@ function DoesKeywordAlreadyExist( searchword, string)
 		}
 
 		//check for duplicate keywords, if duplicate leave and do nothing
+		
+		alert("length");
+		alert(storedArray.length);
 		for (i = 0; i < storedArray.length; i++) {
 
 			//alert("4");
@@ -1080,10 +1084,11 @@ function DoesKeywordAlreadyExist( searchword, string)
 			//isfirst == false: not a new keyword : just check keywords already saved
 			
 			//if (storedArray[i] == searchword && isfirst == false)
-			if (storedArray[i] == searchword )
+			if (storedArray[i] ==  searchword &&  KeyWordExistsAlreadyFlag == true )
 			{
 				alert("isin");
 				gflag = "isin"
+				querystring = ("var=" + searchword + "&");
 				break;
 			}
 			
@@ -1262,7 +1267,7 @@ if (gflag1 == 0)
 
 
 //alert("now");
-alert(querystring)
+//alert(querystring)
 
 
 // 8237 characters tested:
@@ -1282,7 +1287,7 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 
 
 
-			alert("query3");
+			//alert("query3");
 			//alert(querystring);
 
 			$.ajax({
