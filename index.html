@@ -540,6 +540,7 @@ else
 
 					alert("result");
 					alert(result);
+					console.log("result")
 					console.log(result);
 
 					if(result == "")
@@ -548,7 +549,7 @@ else
 					}
 
 
-					
+					alert("here:A");
 					
 			//alert("query2");
 			 //alert(querystring);
@@ -563,21 +564,24 @@ else
 				//let keys = Object.keys(sessionStorage);
 
 				
-				var  gkeywordArray = "";
+				//var  gkeywordArray = "";
 				
-				var retVals = [];
+				//var retVals = [];
 				
-				var toRemove = "null";
-				var result = result.replaceAll(toRemove, '');
+				//var toRemove = "null";
+				//result = result.replaceAll(toRemove, '');
 
 
 
-				
-				retVals = forBuildingHTML(result, searchWord);
+				//alert("result");
+				//alert(result);
+				//console.log(result2);
+				//console.log(result);
+				//retVals = forBuildingHTML(result, searchWord);
 				
 				
 				//fix this, here, done
-				var item1 = retVals[0];  
+				//var item1 = retVals[0];  
 				
 				var ourNewWord2 = searchWord; //
 				
@@ -612,7 +616,7 @@ else
 				document.getElementById('buttons').innerHTML   += result1a;
 			  	
 
-				document.getElementById('templateOneHere').insertAdjacentHTML('beforeend',item1);
+				document.getElementById('templateOneHere').insertAdjacentHTML('beforeend',result);
 
               
                 }
@@ -1121,7 +1125,7 @@ function DoesKeywordAlreadyExist( searchword, string)
 
 
 //fix this, here, done   
-function forBuildingHTML(result, searchText)
+/*function forBuildingHTML(result, searchText)
 {
 				//var item1 = val1
 				var item = '"' + searchText + '"';
@@ -1130,7 +1134,7 @@ function forBuildingHTML(result, searchText)
 				
 				var item2 = result.match(item);
 				
-				ourNewWord = result.replace(item2, '');
+				ourNewWord = result;//result.replace(item2, '');
 				
 
 				//var string = typeof(item1);
@@ -1143,7 +1147,7 @@ function forBuildingHTML(result, searchText)
 
 return [ourNewWord];				
 }
-
+*/
 
 //////
 
@@ -1232,12 +1236,13 @@ for(let key of keys) {
 	var val1 = "";
 	var item = sessionStorage.getItem(key);
 	//alert(item);
+	//dont build query with zero product "item"
 	if(item == "0")
 	{
 		
 		continue;
 	}
-	else{
+	//else{
 
 		
 		//is a poduct or are products
@@ -1246,7 +1251,7 @@ for(let key of keys) {
 		
 			querystring += "id=" + key + "&amtTryingToPurchase=" + item + "&";
 		
-	}
+	//}
 	
   } 
 
@@ -1255,7 +1260,7 @@ for(let key of keys) {
 //no id quant
 if (gflag1 == 0)
 {
-	alert("gflag1 - should be, all sessionlevelvariables were erased...");
+	alert("ALert : there are no products in session storage...");
 	//return(1);
 }
 //if (gflag1 == 4)
