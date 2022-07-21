@@ -880,7 +880,7 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 					let numRecords = sessionStorage.getItem("numberOfRecordsChosen");
 					let intNumRecords = parseInt(numRecords);
 					intNumRecords++;
-					sessionStorage.setItem("numberOfRecordsChosen", intnumRecords);
+					sessionStorage.setItem("numberOfRecordsChosen", intNumRecords);
 
 					
 				
@@ -895,7 +895,7 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 
 
 				
-
+			alert("was here1.");
 		//updates everything for to many records
 		if(val1 == sessionStorage.getItem("numberOfRecordsChosen"))
 		{
@@ -984,7 +984,9 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 					//updates
 					sessionStorage.setItem(parseInt(productID), parseInt(totalquantity));
 					//sessionStorage.setItem(parseInt(productID), parseInt(amountPurchasedToDeductFromToPurchase));
-
+					alert("is in here1");
+					alert(productID);
+					alert(totalquantity);
 						
 
 
@@ -1005,7 +1007,9 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 					//sessionStorage.setItem( parseInt(productID),  parseInt(amountPurchasedToDeduct));
 					sessionStorage.setItem( parseInt(productID),  parseInt(amountPurchasedToDeductFromToPurchase));
 				
-					
+					alert("is in here2");
+					alert(productID);
+					alert(amountPurchasedToDeductFromToPurchase);
 
 
 					

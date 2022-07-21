@@ -441,7 +441,7 @@ loadData();
 //send it to purge which calls template with data
 
 //restoring past order screen
-var gFlagIsSomeRecords = false;
+var gFlagIsntSomeRecords = false;
 var queryString= ""; 
 
 //calls template2, load ProductID/amount of quantity purchasing
@@ -457,7 +457,7 @@ var var1 = "hasntBeenHere";
 for(let key of keys) {
 
 
-  //alert("keys hereaaa");
+  alert("keys hereaaa");
   //alert(key);
   if(key == "sessionUserID")
   {
@@ -497,13 +497,13 @@ for(let key of keys) {
   var item = sessionStorage.getItem(key);
 
 //alert(item);
-
+alert("changedzz");
   //alert("item");
   //alert(item);
   string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
   //alert(string);
-  
-  gFlagIsSomeRecords = true;
+  alert("changed");
+  gFlagIsntSomeRecords = true;
 
 
   //alert("try this");
@@ -538,7 +538,7 @@ for(let key of keys) {
 	  //var val1 = document.getElementById(dispalyMessage).value;
 	  //document.getElementById("displayMessage").innerHTML = "No products were selected!";
 	
-//	  gFlagIsSomeRecords = true;
+//	  gFlagIsntSomeRecords = true;
 	  //var storedArray = [];
 	  //sessionStorage.setItem("checkoutPressed", "pressed");
 	 
@@ -556,7 +556,7 @@ for(let key of keys) {
   //alert("queryString0");
   //alert(gFlag1);
 //overWrites"&
-if(gFlagIsSomeRecords == true)
+if(gFlagIsntSomeRecords == true)
 {
 	queryString = string.substring(0, string.length-1);
 	//alert("queryString100");
@@ -594,7 +594,7 @@ var url = "http://localhost:8080/cartTemplate";
                       
 						//alert(data1);
 					  val1 = data1;
-                      if (!gFlagIsSomeRecords)
+                      if (gFlagIsntSomeRecords)
 					  {
 						  val1 = "<br><center><h3>No Products Were Selected Yet!</center><br></h3>";
 						  
