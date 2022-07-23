@@ -45,12 +45,12 @@ function restoreOriginalOrder()
 	//	
 	//	if (val1 == MAXRECORDS)
 	//	{
-	//		alert("AT RECORD MAXIMUM, YOU MUST REMOVE A RECORD TO RETURN TO PURCHASE!");
+	//		
 	//		return;
 	//	}
 	//}
 
-	//alert("restoreOriginalOrder");
+	
 	window.location.href = "index.html?displayOrdersTemplateAgain=1";
 	return(1);
 
@@ -59,7 +59,7 @@ function restoreOriginalOrder()
 $(function(){
 
 ////////
-//alert("in fiunction");
+
 loadData();
 
 ////////
@@ -70,9 +70,9 @@ loadData();
       //pressed return to order near checkout to displayOrdersTemplateAgain
         function displayOrdersTemplateAgain(){
 
-			alert("zzzzzzzzzznot here i hope");
+			
         var querystring = "";
-        //alert("button1");
+        
         let keys = Object.keys(sessionStorage);
 
       
@@ -84,16 +84,16 @@ loadData();
           if(key == "keywords")
           {
             counter++;
-            //alert("keywords");
+            
            
             var item = sessionStorage.getItem(key);
             
             //item = item.slice(2);
 			      //item = item.substring(0, item.length - 2);
             array = JSON.parse(item);
-           // alert(array);
-            //alert(array[0]);
-            //alert(array.length);
+           
+            
+            
 
             for(var i = 0; i<array.length ; i++)
             {
@@ -101,8 +101,8 @@ loadData();
               querystring += "var=" + array[i] + "&";
             }
 
-            //alert(querystring);
-            //alert(item);
+            
+            
 
           }
           else if(key == "sessionUserID")
@@ -132,8 +132,8 @@ loadData();
                     async:false,
                     success: function (result) {
 
-                      ///alert("result");
-                      //alert(result);
+                      /
+                      
 
 
                     var retVals = [];
@@ -145,9 +145,9 @@ loadData();
                     //html with keyword removed
                     var ourNewWord = retVals[1]; 
                     var item = retVals[2];
-                    //alert("test");
-                    //alert(array[0]);
-                    //alert(ourNewWord);
+                    
+                    
+                    
                     
                     
                       document.getElementById('removeButton').innerHTML   = "";
@@ -207,7 +207,7 @@ loadData();
     ///////////////
     //function displayFromSearch(flag)
     //{
-    //  alert("made it here, 183");
+    
     //}
 
     ///////////////////////////
@@ -219,12 +219,12 @@ loadData();
 		function displayFromSearch( flag2)
 		{
 
-			alert("zzzzzzzzzz");
-		//alert("button6");
+			
+		
 		var string = ""
         let keys = Object.keys(sessionStorage);
 
-		//alert("keys");
+		
 		for(let key of keys) {
 
 		
@@ -233,15 +233,15 @@ loadData();
 
      
         
-		//alert("test here");
+		
 		//if key is a number
 	
 		var keyAsInt =  parseInt(key); 
-		//alert(typeof keyAsInt);
+		
 		//console.log(keyAsInt);
 		if (key != "sessionUserID" && key != "keywords" && key  != "alreadyZero" && key !=  "numberOfRecordsChosen") 
 		{
-			//alert("number here");
+			
 			var item = sessionStorage.getItem(key);
 			
        		string =  string + "id=" + key + "&amtTryingToPurchase" + item + "&";
@@ -252,7 +252,7 @@ loadData();
 		
 		else if(key == "sessionUserID")
         {
-			//alert("session here");
+			
 			var item = sessionStorage.getItem(key);
 			string = string + "uid="  + item + "&";
         }
@@ -275,8 +275,8 @@ loadData();
 			item = item.slice(2);
 			item = item.substr(0, item.length - 2);
 			
-			alert("did i get here?");
-			alert(item);
+			
+			
 
 			
 			string = string + "var=" + item + "&";
@@ -305,7 +305,7 @@ loadData();
 	  }
 
 
-	  //alert("beyond there");
+	  
 	  //these are for keywords
 	  //THERE ARE URLS ALREADY
 	  var val2 = [];
@@ -319,8 +319,8 @@ loadData();
 		val2 = DoesKeywordAlreadyExist(false, val1, string, flag2);
 
 	  }
-	  //alert("val2");
-	  //alert(val2);
+	  
+	  
 		var gflag = val2[0];
 		var querystring = val2[1] + string;
 
@@ -329,7 +329,7 @@ loadData();
 		//ft : from template
 		//querystring = querystring + "ft=" + flag2 + "&";  
 		
-		//alert(querystring);
+		
 
 	
 		
@@ -341,10 +341,10 @@ loadData();
 	  ////////////
 	
 
-        //alert("querystring10a");
-        //alert(querystring);
         
-       // alert(val1);
+        
+        
+       
 	   
 	   //querystring = "var=apple&var=apple1";
        
@@ -363,7 +363,7 @@ loadData();
 				//check if this link/keyword is first time and only useage
 				var  gkeywordArray = "";
 				
-				//alert("result");
+				
 				//(result)
 
 				var retVals = [];
@@ -373,10 +373,10 @@ loadData();
 				var item1 = retVals[0];  
 				var ourNewWord = retVals[1]; 
 				var item = retVals[2];
-				//alert("ournewword");
-				//alert(item);
-				//alert(item1);
-				//alert(ourNewWord);
+				
+				
+				
+				
 
 			
 			for(let key of keys)
@@ -405,9 +405,9 @@ loadData();
 			}
 
 
-				//alert("ournewword");
-				//alert(result1);
-				//alert(ourNewWord);
+				
+				
+				
 
 
 
@@ -447,18 +447,18 @@ var queryString= "";
 //calls template2, load ProductID/amount of quantity purchasing
 function loadData() {
  
-//alert("is it getting here");
+
  var string = "";
 //////////////////////
 
 let keys = Object.keys(sessionStorage);
 var var1 = "hasntBeenHere";
-//alert("is here");
+
 for(let key of keys) {
 
 
-  alert("keys hereaaa");
-  //alert(key);
+  
+  
   if(key == "sessionUserID")
   {
     continue;
@@ -489,26 +489,26 @@ for(let key of keys) {
   
 
 
-  //alert(key);
+  
   
   
   //check for not an integer
 
   var item = sessionStorage.getItem(key);
 
-//alert(item);
-alert("changedzz");
-  //alert("item");
-  //alert(item);
+
+
+  
+  
   string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
-  //alert(string);
-  alert("changed");
+  
+  
   gFlagIsntSomeRecords = true;
 
 
-  //alert("try this");
-    //    alert(key);
-    //    alert(item);
+  
+    
+    
   
 }
 
@@ -548,28 +548,28 @@ alert("changedzz");
 
 
 	
-    //alert("no!");
+    
     //window.location.href = "index.html?displayOrdersTemplateAgain=1&";
     //return(1);
  // }
 
-  //alert("queryString0");
-  //alert(gFlag1);
+  
+  
 //overWrites"&
 if(gFlagIsntSomeRecords == true)
 {
 	queryString = string.substring(0, string.length-1);
-	//alert("queryString100");
-	//alert(queryString);
+	
+	
 }
 //else
 //{
-	//alert("queryString2");
+	
 	//queryString = "";
 //}
 
-/////alert("queryString");
-//alert(queryString);
+///
+
 
 var url = "http://localhost:8080/cartTemplate";
 //var queryString = "user_name=jerry&password=666666&user_name=marry&password=11111";
@@ -590,9 +590,9 @@ var url = "http://localhost:8080/cartTemplate";
                     data:queryString,
                     async:false,
                     success: function (data1) {
-						//alert("I am here");
+						
                       
-						//alert(data1);
+						
 					  val1 = data1;
                       if (gFlagIsntSomeRecords)
 					  {
@@ -621,7 +621,7 @@ function forBuildingHTML(result)
 				var ourNewWord = "";
 				item = result.match("\\[.*]");
 				ourNewWord = result.replaceAll(item, '');
-				//alert(ourNewWord);
+				
 				//var x = typeof(item);
 				item1 = JSON.stringify(item);
 				item1 = item1.slice(5);
@@ -661,7 +661,7 @@ function DoesKeywordAlreadyExist(areThereUrls, val1, string, flag2)
 	var counter = 0;
 		var gflag = "isntin";
 		
-		//alert("in here111");
+		
 
 
 		//if no keywords than set search word as keyword. This is a list of keywords 
@@ -752,7 +752,7 @@ function forBuildingHTML(result)
 				var ourNewWord = "";
 				item = result.match("\\[.*]");
 				ourNewWord = result.replaceAll(item, '');
-				alert(ourNewWord);
+				
 				var x = typeof(item);
 				item1 = JSON.stringify(item);
 				item1 = item1.slice(5);

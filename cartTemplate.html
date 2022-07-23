@@ -188,10 +188,10 @@ var firstTimeThrough = true;
 //checkout pressed from template2
 function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 
-  //alert("firsttimethrough");
+  
   ///firstTimeThrough = true;
 
-//alert("in check all available");
+
 
 
   var gtotal = parseFloat(gtotal);
@@ -349,16 +349,16 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
     //fills in all innital values so can be used to set available with "Amount to buy"
     for (var i = 0; i< counter+1 ;i++)
                 {
-                  alert("begin");
-                  //alert(data1.length);
+                  
+                  
                   var buyThisManyID = "A" + i;
                   let initialValues = document.getElementById(buyThisManyID).value;
                   initialValues.push(initialValues);
-                  alert("here");
-                  //alert(i);
-                  alert(initialValues);
+                  
+                  
+                  
                   console.log(initialValues);
-                  alert("1");
+                  
                 }
 
 */
@@ -372,7 +372,7 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
       //window.location.href = "index.html";
       //window.location = "https://localhost/golangproj/index.html?displayOrdersTemplateAgain=1";
 
-      //alert("a1");
+      
       //reset sessio variables because goint baack to index
       
       
@@ -384,11 +384,11 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
       sessionStorage.setItem("firstTimeThrough", sessID2);
 
 
-      //alert("aaa");
+      
       window.location.href = "index.html";
       return(1);
       
-      //alert("++++++++++am here you see it!");
+      
     
     }
     //build string
@@ -398,8 +398,8 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 var queryString = string;//.substring(0, string.length-1);
 
 let flagisEnoughProduct = true;
-//alert("start zzhere");
-//alert(queryString);
+
+
               $.ajax({
               url: 'http://localhost:8080/sendBackNewCartData',
               type: 'GET',
@@ -410,20 +410,20 @@ let flagisEnoughProduct = true;
               crossDomain: true,
              
               success: function (data) {
-                //alert("testthis");
+                
 
                 //var initialFormAmount = 0;
                 //debugger;
                 
 
                 //console.log(data);
-                //alert("consoled");
+                
                 //let enoughFlag = true;
 
                 //no records
                 if(data.length == null){
 
-                //alert("am here you see it! - look at this!");
+                
                 window.location.href = "index.html";
                 return(1);
                 //window.location.href = "index.html";
@@ -433,16 +433,16 @@ let flagisEnoughProduct = true;
                 /*
                 for (var i = 0; i< data1.length ;i++)
                 {
-                  alert("begin");
-                  alert(data1.length);
+                  
+                  
                   var buyThisManyID = "A" + i;
                   let initialValues = document.getElementById(buyThisManyID).value;
                   initialValues.push;
-                  alert("here");
-                  //alert(i);
-                  alert(initialValues);
+                  
+                  
+                  
                   console.log(initialValues);
-                  alert("1");
+                  
                 }
                 */
                 for (var i = 0; i< data.length ;i++)
@@ -458,7 +458,7 @@ let flagisEnoughProduct = true;
                   flagisEnoughProduct = false;
                   break;
                 //flag = "not enough";
-                //alert("is not enough");
+                
                
                 }
 
@@ -469,14 +469,14 @@ let flagisEnoughProduct = true;
 
                 if (flagisEnoughProduct == true)
                 {
-                  //alert("is enough");
+                  
                   window.location.href = "donePurchase.html";
                   return(1);
                 }
 
 
                 //if here, there is at least one record that doesnt have enough product
-                //alert("done purchase");
+                
 
                 //fix this, here, done
 
@@ -489,8 +489,8 @@ let flagisEnoughProduct = true;
               */
               var lengthOfData = data.length;
 
-              //alert("is here");
-              //alert(lengthOfData);
+              
+              
               console.log(data);
 
 
@@ -507,8 +507,8 @@ let flagisEnoughProduct = true;
                 {
 
 
-                  alert("1");
-                  alert(firstTimeThrough1)
+                  
+                  
                   if(firstTimeThrough1 == "yes")
                   {
                     InitialFormAmount = data[i].InitialFormAmount;
@@ -530,10 +530,10 @@ let flagisEnoughProduct = true;
                   //firstTimeThrough = false;
                   //debugger
                   
-                 //alert("ahere");
-                 //alert(i);
-                 //alert(lengthOfData); 
-                 //alert(typeof(lengthofData))
+                 
+                 
+                 
+                 
                  //GTotalWithTax = 0;
                 
                  //for ids of carttemplate's ids
@@ -545,10 +545,10 @@ let flagisEnoughProduct = true;
                 var GrandTotalStringID = "GT" + i;
                 var mainDivID =  "V" + i;
                 
-                //alert("here");
+                
                 //let buyThisManyIDBefore = buyThisManyID - ;
                 //let initialAmountToBuy = document.getElementById(buyThisManyID).value;
-                //alert(initialAmountToBuy);
+                
                 
                 /////////
 
@@ -572,17 +572,17 @@ let flagisEnoughProduct = true;
                 var isEnoughQuantity = false;
                 //still in loop
                 isEnoughQuantity = data[i].IsEnoughQuantity;
-                //alert("...");
+                
                 //var initialFormAmount = "";
                 //debugger;
                 //var initialFormAmount = data1[i].initialFormAmount;
-                //alert(initialFormAmount);
+                
                
                 //wasnt enough, so make red
                 if (isEnoughQuantity == false)
                 {  
                   //debugger;
-                  //alert("red");
+                  
                   //RED
                   //change settings of cart template if the current record doesn't have enough product in db for request 
                   var avail = (document.getElementById(availableID).value);
@@ -599,7 +599,7 @@ let flagisEnoughProduct = true;
                   document.getElementById(boughtid).value = 0;
                   //total cost for productID
                   document.getElementById(totalCostID).value = "$0.00";
-                  //alert("here!11");
+                  
                   document.getElementById(availableID).value = (parseInt(avail) + parseInt(boughtValue) );
 
                   //is enough quantity
@@ -612,8 +612,8 @@ let flagisEnoughProduct = true;
                   let amountToBuy1 = document.getElementById(buyThisManyID).value; //3
                   //buying
                   //document.getElementById(boughtid).value = amountToBuy1; // 3
-                  alert("11");
-                  //alert(amountToBuy1);
+                  
+                  
                   //debugger;
                   //var initialAmt1 = 0;
                   
@@ -623,7 +623,7 @@ let flagisEnoughProduct = true;
                   {
 
                     let bought = document.getElementById(boughtid).value;
-                    //alert(bought);
+                    
                     let parsedBought = parseInt(bought);
                     
                    //document.getElementById(boughtid).value = amountToBuy1; // 3
@@ -631,12 +631,12 @@ let flagisEnoughProduct = true;
                     let parsedAmountToBuy1 = parseInt(amountToBuy1);
                     document.getElementById(boughtid).value = parsedAmountToBuy1;
                   
-                    alert("12");
                     
-                    alert(parsedBought);//nan : 2
-                    alert(parsedAmountToBuy1);//3
                     
-                    //alert(parsedCurrentQuant);
+                    
+                    
+                    
+                    
                     
                     //document.getElementById(availableID).value = ((parseInt(document.getElementById(availableID).value) + parsedAmountToBuy1) - parsedBought );
                     document.getElementById(availableID).value = Math.abs(   ((parseInt(document.getElementById(availableID).value) + parsedBought) - parsedAmountToBuy1 )  );
@@ -646,13 +646,13 @@ let flagisEnoughProduct = true;
                   }//is first time through
                   else
                   {
-                    alert("here");
+                    
                     
                     document.getElementById(boughtid).value = amountToBuy1; // 3
                     
-                    alert(amountToBuy1);
+                    
                     initialAmt1 = data[i].InitialFormAmount;
-                    alert(initialAmt1);
+                    
                     let parsedInitialAmt1 = parseInt(initialAmt1)
                     let parsedAmountToBuy1 = parseInt(amountToBuy1);
 
@@ -670,19 +670,19 @@ let flagisEnoughProduct = true;
                   //remove dollar sign
                   //ProductCostString = substring(1, ProductCostString.length-1);
 
-                  alert("is enough quant");
+                  
                   console.log(bigDecimal.add('12', '45'));
 
                   let numberWithDecimals = new bigDecimal("7.0");
-                  alert("1A");
+                  
                   let taxRate = "12.32";
-                  alert("1B");
+                  
                   let taxAmount = bigDecimal.multiply(taxRate, numberWithDecimals.getValue());
-                  alert("1C");
+                  
                   let total = bigDecimal.add(taxAmount, numberWithDecimals.getValue());
                   
-                  alert("total");
-                  alert(total);
+                  
+                  
                   let roundedTotal = total.round(2);
                   //let grandTotal2 = grandTotal.round(2, roundedTotal.RoundingModes.UNNECESSARY;)
                   let grandTotal = bigDecimal.add(grandTotal, roundedTotal);

@@ -73,7 +73,7 @@ var3 = var1 + var2;
 
 $(function(){
 
-alert("B");
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 //fix this, here
@@ -85,31 +85,31 @@ let keys = Object.keys(sessionStorage);
 
 for(let key of keys) {
 
-		//alert("right here!!!");
+		
 		
 			
 		//var keyAsInt = Number(key);
-		//alert("key");
+		
 
 		let value = false;
 		if (parseInt(key, 10))
 		{
-			//alert("is int")
+			
 			value = true;
 		}
 
 
 		if(key != "keywords" && key != "sessionUserID" && value == false && key != "firstTimeThrough" )
         {
-			//alert("nonint")
-			//alert(key);
+			
+			
 		
 			sessionStorage.removeItem(key);	
         }
 		
-		//alert("here!!!!!!");
+		
 	}
-	//alert("finished!!!");
+	
 	sessionStorage.setItem("numberOfRecordsChosen", "0");
 
 
@@ -124,17 +124,17 @@ for(let key of keys) {
 
 
 
-//alert("search");
+
 if (searchterm == "1")
 {
-	alert("made it");
+	
 	displayOrdersTemplateAgain();
 	//displayFromSearch('0');
 }
 
 return(1);
 ////////
-//alert("in fiunction");
+
 //loadData();
 
 ////////
@@ -177,10 +177,10 @@ $(document).ready(function () {
               crossDomain: true,
              
             success: function (data1) {
-             // alert(data1);
+             
               console.log(data1[2].Age);
               
-              //alert("in here!!!");
+              
               
               }
               });
@@ -231,7 +231,7 @@ $(document).ready(function () {
 		//pushed search (button 6) display1
 		function displayFromSearch( )
 		{
-			//alert("z1");
+			
 
 			//keeeps track of keywords displaying, only so many allowed
 			let amt1 = sessionStorage.getItem("amtOfKeywords");
@@ -241,25 +241,25 @@ $(document).ready(function () {
 			//this is the maximum record limit
 			if(gAmt1Int >= 5)
 			{
-				alert("At Keyword Limit");
+				
 				return(1);
 			}
 			}	
 			
 
-			//alert("displayFromSearch");
+			
 			
 
-			//alert("keys -A");
+			
 		//check for login
-		//alert("sess");
+		
 	
 		var getUser = sessionStorage.getItem("sessionUserID");
-		//alert(getUser);
+		
 		
 		if (getUser == null)
 		{
-			alert("You Need to Login First!");
+			
 			return(1);
 		}
 
@@ -276,11 +276,11 @@ $(document).ready(function () {
 
 		var searchWord = "";
 		
-		//alert("keys -A");
+		
 
 		//build query fo main.go display of order template
 		for(let key of keys) {
-		//alert(key);
+		
 			
 		
 
@@ -322,14 +322,14 @@ $(document).ready(function () {
         var wasKeys = "no";
 
 		var keyAsInt =  parseInt(key); 
-		//alert(typeof keyAsInt);
+		
 		//console.log(keyAsInt);
 		if (key != "sessionUserID" && key != "keywords" && key != "numberOfRecordsChosen" && key != "amtOfKeywords" && key != "firstTimeThrough" ) 
 		{
 
 			
 			
-			//alert("is here....!");
+			
 			///////////////////
 
 			/*
@@ -339,7 +339,7 @@ $(document).ready(function () {
 			//cehck for duplicates
 			productIDArray = JSON.parse(sessionStorage.getItem(key));
 
-			alert("is in new functionality");
+			
 			var counter = 0;
 			if(productIDArray)
 			{
@@ -349,7 +349,7 @@ $(document).ready(function () {
 			{
 				counter = counter + 1;
 				
-				alert("duplicate product");
+				
 				if(counter > 1)
 				{
 					continue;
@@ -384,7 +384,7 @@ $(document).ready(function () {
 		
 		else if(key == "sessionUserID")
         {
-			//alert("session here");
+			
 			var item = sessionStorage.getItem(key);
 			string = string + "uid="  + item + "&";
         }
@@ -400,13 +400,13 @@ $(document).ready(function () {
 
 		
 
-		//alert("here");
-		//alert(string);
+		
+		
 		//from index top gui
 		var searchWord = document.getElementById("search").value;
 
-	  //alert("searchWord");
-	  //alert(searchWord);
+	  
+	  
 		
 
 
@@ -423,9 +423,9 @@ $(document).ready(function () {
 		//cehck for duplicates if so returns out
 		//storedArray = JSON.parse(sessionStorage.getItem("keywords"));
 
-		//alert("storeddarray0");
-		//alert(storedArray);  //apple1,apple2
-	  	//alert(searchWord);//apple1
+		
+		
+	  	
 		
 		
 		/*now in doeskeywordalreadyexist
@@ -435,8 +435,8 @@ $(document).ready(function () {
 		{
 		if (storedArray[i] == searchWord)
 		{
-			//alert("storeddarray");
-			//alert(storedArray[i]);
+			
+			
 			
 			return(-1);
 		}
@@ -465,7 +465,7 @@ $(document).ready(function () {
 
 
 ////////
-//alert("is it getting here");
+
 
 //storedarray has only the relevant keywords
 
@@ -484,7 +484,7 @@ else
 }
 
 
-//alert("1");
+
 ////////
 
 
@@ -492,15 +492,15 @@ else
 
 	  var val2 = [];
      
-	  alert("3");
-		alert(searchWord);//apple1
-		alert(string);//uid=1&
+	  
+		
+		
 	  //returns flag if already a keyword and the string that is and the built query 
 		val2 = DoesKeywordAlreadyExist(searchWord, string);
 	  
-	    alert("2");
-		alert(val2[0]);
-		alert(val2[1]);
+	    
+		
+		
 		querystring = string;
 		querystring += val2[1];
 		
@@ -510,8 +510,8 @@ else
 	  
 	 
 
-	  alert("querystringzz");
-	  alert(querystring);
+	  
+	  
 
 
 
@@ -525,8 +525,8 @@ else
 			
 			
 
-			 //alert("query1");
-			 //alert(querystring);
+			 
+			 
 				//searchWord = "here";
 				var b = 0;
 			 $.ajax({
@@ -538,8 +538,8 @@ else
 				crossDomain: true,
                 success: function (result) {
 
-					alert("result");
-					alert(result);
+					
+					
 					console.log("result")
 					console.log(result);
 
@@ -549,10 +549,10 @@ else
 					}
 
 
-					alert("here:A");
 					
-			//alert("query2");
-			 //alert(querystring);
+					
+			
+			 
 					
 
 				//ourNewWord2 = result;
@@ -573,8 +573,8 @@ else
 
 
 
-				//alert("result");
-				//alert(result);
+				
+				
 				//console.log(result2);
 				//console.log(result);
 				//retVals = forBuildingHTML(result, searchWord);
@@ -603,10 +603,10 @@ else
 
 
 				
-				//alert("check this!");
-				//alert(item1);
-				//alert(result);
-				//alert(searchWord);
+				
+				
+				
+				
 
 				////////////
 				//displays link for every grouping by product group to go there
@@ -710,8 +710,8 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 				//already purchased
 				amountPurchasedToDeductFromToPurchase = Number(document.getElementById(amountPurchasingID).value);
 
-				//alert("test");
-				alert(amountPurchasedToDeductFromToPurchase);
+				
+				
 				//amount held for subtraction when submit button pressed
 				amountToBePurchased = Number(document.getElementById(amountToPurchaseID).value);
 
@@ -895,14 +895,14 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 
 
 				
-			alert("was here1.");
+			
 		//updates everything for to many records
 		if(val1 == sessionStorage.getItem("numberOfRecordsChosen"))
 		{
 		
 		if (val1 == MAXRECORDS-1)
 		{
-			alert("AT RECORD MAXIMUM, NO MORE RECORDS NEFORE PURCHASE!!!");
+			
 		}
 		else if (val1 >= MAXRECORDS){
 
@@ -918,13 +918,13 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 			   //amount to purchase 
 			document.getElementById(amountToPurchaseID).value = document.getElementById(amountToPurchaseID).value - parseInt(amountToPurchase).value ;
 			
-			alert(document.getElementById(quantityOfProductID).value);
+			//alert(document.getElementById(quantityOfProductID).value);
 			return(1);
 
 		}
 
 
-			//alert(amountPurchasedToDeduct);
+			
 			
 			//subtract amountpurchased
 			//subtract quantity
@@ -956,16 +956,16 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 				
 
 				let keys = Object.keys(sessionStorage);
-				//alert("start debug");
+				
 				for(let key of keys) {
-					//alert("start debug2");
+					
 				
 				//total the quantity and overwrite - is already a record
 
 				//is a productid record with an amount to buy
 				if(key == (productID.toString())){
 				
-					//alert("this is being called:1");
+					
 					keyFlag = "found";
 					
 					
@@ -984,9 +984,9 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 					//updates
 					sessionStorage.setItem(parseInt(productID), parseInt(totalquantity));
 					//sessionStorage.setItem(parseInt(productID), parseInt(amountPurchasedToDeductFromToPurchase));
-					alert("is in here1");
-					alert(productID);
-					alert(totalquantity);
+					
+					
+					
 						
 
 
@@ -1002,14 +1002,14 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 				if (keyFlag !=  "found")
 				{
 
-					//alert("this is being called:2");
+					
 					
 					//sessionStorage.setItem( parseInt(productID),  parseInt(amountPurchasedToDeduct));
 					sessionStorage.setItem( parseInt(productID),  parseInt(amountPurchasedToDeductFromToPurchase));
 				
-					alert("is in here2");
-					alert(productID);
-					alert(amountPurchasedToDeductFromToPurchase);
+					
+					
+					
 
 
 					
@@ -1032,9 +1032,9 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 function DoesKeywordAlreadyExist( searchword, string)
 {//NO URLS
 
-	alert("search word");
-	alert(searchword);//apple1
-	alert(string);//uid=1&
+	
+	
+	
 	//this flag means that this is a display that returned from template2, so is a special condition
 	//if(flag2 == "1")
 	//{
@@ -1051,7 +1051,7 @@ function DoesKeywordAlreadyExist( searchword, string)
 	var counter = 0;
 		var gflag = "isntin";
 		
-		//alert("in here111");
+		
 
 
 		//if no keywords than set search word as keyword. This is a list of keywords 
@@ -1082,19 +1082,19 @@ function DoesKeywordAlreadyExist( searchword, string)
 
 		//check for duplicate keywords, if duplicate leave and do nothing
 		
-		alert("length");
-		alert(storedArray.length);
+		
+		
 		for (i = 0; i < storedArray.length; i++) {
 
-			//alert("4");
-			//alert(storedArray[i]);//apple1
-			//alert(searchword);//apple1
+			
+			
+			
 			//isfirst == false: not a new keyword : just check keywords already saved
 			
 			//if (storedArray[i] == searchword && isfirst == false)
 			if (storedArray[i] ==  searchword &&  KeyWordExistsAlreadyFlag == true )
 			{
-				alert("isin");
+				
 				gflag = "isin"
 				querystring = ("var=" + searchword + "&");
 				break;
@@ -1106,7 +1106,7 @@ function DoesKeywordAlreadyExist( searchword, string)
 
 		if(gflag == "isntin")
 		{
-			alert("isnt in");
+			
 			storedArray.push(searchword);
 			sessionStorage.clear();	
 			sessionStorage.setItem("keywords", JSON.stringify(storedArray));
@@ -1119,8 +1119,8 @@ function DoesKeywordAlreadyExist( searchword, string)
 		
 		
 	
-		alert("querystring2");
-		alert(querystring);
+		
+		
 	
 	return [gflag, querystring];
 	 }
@@ -1160,9 +1160,9 @@ var gKeywordRecordNumber = 0;
 function displayOrdersTemplateAgain(){
 
 	//debugger;
-	//alert("stops here!!!");
+	
 
-//alert("check if getting here before panid");
+
 
 var querystring = "";
 
@@ -1172,29 +1172,29 @@ var querystring = "";
 var counter = -1;
 var array = [];
 
-//alert("A4") ;
+
 
 var gflag1 = 0;
 //var gcounter1 = 0;
-//alert("A5") ;
+
 let keys = Object.keys(sessionStorage);
 
 
 
-//alert("A6") ;
+
 for(let key of keys) {
 
-//	alert("getthis");
-//	alert(key);
+//	
+//	
 
  if(key == "keywords")
   {
 	counter++;
-	//alert("keywords");
+	
    
 	let item = sessionStorage.getItem(key);
 	
-	//alert(item);
+	
 	array = JSON.parse(item);
    //console.log(array);
 
@@ -1203,7 +1203,7 @@ for(let key of keys) {
 	{
 	
 	  querystring += "var=" + array[i] + "&";
-	  //alert(querystring);
+	  
 	}
 
   }
@@ -1239,7 +1239,7 @@ for(let key of keys) {
   {
 	var val1 = "";
 	var item = sessionStorage.getItem(key);
-	//alert(item);
+	
 	//dont build query with zero product "item"
 	if(item == "0")
 	{
@@ -1251,7 +1251,7 @@ for(let key of keys) {
 		
 		//is a poduct or are products
 		gflag1 = 1;
-		//alert("A5") ;
+		
 		
 			querystring += "id=" + key + "&amtTryingToPurchase=" + item + "&";
 		
@@ -1264,19 +1264,19 @@ for(let key of keys) {
 //no id quant
 if (gflag1 == 0)
 {
-	alert("ALert : there are no products in session storage...");
+	alert("Alert : there are no products in session storage...");
 	//return(1);
 }
 //if (gflag1 == 4)
 //{
-//	alert("gflag4");
+//	
 //	return(1);
 //}
 
 
 
-//alert("now");
-//alert(querystring)
+
+
 
 
 // 8237 characters tested:
@@ -1296,8 +1296,8 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 
 
 
-			//alert("query3");
-			//alert(querystring);
+			
+			
 
 			$.ajax({
 			type:"POST",
@@ -1307,10 +1307,10 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 			async:false,
 			success: function (result) {
 
-				//alert("query4")
-				//alert(querystring);
-				//alert("qqq");
-				//alert(result);
+				
+				
+				
+				
 
 
 			//var retVals = [];
@@ -1327,9 +1327,9 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 			var ourNewWord = result; 
 			//var item = retVals[2];
 			
-			//alert("derived here");
-			//alert(ourNewWord);
-			//alert(item);
+			
+			
+			
 			
 			
 			
@@ -1347,16 +1347,16 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 				
 
 
-				//alert("in function");
+				
 				var val1 = '["' + array[i] +  '"]';
-				//alert(val1);
+				
 				//html
 				ourNewWord = ourNewWord.replace(val1 , '');
 				//fix this, here
 				//retVals = forBuildingHTML(ourNewWord);
 				//create link to each keyword start
 				var result1a = "<a href='#" + array[i] + "'>" + array[i] + "</a><br>";
-				//alert(result1a);
+				
 				//positioning div at top of page
 				document.getElementById('buttons').innerHTML   += result1a;
 			  }
