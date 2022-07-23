@@ -11,12 +11,15 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	  <!DOCTYPE html>
+	  <script src="node_modules/js-big-decimal/dist/web/js-big-decimal.min.js"></script>
+    <!DOCTYPE html>
 
   </head> 
 
 
   <script>
+
+//var bigDecimal = require('js-big-decimal');
     //a change of gui, such as textbox happens at the end of function or at function failure.
     //test, "test.html"
     window.sessionStorage
@@ -410,7 +413,7 @@ let flagisEnoughProduct = true;
                 //alert("testthis");
 
                 //var initialFormAmount = 0;
-                debugger;
+                //debugger;
                 
 
                 //console.log(data);
@@ -525,7 +528,7 @@ let flagisEnoughProduct = true;
 
 
                   //firstTimeThrough = false;
-                  debugger
+                  //debugger
                   
                  //alert("ahere");
                  //alert(i);
@@ -610,8 +613,8 @@ let flagisEnoughProduct = true;
                   //buying
                   //document.getElementById(boughtid).value = amountToBuy1; // 3
                   alert("11");
-                  alert(amountToBuy1);
-                  debugger;
+                  //alert(amountToBuy1);
+                  //debugger;
                   //var initialAmt1 = 0;
                   
                   
@@ -660,62 +663,34 @@ let flagisEnoughProduct = true;
                   }
 
 
-                
-                  var ProductCostString = document.getElementById(totalCostID).value;
+                //https://www.npmjs.com/package/js-big-decimal
+                //https://stackoverflow.com/questions/16742578/bigdecimal-in-javascript
+                  //var ProductCostString = document.getElementById(totalCostID).value;
 
                   //remove dollar sign
-                  ProductCostString = substring(1, ProductCostString.length-1);
+                  //ProductCostString = substring(1, ProductCostString.length-1);
 
+                  alert("is enough quant");
+                  console.log(bigDecimal.add('12', '45'));
 
-                  let numberWithDecimals = new bigDecimal(ProductCostString);
-                  let taxRate = ".05";
-                  let taxAmount = bigDecimal.multiply(taxRate, numberWithDecimals);
-                  let total = bigDecimal.add(taxAmount, numberWithDecimals);
+                  let numberWithDecimals = new bigDecimal("7.0");
+                  alert("1A");
+                  let taxRate = "12.32";
+                  alert("1B");
+                  let taxAmount = bigDecimal.multiply(taxRate, numberWithDecimals.getValue());
+                  alert("1C");
+                  let total = bigDecimal.add(taxAmount, numberWithDecimals.getValue());
+                  
+                  alert("total");
+                  alert(total);
                   let roundedTotal = total.round(2);
-                  let grandtotal = grandTotal + roundedTotal;
-                  
-                  
-                  
-                  
-                  
-
-                  /*
-                   //string of amount with no decimal point (amount in pennies) :  $10.50  => 1050
-                  ProductCostString = substring(0, ProductCostString.length - 4) + substring(ProductCostString.length - 3, ProductCostString.length -1);
-                 
-                 
-                 /////
-                 
-
-                 //display decimal point without loss 
-                 let subStr1 = 
-
-                 /////$10.50 => 1050
-                  productCostInt = Number(productCostString);
-                  //5250
-                  let tax = 5 * productCostInt;
-                  //5250 + 1050 = 6300
-                  let withTax = tax + productCostInt  
-                  //added entirely pennies
-                  GrandTotal = GrandTotal + ProductCostInt;
-
-                  
+                  //let grandTotal2 = grandTotal.round(2, roundedTotal.RoundingModes.UNNECESSARY;)
+                  let grandTotal = bigDecimal.add(grandTotal, roundedTotal);
 
 
-                  let subStr = GrandTotal.toString().substr(0, ProductCostString.length - 2) + "." +
-                  GrandTotal.toString().substr(ProductCostString.length - 2, ProductCostString.length);
+                  //ProductCostString = "$" + ProductCostString;
+                  //document.getElementById(totalCostID).value = ProductCostString;
 
-
-                  ProductCostString = (forCostEachFloat.toFixed(2)).toString();
-                  
-                  ProductCostString = "$" + ProductCostString;
-
-                 
-                  
-
-                  
-                 
-                  */
                 }
 
                 
@@ -723,34 +698,22 @@ let flagisEnoughProduct = true;
                 
               }
 
-            grandTotal2 = grandTotal.round(2);
+            //grandTotal2 = grandTotal.round(2, bigDecimal.RoundingModes.UNNECESSARY);
+            //grandTotal2 = "$" + grandTotal2;
+            //document.getElementById(GrandTotalStringID).value = grandTotal2;
 
-
-              /*
-                  var floatGrandTotal = Number(GrandTotal); 
-                 
-                  floatGrandTotal = floatGrandTotal / 100.0;
-                  floatGrandTotal = floatGrandTotal.toFixed(2);
-                  
-                 //for updating cart template
-                  stringGrandTotal = "Grand Total:  $" + parseFloat(floatGrandTotal);
-                  //alert(stringGrandTotal);//$20010.44!
-                  document.getElementById(GrandTotalStringID).value = stringGrandTotal;
-                */
-
-                  
-              
-                //alert("end success function");
-            }////sucesss - goto spitback and return values
+            }
 
            
             
 
-          });//ajax
-          //firstTimeThrough = true;
-          //firstTimeThrough = false;
+          });
 }//function
 
+function test(){
+let a = 123456789123456789876 / 10000000000000000000;
+
+}
 
 </script>
 
