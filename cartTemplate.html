@@ -189,6 +189,11 @@ var firstTimeThrough = true;
 function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 
   
+  let grandTotal = new bigDecimal("1.0");
+  let grandTotalA = new bigDecimal("1.0");
+  let total = "";
+                
+  
   ///firstTimeThrough = true;
 
 
@@ -494,10 +499,10 @@ let flagisEnoughProduct = true;
               console.log(data);
 
 
-                var grandTotal = 0;
+                //var grandTotal = 0;
                 //initalize big ints for money system
-                let GrandTotal = BigInt(0);
-                let GrandTotalDiv = BigInt(0);
+                //let GrandTotal = BigInt(0);
+                //let GrandTotalDiv = BigInt(0);
                 //from jquery call to main.go functino:sendbackcartdata
                 
                 var InitialFormAmount = 0;
@@ -577,8 +582,11 @@ let flagisEnoughProduct = true;
                 //debugger;
                 //var initialFormAmount = data1[i].initialFormAmount;
                 
+                //var grandTotal = new bigDecimal("0.0");
                
                 //wasnt enough, so make red
+
+
                 if (isEnoughQuantity == false)
                 {  
                   //debugger;
@@ -663,48 +671,49 @@ let flagisEnoughProduct = true;
                   }
 
 
-                //https://www.npmjs.com/package/js-big-decimal
+               
+                
+              }
+
+
+               //https://www.npmjs.com/package/js-big-decimal
                 //https://stackoverflow.com/questions/16742578/bigdecimal-in-javascript
-                  //var ProductCostString = document.getElementById(totalCostID).value;
-
-                  //remove dollar sign
-                  //ProductCostString = substring(1, ProductCostString.length-1);
-
-                  
+              
+                alert("1A");
                   console.log(bigDecimal.add('12', '45'));
 
-                  let numberWithDecimals = new bigDecimal("7.0");
-                  
+                  console.log("check");
+                  let a = 7 * 12.32;
+                  console.log(a);
+                   
+                  //quantity
+                  let numberWithDecimals = new bigDecimal("9.0");
+
                   let taxRate = "12.32";
                   
                   let taxAmount = bigDecimal.multiply(taxRate, numberWithDecimals.getValue());
                   
                   let total = bigDecimal.add(taxAmount, numberWithDecimals.getValue());
+                  alert(total);
                   
+                  var num = new  bigDecimal(Number(total) + Number(total));
+                  //let gtotalnum = (total) + (total);
+
+                  alert(num.getValue());
+                  //alert(gtotalnum);
                   
-                  
-                  let roundedTotal = total.round(2);
-                  //let grandTotal2 = grandTotal.round(2, roundedTotal.RoundingModes.UNNECESSARY;)
-                  let grandTotal = bigDecimal.add(grandTotal, roundedTotal);
-
-
-                  //ProductCostString = "$" + ProductCostString;
-                  //document.getElementById(totalCostID).value = ProductCostString;
-
-                }
-
                 
 
-                
-              }
 
-            //grandTotal2 = grandTotal.round(2, bigDecimal.RoundingModes.UNNECESSARY);
+            
+            }
+            
+          
+          }
+
+           //grandTotal2 = grandTotal.round(2, bigDecimal.RoundingModes.UNNECESSARY);
             //grandTotal2 = "$" + grandTotal2;
             //document.getElementById(GrandTotalStringID).value = grandTotal2;
-
-            }
-
-           
             
 
           });
