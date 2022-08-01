@@ -427,13 +427,7 @@ let flagisEnoughProduct = true;
               success: function (data) {
                 
 
-                //var initialFormAmount = 0;
-                //debugger;
                 
-
-                //console.log(data);
-                
-                //let enoughFlag = true;
 
                 //no records
                 if(data.length == null){
@@ -515,7 +509,7 @@ let flagisEnoughProduct = true;
                 //let GrandTotalDiv = BigInt(0);
                 //from jquery call to main.go functino:sendbackcartdata
                 
-                var InitialFormAmount = 0;
+               
 
                 var firstTimeThrough1 = sessionStorage.getItem("firstTimeThrough");
                 for(var i = 0; i<(lengthOfData) ; i++)
@@ -524,18 +518,7 @@ let flagisEnoughProduct = true;
 
                   
                   
-                  if(firstTimeThrough1 == "yes")
-                  {
-                    InitialFormAmount = data[i].InitialFormAmount;
-                    
-                    
-                  }
-                  else
-                  { //look at this
-                    InitialFormAmount  = data[i].QuantPurchasing;
-                    
-
-                  }
+                 
 
                   //firstimetrough = false
                   sessionStorage.setItem("firstTimeThrough", "no"); 
@@ -588,11 +571,7 @@ let flagisEnoughProduct = true;
                 //still in loop
                 isEnoughQuantity = data[i].IsEnoughQuantity;
                 
-                //var initialFormAmount = "";
-                //debugger;
-                //var initialFormAmount = data1[i].initialFormAmount;
-                
-                //var grandTotal = new bigDecimal("0.0");
+               
                
                 //wasnt enough, so make red
 
@@ -637,6 +616,9 @@ let flagisEnoughProduct = true;
                   
                   
                   
+
+
+                  /*////////////////
                   if(firstTimeThrough1 == "no")
                   {
 
@@ -679,12 +661,15 @@ let flagisEnoughProduct = true;
                       document.getElementById(availableID).value = ((parseInt(document.getElementById(availableID).value) - parsedAmountToBuy1) + parsedInitialAmt1 );
                     }
                   }
-
+                  //////////////*/
 
                 var a = 1/6
                 //////////
+                let parsedAmountToBuy1 = parseInt(amountToBuy1);
 
-                SetTotalCostAndSumGrandTotal();
+                document.getElementById(boughtid).value =  Number(parsedAmountToBuy1);
+                document.getElementById(availableID).value = Number(document.getElementById(availableID).value) -  Number(parsedAmountToBuy1);  
+                SetTotalCostAndSumGrandTotal(totalCostID);
 
 
                 }
@@ -711,7 +696,7 @@ let flagisEnoughProduct = true;
                 //https://www.npmjs.com/package/js-big-decimal
                 //https://stackoverflow.com/questions/16742578/bigdecimal-in-javascript
                 //debugger;
-                function SetTotalCostAndSumGrandTotal()
+                function SetTotalCostAndSumGrandTotal(TotalCostID)
                 {
                   TotaledAtLeastOnceFLag = true;
                 //$2343.60
@@ -728,8 +713,8 @@ let flagisEnoughProduct = true;
                 let priceString = price.substring(1, price.length ); 
                 
                 console.log(priceString);
-                priceString = 2232.00;
-                boughtAmt = .05;
+                //priceString = 2232.00;
+                //boughtAmt = .05;
                 let totalCost1 = (((Number(priceString)) * (Number(boughtAmt)*100)) / 100 );
                
                 alert("totalCost");
