@@ -441,7 +441,7 @@ loadData();
 //send it to purge which calls template with data
 
 //restoring past order screen
-var gFlagIsntSomeRecords = false;
+var gFlagIsSomeRecords = false;
 var queryString= ""; 
 
 //calls template2, load ProductID/amount of quantity purchasing
@@ -480,10 +480,7 @@ for(let key of keys) {
   {
 		continue;
   }
-  else if(key == "firstTimeThrough")
-  {
-		continue;
-  }
+ 
 
   
   
@@ -503,7 +500,7 @@ for(let key of keys) {
   string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
   
   
-  gFlagIsntSomeRecords = true;
+  gFlagIsSomeRecords = true;
 
 
   
@@ -538,7 +535,7 @@ for(let key of keys) {
 	  //var val1 = document.getElementById(dispalyMessage).value;
 	  //document.getElementById("displayMessage").innerHTML = "No products were selected!";
 	
-//	  gFlagIsntSomeRecords = true;
+//	  gFlagIsSomeRecords = true;
 	  //var storedArray = [];
 	  //sessionStorage.setItem("checkoutPressed", "pressed");
 	 
@@ -556,7 +553,7 @@ for(let key of keys) {
   
   
 //overWrites"&
-if(gFlagIsntSomeRecords == true)
+if(gFlagIsSomeRecords == true)
 {
 	queryString = string.substring(0, string.length-1);
 	
@@ -594,17 +591,20 @@ var url = "http://localhost:8080/cartTemplate";
                       
 						
 					  val1 = data1;
-                      if (!gFlagIsntSomeRecords)
+					  //if isnt some record
+                      if (gFlagIsSomeRecords)
 					  {
-						  val1 = "<br><center><h3>No Products Were Selected Yet!</center><br></h3>";
 						  
-
-						  val1 = val1 + data1;
-						  $('#div1').html(val1);
+						  //displays table
+							alert("yes");
+						  //val1 = val1 + data1;
+						  $('#div1').html(data1);
 					  }
 					  else
 					  {//data1 is the html for cart template
-                      $('#div1').html(data1);
+						val1 = "<br><center><h3>No Products Were Selected Yet!</center><br></h3>";
+                      $('#div1').html(val1);
+					  alert("no");
 					  }
                    
                     }

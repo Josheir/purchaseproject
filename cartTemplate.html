@@ -156,34 +156,12 @@ function hideRow(rowId)
 }
 
 
-///////
-/*
-function sqrt(value) {
-    if (value < 0n) {
-        throw 'square root of negative numbers is not supported'
-    }
 
-    if (value < 2n) {
-        return value;
-    }
-
-    function newtonIteration(n, x0) {
-        const x1 = ((n / x0) + x0) >> 1n;
-        if (x0 === x1 || x0 === (x1 - 1n)) {
-            return x0;
-        }
-        return newtonIteration(n, x1);
-    }
-
-    return newtonIteration(value, 1n);
-}
-*/
-//////
 
 const initialValues = [];
 
 var initialAmt1 = 0;
-var firstTimeThrough = true;
+
 var grandTotalAccumulator = 0.0;
 let grandTotalString = 0.0;
 //checkout pressed from template2
@@ -191,10 +169,6 @@ let grandTotalString = 0.0;
 let TotaledAtLeastOnceFLag = false;
 function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 
-
-  
-         
- 
 
   let grandTotal = new bigDecimal("1.0");
   let grandTotal1 = "";// new bigDecimal("1.0");
@@ -204,9 +178,7 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
   var gTotalNum1 = new  bigDecimal("1.0");
                 
   
-  ///firstTimeThrough = true;
-
-
+  
 
 
   var gtotal = parseFloat(gtotal);
@@ -277,12 +249,7 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
           continue;
         }
 
-        else if(key == "firstTimeThrough")
-        {
-          counter--;
-
-          continue;
-        }
+       
 
         
         //if here, is productid and a quantity
@@ -392,12 +359,11 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
       
       
       var sessID1 = sessionStorage.getItem("sessionUserID");
-      var sessID2 = sessionStorage.getItem("firstTimeThrough");
+      
       sessionStorage.clear();
       sessionStorage.setItem("sessionUserID", sessID1);
       sessionStorage.setItem("numberOfRecordsChosen", "0");
-      sessionStorage.setItem("firstTimeThrough", sessID2);
-
+      
 
       
       window.location.href = "index.html";
@@ -511,29 +477,10 @@ let flagisEnoughProduct = true;
                 
                
 
-                var firstTimeThrough1 = sessionStorage.getItem("firstTimeThrough");
+               
                 for(var i = 0; i<(lengthOfData) ; i++)
                 {
 
-
-                  
-                  
-                 
-
-                  //firstimetrough = false
-                  sessionStorage.setItem("firstTimeThrough", "no"); 
-
-
-
-                  //firstTimeThrough = false;
-                  //debugger
-                  
-                 
-                 
-                 
-                 
-                 //GTotalWithTax = 0;
-                
                  //for ids of carttemplate's ids
                 var boughtid = "B" + i; 
                 var buyThisManyID = "A" + i;
@@ -543,29 +490,6 @@ let flagisEnoughProduct = true;
                 var GrandTotalStringID = "GT" + i;
                 var mainDivID =  "V" + i;
                 
-                
-                //let buyThisManyIDBefore = buyThisManyID - ;
-                //let initialAmountToBuy = document.getElementById(buyThisManyID).value;
-                
-                
-                /////////
-
-                
-                
-                /*bought1 = 1;
-                //hide any line with a zero for buying
-                if(bought1 == 0)// && (amtBuying1 == "" || (isNaN(amtBuying1)) ))
-                {
-                 
-                  
-                  hideRow(mainDivID);
-                  amtOfHiddenProducts++;
-                  
-                }*/
-
-
-
-                /////////
              
                 var isEnoughQuantity = false;
                 //still in loop
@@ -607,65 +531,7 @@ let flagisEnoughProduct = true;
                   
                   //amount to buy
                   let amountToBuy1 = document.getElementById(buyThisManyID).value; //3
-                  //buying
-                  //document.getElementById(boughtid).value = amountToBuy1; // 3
-                  
-                  
-                  //debugger;
-                  //var initialAmt1 = 0;
-                  
-                  
-                  
-
-
-                  /*////////////////
-                  if(firstTimeThrough1 == "no")
-                  {
-
-                    let bought = document.getElementById(boughtid).value;
-                    
-                    let parsedBought = parseInt(bought);
-                    
-                   //document.getElementById(boughtid).value = amountToBuy1; // 3
-                    
-                    let parsedAmountToBuy1 = parseInt(amountToBuy1);
-                    document.getElementById(boughtid).value = parsedAmountToBuy1;
-                  
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    //document.getElementById(availableID).value = ((parseInt(document.getElementById(availableID).value) + parsedAmountToBuy1) - parsedBought );
-                    document.getElementById(availableID).value = Math.abs(   ((parseInt(document.getElementById(availableID).value) + parsedBought) - parsedAmountToBuy1 )  );
-                  
-                  
-                  
-                  }//is first time through
-                  else
-                  {
-                    alert("isfirsttimethrough");
-                    
-                    document.getElementById(boughtid).value = amountToBuy1; // 3
-                    
-                    
-                    initialAmt1 = data[i].InitialFormAmount;
-                    
-                    let parsedInitialAmt1 = parseInt(initialAmt1)
-                    let parsedAmountToBuy1 = parseInt(amountToBuy1);
-
-                    if(parsedInitialAmt1 !=  parsedAmountToBuy1 )
-                    {
-                      document.getElementById(availableID).value = ((parseInt(document.getElementById(availableID).value) - parsedAmountToBuy1) + parsedInitialAmt1 );
-                    }
-                  }
-                  //////////////*/
-
-
-                  //
-
+                 
                   costID = "C" + i;
                 var totalCostID = "TC" + i;
 

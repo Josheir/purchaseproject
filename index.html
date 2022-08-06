@@ -100,7 +100,7 @@ for(let key of keys) {
 		}
 
 
-		if(key != "keywords" && key != "sessionUserID" && value == false && key != "firstTimeThrough" )
+		if(key != "keywords" && key != "sessionUserID" && value == false) 
         {
 			
 			
@@ -3619,10 +3619,6 @@ console.log(a);
 
 
 		}
-		if(key =="firstTimeThrough")
-		{
-			continue;
-		}
 		
 		///////////////
 		
@@ -3632,7 +3628,7 @@ console.log(a);
 		var keyAsInt =  parseInt(key); 
 		
 		//console.log(keyAsInt);
-		if (key != "sessionUserID" && key != "keywords" && key != "numberOfRecordsChosen" && key != "amtOfKeywords" && key != "firstTimeThrough" ) 
+		if (key != "sessionUserID" && key != "keywords" && key != "numberOfRecordsChosen" && key != "amtOfKeywords"  ) 
 		{
 
 			
@@ -4538,10 +4534,7 @@ for(let key of keys) {
 	
 	
   }
-  else if(key == "firstTimeThrough")
-  {
-
-  }
+ 
   //product id with amount to purchase
   else
   {
