@@ -77,7 +77,7 @@ $(function(){
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-//fix this, here
+//fix this, here, done
 var searchterm = urlParams.get('displayOrdersTemplateAgain');
 
 
@@ -4651,6 +4651,8 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 				
 				var val1 = '["' + array[i] +  '"]';
 				
+        conosle.log("our new word");
+        console.log(ourNewWord);
 				//html
 				ourNewWord = ourNewWord.replace(val1 , '');
 				//fix this, here

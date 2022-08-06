@@ -697,7 +697,7 @@ func sendBackNewCartData(w http.ResponseWriter, r *http.Request) {
 
 		//checks if database is altered
 		//fix this, here, done
-		if quantLeft > 0 && currentPurchase > 0 && doUpdatesAndSelects == true {
+		if quantLeft > 0 && currentPurchase > 0 && doUpdatesAndSelects {
 
 			{
 
@@ -1065,7 +1065,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 			//2232 - this is the sum of   - amount time price
 			GrandTotalAccumulator =  GrandTotalAccumulator*100  + (TotalCostFloat * 100)
 			GrandTotalAccumulator = GrandTotalAccumulator / 100;
-			
+
 			
 
 
