@@ -300,7 +300,7 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
         var Product = (document.getElementById(ProductIDID).value); 
        
         var item = amtInBuyBox;
-
+       
         
        
         //because amount to buy is nothing than change buying to nothing
@@ -663,23 +663,30 @@ let flagisEnoughProduct = true;
                   }
                   //////////////*/
 
+
+                  //
+
+                  costID = "C" + i;
+                var totalCostID = "TC" + i;
+
+                  //
                 var a = 1/6
                 //////////
                 let parsedAmountToBuy1 = parseInt(amountToBuy1);
 
                 document.getElementById(boughtid).value =  Number(parsedAmountToBuy1);
                 document.getElementById(availableID).value = Number(document.getElementById(availableID).value) -  Number(parsedAmountToBuy1);  
-                SetTotalCostAndSumGrandTotal(totalCostID);
+                SetTotalCostAndSumGrandTotal(costID, boughtid, totalCostID);
 
 
                 }
 
               }
 
-              if (SetTotalCostAndSumGrandTotal == true)
+              if (TotaledAtLeastOnceFLag == true)
               {
-                setGrandTotal();
-                SetTotalCostAndSumGrandTotal = false;
+                setGrandTotal(GrandTotalStringID);
+                TotaledAtLeastOnceFLag  = false;
               }
 
              
@@ -696,82 +703,71 @@ let flagisEnoughProduct = true;
                 //https://www.npmjs.com/package/js-big-decimal
                 //https://stackoverflow.com/questions/16742578/bigdecimal-in-javascript
                 //debugger;
-                function SetTotalCostAndSumGrandTotal(TotalCostID)
+                function SetTotalCostAndSumGrandTotal(costID, boughtid, totalCostID)
                 {
+                  //debugger;
+                 
                   TotaledAtLeastOnceFLag = true;
-                //$2343.60
-                let price =document.getElementById(totalCostID).value;
-                alert("price");
-                alert(price);
+                //"$2232.60"
+                let price = document.getElementById(costID).value;
+                
                 let boughtAmt =  document.getElementById(boughtid).value;
                 let tax = .05;
 
-                console.log("values1 total");
-                console.log(boughtAmt);
-                //boughtAmt = "10";
-                //removed dollar sign
+                
+                
+                //"2232.00"
                 let priceString = price.substring(1, price.length ); 
+                //2232
+                let priceNum = +priceString
                 
-                console.log(priceString);
-                //priceString = 2232.00;
-                //boughtAmt = .05;
-                let totalCost1 = (((Number(priceString)) * (Number(boughtAmt)*100)) / 100 );
-               
-                alert("totalCost");
-                alert(totalCost1);
-                let totalCost1String = totalCost1.toString();
-                totalCost1String = "$" + totalCost1String;
+                  
+                //2232
+                let totalCost1 = ((((priceNum)) * ((boughtAmt)*100)) / 100 );
+                //2332
+                let totalCost1Copy= totalCost1;
+                //"2232.00"
+                totalCost1 = totalCost1.toFixed(2);
+                //"$2232.00"
+                totalCost1String = "$" + totalCost1;
                 
-
-                console.log("values1 total");
-                console.log(totalCost1);
 
                 document.getElementById(totalCostID).value = totalCost1String;
 
-                //totalcost : 10.45   300.46  =  310.91
-                console.log( grandTotalAccumulator);
-                console.log(totalCost1);
-                grandTotalAccumulator = (((grandTotalAccumulator * 100)  + (Number(totalCost1) * 100))/100);
-                console.log("grandTotalAccumulator");
-                console.log(grandTotalAccumulator);
+               
+                //2232
+                grandTotalAccumulator = (((grandTotalAccumulator * 100)  + ((totalCost1Copy) * 100))/100);
+               
+
+                return(true);
                 }
 
 
-            function setGrandTotal()
+            function setGrandTotal(GrandTotalStringID)
             {
                 
-            //tax - FLOAT OR BIGINT?????????
-            //grandTotalAccumulatorWithTax = ((((.05) * 100) *  (grandTotalAccumulator * 100 )) )/10000;
-            //tax : ie : .5329
-            console.log("is this okay?");
-            console.log( grandTotalAccumulatorWithTax = ((((.05) * 100) *  (grandTotalAccumulator * 100 )) )/10000);
-            console.log(grandTotalAccumulatorWithTax);
+            alert("setgrandtotal");
+            debugger;
+           
+           
+            grandTotalAccumulatorWithTax = ((((.05) * 100) *  (grandTotalAccumulator * 100 )) )/10000;
+             //223.4
             
-            console.log("grandTotalAccumulator1");
-            console.log( grandTotalAccumulatorWithTax);
+            //round - is how sales tax is done!
             grandTotalAccumulatorWithTax = grandTotalAccumulatorWithTax.toFixed(2);
+             //223.40
+            
+           
+            grandTotalAccumulatorWithTax2 = ((Number(grandTotalAccumulatorWithTax) * 100) + (grandTotalAccumulator*100))/100;
+             //4691.4
+            //no more than 2 decimals before this
+            grandTotalString = grandTotalAccumulatorWithTax2.toFixed(2);
+            //"4691.40"
+            grandTotalString = "$" + grandTotalString;
+            //"$4691.40"
+            document.getElementById(GrandTotalStringID).value = grandTotalString;
            
             
-            console.log( grandTotalAccumulatorWithTax);
-            console.log( grandTotalAccumulator);
-                           
-                          
-            //grandtotal with tax added: maintins two decimals
-            grandTotalAccumulatorWithTax2 = ((Number(grandTotalAccumulatorWithTax * 100)) + (grandTotalAccumulator*100))/100;
-
-            console.log("grandTotalAccumulator2");
-            console.log(grandTotalAccumulatorWithTax);
-            console.log(grandTotalAccumulator);
-            console.log( grandTotalAccumulatorWithTax2);
-                           
-            //remove excess decimal digits.
-            //grandTotalAccumulatorWithTax2 = grandTotalAccumulatorWithTax2.toFixed(2);
-            grandTotalString = grandTotalAccumulatorWithTax2.toString();
-            grandTotalString = "$" + grandTotalString;
-            document.getElementById(GrandTotalStringID).value = grandTotalString;
-            console.log(grandTotalString);
-            //console.log("grandTotalAccumulatorWithTax");
-            //console.log(grandTotalAccumulatorWithTax);
             }
                            
 

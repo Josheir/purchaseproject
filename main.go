@@ -14,13 +14,13 @@ import (
 	"net/http"
 
 	"context"
-	"math/big"
+	
 
 	//"os"
 	"strconv"
 	"time"
 
-	//"math"
+	"math"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -890,17 +890,14 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 	//n11 := new(big.Int)
 	//n12 := new(big.Int)
 
-	//below are big ints for the totaling on bottom of cart template
-	GrandTotal := new(big.Int)
-	GrandTotalDiv := new(big.Int)
-	GrandTotal, _ = GrandTotal.SetString("0", 10)
+	
 
 	/////////////////////////////
 
 	//LEFT OFF HERE!!!
 
 	/////////////////////////////
-
+	var GrandTotalAccumulator = 0.0
 	for i = 0; i < len(gAllProductIds); i++ {
 
 		fmt.Println("length")
@@ -946,7 +943,7 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 		var ProductName, ProductCatTitle, ProductCost string
 
-		var GrandTotalString = ""
+		//var GrandTotalString = ""
 
 		//jumps past this, first run through
 		//var numTotal = 0
@@ -955,7 +952,8 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 		//Result = "hello"
 
-		var GrandTotalAccumulator = 0.0
+		
+		
 		for rows.Next() {
 
 			//copies from database row to these variables
@@ -1017,32 +1015,90 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 			//GrandTotalAccumulator = 0.0
 
+			//var test2 = .9999999999999999999
+			//var test3 = .999999999999999
+			
 			var tax = .05;
-			ProductCostLength = len(ProductCost)
-			ProductCostNoDollarSign := ProductCost[1:ProductCostLength-1] 
-			//price * amt bought : number
-			TotalCost = ((ProductCostNoDollarSign * bought * 100)/100);
-			TotalCostString := strconv.Itoa(TotalCost)
-			TotalCostString = "$" + TotalCostString
-			forCostEach = TotalCostString
-			//totalcost is price times amount, this is summed (without tax)
-			GrandTotalAccumulator := (((GrandTotalAccumulator * 100) + (TotalCost * 100))/100))
+			
+			var ProductCostInt, err = strconv.Atoi(ProductCost)
+			//223200
+			if err != nil {
+				fmt.Println(err)
+			}
+			
+			
+			
+			
+			
+			var ProductCostFloat = float64(ProductCostInt);
+			//223200
+
+			TotalCost := ((ProductCostFloat * float64(bought) * 100)/100)
+			//223200   
+
+			//exact
+			TotalCostFloat := float64(TotalCost / 100);
+			//2232    
+			
+			
+			//nothing to round, is  for one or two decimal
+			TotalCostString := fmt.Sprintf("%.2f",TotalCostFloat)
+			//"2232.00"
+
+			// no dollar sign, is in template. 		
+			ProductCostString := TotalCostString
+			//"2232.00"	
+			
+			
+
+
+			
+			
+			ProductCostFloatCopy := ProductCostFloat;
+			//232200   //560
+			ProductCostFloatCopy = ProductCostFloatCopy / 100;
+			//2232   //5.60?
+			//exact - adds zeros if needed
+			forCostEach := fmt.Sprintf("%.2f",ProductCostFloatCopy)
+			//"2232.00" - rounds
+
+			//2232 - this is the sum of   - amount time price
+			GrandTotalAccumulator =  GrandTotalAccumulator*100  + (TotalCostFloat * 100)
+			GrandTotalAccumulator = GrandTotalAccumulator / 100;
+			
+			
 
 
 
+
+
+
+
+
+
+			//9007199254740992 (that's 9,007,199,254,740,992 or 2^53) with no guarantees :)
 			//set grand total
 
-			//get tax of total: ie  .5955  (59 cents)
-			GrandTotalAccumulatorWithTax = (((tax * 100) * ((GrandTotalAccumulator * 100))/10000);
-			// ie :  .60
-			//https://yourbasic.org/golang/round-float-2-decimal-places/
-			GrandTotalAccumulator = (math.Ceil(GrandTotalAccumulator*100)/100))
-			//ad tax of all totals
-			GrandTotalAccumulator2 = ((GrandTotalAccumulatorWithTax * 100) + (GrandTotalAccumulator * 100))/100;
-			grandTotalString = strconv.Itoa(GrandTotalAccumulator2);
-			grandTotalString = "$" + grandTotalString;
+			
+			//get tax of total: ie  .5955  (59 cents): $111.60
+			GrandTotalAccumulatorWithTax := float64(((tax * 100) * ((GrandTotalAccumulator * 100))/10000))
+			//111.6
+			
+			//round up two places, ho sales tax is administered
+			GrandTotalAccumulatorWithTax =  (math.Ceil(GrandTotalAccumulatorWithTax*100)/100)
+			
+			
+			//ie :
+			GrandTotalAccumulator2 := float64(((GrandTotalAccumulatorWithTax * 100) + (GrandTotalAccumulator * 100))/100)
+			//2343.6
 
 
+			//add zeros after decimal point when needed
+			GrandTotalString:= fmt.Sprintf("%.2f", GrandTotalAccumulator2)
+			//2343.60
+			//GrandTotalString = "$" + GrandTotalString
+
+			
 			/////////////////////////////////////////////////
 			//this function populates a template2struct variable and appends it to productListForCartTemplate
 			addProduct(ProductIDID, RemoveRecordDivID, GrandTotalStringID, GrandTotalString, BoughtID, bought, ProductCostString, TotalCostID, ProductQuantity, CostID, AmountToBuyID, Condition, Condition2, prodid, ProductQuantity, ProductName, DivID, ProductCatTitle, forCostEach)
