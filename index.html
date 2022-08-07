@@ -698,7 +698,12 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 
 	
 				
-
+      //amount held for subtraction when submit button pressed
+         amountToBePurchased = Number(document.getElementById(amountToPurchaseID).value);
+         if (Number(amountToBePurchased) == 0)
+         {
+            return(-1);
+         }
 				var makeYellow = document.getElementById(mainDiv);
 				makeYellow.style["background-color"] = "yellow";
 				
@@ -715,8 +720,7 @@ function submitChangesOnOrderTemplates(mainDiv, productID, amountPurchasedID, am
 
 				
 				
-				//amount held for subtraction when submit button pressed
-				amountToBePurchased = Number(document.getElementById(amountToPurchaseID).value);
+				
 
 				
 
