@@ -4367,6 +4367,7 @@ function DoesKeywordAlreadyExist( searchword, string)
 		//there are no keywords
 		if(!( storedArray = JSON.parse(sessionStorage.getItem("keywords"))))
 		{
+      alert("shouldnt be here");
 			KeyWordExistsAlreadyFlag = false;
 			//put searchword into sessionstorage
 			sessionStorage.setItem("keywords", JSON.stringify(storedArray2));
@@ -4410,8 +4411,8 @@ function DoesKeywordAlreadyExist( searchword, string)
 
 		if(gflag == "isntin")
 		{
-			
-			storedArray.push(searchword);
+			alert("how many");
+			//storedArray.push(searchword);
 			sessionStorage.clear();	
 			sessionStorage.setItem("keywords", JSON.stringify(storedArray));
 			querystring = ("var=" + searchword + "&");
@@ -4507,6 +4508,7 @@ for(let key of keys) {
 	{
 	
 	  querystring += "var=" + array[i] + "&";
+    alert("array");
 	  
 	}
 
@@ -4648,10 +4650,12 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 				
 
 
+				alert("our rne word");
+        console.log(array);
+          debugger;
+        var val1 = 1; // '["' + array[i] +  '"]';
 				
-				var val1 = '["' + array[i] +  '"]';
-				
-        conosle.log("our new word");
+        console.log("our new word");
         console.log(ourNewWord);
 				//html
 				ourNewWord = ourNewWord.replace(val1 , '');
