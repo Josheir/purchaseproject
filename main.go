@@ -1947,7 +1947,10 @@ func home(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	fmt.Println("this is a test!")
+	//fmt.Println("this is a test!")
+	
+	
+	//fmt.Println("this is a test!3")
 	one := http.NewServeMux()
 	//one.HandleFunc("/", home)
 
@@ -1973,8 +1976,10 @@ func main() {
 
 	fmt.Println("this is a test1!")
 
+	
+	//fmt.Println(serverErr)
+	fmt.Println("this is a test2!")
 	serverErr := http.ListenAndServe(":8080", one)
 	fmt.Println(serverErr)
-	fmt.Println("this is a test2!")
 
 }

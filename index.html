@@ -48,32 +48,35 @@ var var3 ;
 var3 = var1 + var2;
 //
 
-</script>
-    
-      <input   id="button7"  type="button" value="checkout"/>
-      <input   name = "search" type="text" id="search" name="search" placeholder= "apple1" value="apple1"/>
-      <input   id="button6" onclick = "displayFromSearch('0')" type="button" value="Search"/>
-	  <input   id="button8" onclick = "resetCall()" type="button" value="Reset"/>
+//////
 
 
-      <br>
-      <div id = "firstdiv" ></div>
-      <br>
-      <div id ="buttons"></div>
-      <br>
-      <div id ="templateOneHere"> </div>
-     
 
-      
-     
-      
-      <div id = "lastdiv"></div>
-      
-<script>
+function checkForPassword()
+{
+	alert("stay");
+	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
+	
+	if (!isThereACorrectPassword)
+	{
+		window.location.href = "login.html";
+	}
+	return(1);
+}
 
 
-$(function(){
+$(async function(){
 
+const check = await checkForPassword();
+
+//document.getElementById("button6").type = "button"; 
+
+
+alert("hmmm...");
+//if(check == -1)
+//{
+//	window.location.href = "login.html";
+//}	
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -141,6 +144,37 @@ return(1);
 ////////
 //  loadajax();
 });
+
+
+
+
+////////
+
+
+</script>
+
+
+    
+      <input   id="button7"  type="button" value="checkout"/>
+      <input   name = "search" type="text" id="search" name="search" placeholder= "apple1" value="apple1"/>
+      <input   id="button6" type = "button" onclick = "displayFromSearch('0')" type="button" value="Search"/>
+	  <input   id="button8" type = "button" onclick = "resetCall()" type="button" value="Reset"/>
+
+
+      <br>
+      <div id = "firstdiv" ></div>
+      <br>
+      <div id ="buttons"></div>
+      <br>
+      <div id ="templateOneHere"> </div>
+     
+
+      
+     
+      
+      <div id = "lastdiv"></div>
+      
+<script>
 
 
 //var array1 = [];
