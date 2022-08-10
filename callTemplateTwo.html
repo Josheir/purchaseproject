@@ -578,7 +578,7 @@ var url = "http://localhost:8080/cartTemplate";
 
 
 ////////
-
+					
   					var val1 = ""
                     $.ajax({
                     type:'POST',
@@ -588,7 +588,7 @@ var url = "http://localhost:8080/cartTemplate";
                     async:false,
                     success: function (data1) {
 						
-                      
+						debugger;
 						
 					  val1 = data1;
 					  //if isnt some record
@@ -596,15 +596,16 @@ var url = "http://localhost:8080/cartTemplate";
 					  {
 						  
 						  //displays table
-							alert("yes");
+							alert("yes1");
+							document.getElementById('div1').innerHTML  = data1;
 						  //val1 = val1 + data1;
-						  $('#div1').html(data1);
+						  //$('#div1').html(data1);
 					  }
 					  else
 					  {//data1 is the html for cart template
 						val1 = "<br><center><h3>No Products Were Selected Yet!</center><br></h3>";
-                      $('#div1').html(val1);
-					  alert("no");
+						document.getElementById('div1').innerHTML  = val1;
+                     
 					  }
                    
                     }

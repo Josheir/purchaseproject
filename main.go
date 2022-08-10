@@ -74,6 +74,7 @@ type product struct {
 
 //for template two
 type template2Struct struct {
+	OneValue			string
 	CondYellow         int
 	ProductIDID        string
 	RemoveRecordDivID  string
@@ -1101,7 +1102,8 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 			
 			/////////////////////////////////////////////////
 			//this function populates a template2struct variable and appends it to productListForCartTemplate
-			addProduct(ProductIDID, RemoveRecordDivID, GrandTotalStringID, GrandTotalString, BoughtID, bought, ProductCostString, TotalCostID, ProductQuantity, CostID, AmountToBuyID, Condition, Condition2, prodid, ProductQuantity, ProductName, DivID, ProductCatTitle, forCostEach)
+			var OneValue= "exists";
+			addProduct(OneValue ,ProductIDID, RemoveRecordDivID, GrandTotalStringID, GrandTotalString, BoughtID, bought, ProductCostString, TotalCostID, ProductQuantity, CostID, AmountToBuyID, Condition, Condition2, prodid, ProductQuantity, ProductName, DivID, ProductCatTitle, forCostEach)
 
 		}
 
@@ -1122,9 +1124,10 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func addProduct(productidid string, removerecorddivID string, totalID string, total string, boughtid string, bought int, totalcost string, totalcostid string, ProductQuantity int, costid string, amountid string, condition int, condition2 int, prodid int, quant int, name string, div string, cat string, cost string) {
+func addProduct(onevalue string, productidid string, removerecorddivID string, totalID string, total string, boughtid string, bought int, totalcost string, totalcostid string, ProductQuantity int, costid string, amountid string, condition int, condition2 int, prodid int, quant int, name string, div string, cat string, cost string) {
 
 	prod := template2Struct{
+		OneValue: onevalue,
 		ProductIDID:        productidid,
 		RemoveRecordDivID:  removerecorddivID,
 		GrandTotalStringID: totalID,

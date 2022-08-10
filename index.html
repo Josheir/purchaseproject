@@ -54,7 +54,7 @@ var3 = var1 + var2;
 
 function checkForPassword()
 {
-	alert("stay");
+	
 	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
 	
 	if (!isThereACorrectPassword)
@@ -69,10 +69,10 @@ $(async function(){
 
 const check = await checkForPassword();
 
-//document.getElementById("button6").type = "button"; 
+document.getElementById("button6").type = "button"; 
 
 
-alert("hmmm...");
+
 //if(check == -1)
 //{
 //	window.location.href = "login.html";
@@ -157,8 +157,8 @@ return(1);
     
       <input   id="button7"  type="button" value="checkout"/>
       <input   name = "search" type="text" id="search" name="search" placeholder= "apple1" value="apple1"/>
-      <input   id="button6" type = "button" onclick = "displayFromSearch('0')" type="button" value="Search"/>
-	  <input   id="button8" type = "button" onclick = "resetCall()" type="button" value="Reset"/>
+      <input   id="button6" type = "hidden" onclick = "displayFromSearch('0')" type="button" value="Search"/>
+	  <input   id="button8" type = "hidden" onclick = "resetCall()" type="button" value="Reset"/>
 
 
       <br>
@@ -1104,7 +1104,7 @@ function DoesKeywordAlreadyExist( searchword, string)
 		//there are no keywords
 		if(!( storedArray = JSON.parse(sessionStorage.getItem("keywords"))))
 		{
-      alert("shouldnt be here");
+      
 			KeyWordExistsAlreadyFlag = false;
 			//put searchword into sessionstorage
 			sessionStorage.setItem("keywords", JSON.stringify(storedArray2));
@@ -1148,7 +1148,7 @@ function DoesKeywordAlreadyExist( searchword, string)
 
 		if(gflag == "isntin")
 		{
-			alert("how many");
+			
 			//storedArray.push(searchword);
 			sessionStorage.clear();	
 			sessionStorage.setItem("keywords", JSON.stringify(storedArray));
