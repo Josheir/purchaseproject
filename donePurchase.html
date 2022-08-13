@@ -36,6 +36,47 @@
         });
     });
 
+    ////////
+
+function checkForPassword()
+{
+	
+	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
+	
+	//is no password
+	if (!isThereACorrectPassword)
+	{
+	window.location.href = "login.html";
+	}
+	else
+	{
+	document.getElementById("button1").style.visibility = "visible";
+	
+	
+
+}
+	
+}
+
+
+
+//https://stackoverflow.com/questions/51300809/load-html-first-before-javascript
+//https://stackoverflow.com/questions/588040/window-onload-vs-document-onload
+//https://www.skillsugar.com/how-to-use-document-onload-in-javascript
+
+
+window.onload = function()
+{	
+	document.getElementById("button1").style.visibility = "hidden";
+	
+	
+	checkForPassword();
+	
+}
+
+
+    /////////
+
 
         </script>
     </body>
