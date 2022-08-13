@@ -611,167 +611,49 @@ var url = "http://localhost:8080/cartTemplate";
                     }
                 });
 }
-  
-/*  
-function forBuildingHTML(result)
+
+
+
+/////////////
+
+function checkForPassword()
 {
-
-				
-				var item = "";
-				var item1 = "";
-				var ourNewWord = "";
-				item = result.match("\\[.*]");
-				ourNewWord = result.replaceAll(item, '');
-				
-				//var x = typeof(item);
-				item1 = JSON.stringify(item);
-				item1 = item1.slice(5);
-				item1 = item1.substring(0, item1.length - 5);
-				
-
-return [item1, ourNewWord, item];				
-}
-*/
-
-
-  
-
-
-
-/*
-  /////////
-
-  //returns querystring
-//thi function checks if a keyword is already used and returns the queystring
-function DoesKeywordAlreadyExist(areThereUrls, val1, string, flag2)
-{//NO URLS
-
-	//this flag means that this is a display that returned from template2, so is a special condition
-	if(flag2 == 1)
+	
+	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
+	
+	//is no password
+	if (!isThereACorrectPassword)
 	{
-		querystring = ("var=" + val1 + "&");
-		//cause a reaction by lieing about this
-		gflag = "isntin";
-		return [gflag, querystring];
-
+	window.location.href = "login.html";
 	}
 	else
 	{
-	var isfirst = false;
-	var querystring = "";
-	var counter = 0;
-		var gflag = "isntin";
-		
-		
-
-
-		//if no keywords than set search word as keyword. This is a list of keywords 
-		//so that the searhwords cant be used more than once 
-		var storedArray2 = [val1];
-		var storedArray = [];
-		//puts first variable into sessionStorage
-		if(!( storedArray = JSON.parse(sessionStorage.getItem("keywords"))))
-		{
-			isfirst = true
-			sessionStorage.setItem("keywords", JSON.stringify(storedArray2));
-			 = JSON.parse(sessionStorage.getItem("keywords"));
-			storedArray
-		}else
-		{
-			storedArray = JSON.parse(sessionStorage.getItem("keywords"));
-			//sessionStorage.setItem("keywords", JSON.stringify(storedArray));
-		
-		}
-
-		//check for duplicate keywords, if duplicate leave and do nothing
-		for (i = 0; i < storedArray.length; i++) {
-
-			//if(storedArray)
-			//{
-			if (storedArray[i] == val1 && isfirst == false)
-			{
-				gflag = "isin"
-				break;
-			}
-			
-		}
-		
-
-		//add a new keyword to session
-		if (gflag == "isntin")
-		{
-		
-		
-			if(isfirst == false)
-			{
-			storedArray.push(val1);	
-			sessionStorage.setItem("keywords", JSON.stringify(storedArray));
-			}
-
-		//////////
-		
-		if (areThereUrls)
-		{
-			querystring = ("var=" + val1 + "&");
-			//!!!!!!!!!!!!!!!!!!!!
-			//querystring += string;
-		}
-		else
-		{
-
-			querystring = ("var=" + val1 + "&");
-			//querystring += string;
-		}
-
-		////////////
-
-
-
-		
-		//querystring += string;
-		}
-		else if(isfirst == true)
-		{
-			querystring = ("var=" + val1 + "&");
-		}
+	document.getElementById("button1").style.visibility = "visible";
 	
-	
-	return [gflag, querystring];
-	 }
-	}
 
-  /////////
-  */
-
-  /*
-function forBuildingHTML(result)
-{
-
-				
-				var item = "";
-				var item1 = "";
-				var ourNewWord = "";
-				item = result.match("\\[.*]");
-				ourNewWord = result.replaceAll(item, '');
-				
-				var x = typeof(item);
-				item1 = JSON.stringify(item);
-				item1 = item1.slice(5);
-				item1 = item1.substring(0, item1.length - 5);
-				
-
-return [item1, ourNewWord, item];				
 }
-*/
+	
+}
 
-/*
-document.addEventListener('keydown', (e) => {
-    e = e || window.event;
-    if(e.keyCode == 116){
-        e.preventDefault();
-    }
-});
-*/
+
+
+//https://stackoverflow.com/questions/51300809/load-html-first-before-javascript
+//https://stackoverflow.com/questions/588040/window-onload-vs-document-onload
+//https://www.skillsugar.com/how-to-use-document-onload-in-javascript
+
+
+window.onload = function()
+{	
+	document.getElementById("button1").style.visibility = "hidden";
+	
+	checkForPassword();
+	
+}
+
+
+
+/////////////
+  
 
   </script>
 
