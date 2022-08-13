@@ -35,8 +35,21 @@
 
   <script>
 
+window.sessionStorage
 
-	window.sessionStorage
+
+
+
+	
+	
+	
+
+	////
+
+
+
+
+	////
 
 	
 var MAXRECORDS = 4;
@@ -52,98 +65,9 @@ var3 = var1 + var2;
 
 
 
-function checkForPassword()
-{
-	
-	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
-	
-	if (!isThereACorrectPassword)
-	{
-		window.location.href = "login.html";
-	}
-	return(1);
-}
-
-
-$(async function(){
-
-const check = await checkForPassword();
-
-document.getElementById("button6").type = "button"; 
 
 
 
-//if(check == -1)
-//{
-//	window.location.href = "login.html";
-//}	
-
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-//fix this, here, done
-var searchterm = urlParams.get('displayOrdersTemplateAgain');
-
-
-/////////
-let keys = Object.keys(sessionStorage);
-
-for(let key of keys) {
-
-		
-		
-			
-		//var keyAsInt = Number(key);
-		
-
-		let value = false;
-		if (parseInt(key, 10))
-		{
-			
-			value = true;
-		}
-
-
-		if(key != "keywords" && key != "sessionUserID" && value == false) 
-        {
-			
-			
-		
-			sessionStorage.removeItem(key);	
-        }
-		
-		
-	}
-	
-	sessionStorage.setItem("numberOfRecordsChosen", "0");
-
-
-
-
-////////////
-
-//erase keywords
-
-
-//erase productID
-
-
-
-
-if (searchterm == "1")
-{
-	
-	displayOrdersTemplateAgain();
-	//displayFromSearch('0');
-}
-
-return(1);
-////////
-
-//loadData();
-
-////////
-//  loadajax();
-});
 
 
 
@@ -154,11 +78,12 @@ return(1);
 </script>
 
 
-    
-      <input   id="button7"  type="button" value="checkout"/>
-      <input   name = "search" type="text" id="search" name="search" placeholder= "apple1" value="apple1"/>
-      <input   id="button6" type = "hidden" onclick = "displayFromSearch('0')" type="button" value="Search"/>
-	  <input   id="button8" type = "hidden" onclick = "resetCall()" type="button" value="Reset"/>
+     <div id = "wholeGui">
+      <input   id="button7"  type="button" value="checkout" />
+	  
+      <input    name = "search" type="text" id="search" name="search" placeholder= "apple1" value="apple1"/>
+      <input   id="button6" type = "button" onclick = "displayFromSearch('0')" value="Search" visibility ="hidden"/>
+	  <input   id="button8" type = "button" onclick = "resetCall()" type="button" value="Reset"/>
 
 
       <br>
@@ -173,7 +98,7 @@ return(1);
      
       
       <div id = "lastdiv"></div>
-      
+	</div>
 <script>
 
 
@@ -1389,7 +1314,7 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 
 				alert("our rne word");
         console.log(array);
-          debugger;
+          //debugger;
         var val1 = 1; // '["' + array[i] +  '"]';
 				
         console.log("our new word");
@@ -1412,6 +1337,127 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 
 };
 
+
+//////////////
+
+function checkForPassword()
+{
+	
+	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
+	
+	//is no password
+	if (!isThereACorrectPassword)
+	{
+	window.location.href = "login.html";
+	}
+	else
+	{
+	document.getElementById("button7").style.visibility = "visible";
+	document.getElementById("search").style.visibility = "visible";
+	document.getElementById("button6").style.visibility = "visible";
+	document.getElementById("button8").style.visibility = "visible";
+	
+
+}
+	
+}
+
+
+
+//https://stackoverflow.com/questions/51300809/load-html-first-before-javascript
+//https://stackoverflow.com/questions/588040/window-onload-vs-document-onload
+//https://www.skillsugar.com/how-to-use-document-onload-in-javascript
+
+
+window.onload = function()
+{	
+	document.getElementById("search").style.visibility = "hidden";
+	document.getElementById("button7").style.visibility = "hidden";
+	document.getElementById("button8").style.visibility = "hidden";
+	document.getElementById("button6").style.visibility = "hidden";
+	
+	checkForPassword();
+	
+}
+/////////////
+
+
+$(function(){
+
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+//fix this, here, done
+var searchterm = urlParams.get('displayOrdersTemplateAgain');
+
+
+/////////
+let keys = Object.keys(sessionStorage);
+
+for(let key of keys) {
+
+
+
+	
+//var keyAsInt = Number(key);
+
+
+let value = false;
+if (parseInt(key, 10))
+{
+	
+	value = true;
+}
+
+
+if(key != "keywords" && key != "sessionUserID" && value == false) 
+{
+	
+	
+
+	sessionStorage.removeItem(key);	
+}
+
+
+}
+
+sessionStorage.setItem("numberOfRecordsChosen", "0");
+
+
+
+
+////////////
+
+//erase keywords
+
+
+//erase productID
+
+
+
+
+if (searchterm == "1")
+{
+
+displayOrdersTemplateAgain();
+//displayFromSearch('0');
+}
+
+//let bt1 = document.getElementById('button7').value;
+	//make visible
+	//bt1.disabled =false;
+
+	//button7.disabled = false;
+	//document.getElementById("button7").style.visibility = "visible";
+
+return(1);
+////////
+
+//loadData();
+
+////////
+//  loadajax();
+});
 
 
 </script>
