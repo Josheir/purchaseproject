@@ -51,7 +51,7 @@ function restoreOriginalOrder()
 	//}
 
 	
-	window.location.href = "index.html?displayOrdersTemplateAgain=1";
+	//window.location.href = "index.html?displayOrdersTemplateAgain=1";
 	return(1);
 
 }
@@ -597,7 +597,13 @@ var url = "http://localhost:8080/cartTemplate";
 						  
 						  //displays table
 							alert("yes1");
-							document.getElementById('div1').innerHTML  = data1;
+							alert(data1);
+							//displays on checkout nd then goes to login
+							//debugger;
+							document.getElementById('div1').innerHTML  = val1;
+							//debugger;
+							console.log("variables");
+							console.log(val1);
 						  //val1 = val1 + data1;
 						  //$('#div1').html(data1);
 					  }
@@ -605,6 +611,7 @@ var url = "http://localhost:8080/cartTemplate";
 					  {//data1 is the html for cart template
 						val1 = "<br><center><h3>No Products Were Selected Yet!</center><br></h3>";
 						document.getElementById('div1').innerHTML  = val1;
+						console.log("test");
                      
 					  }
                    
@@ -624,7 +631,8 @@ function checkForPassword()
 	//is no password
 	if (!isThereACorrectPassword)
 	{
-	window.location.href = "login.html";
+		alert("is here, odd.");
+	//window.location.href = "login.html";
 	}
 	else
 	{
@@ -644,7 +652,7 @@ function checkForPassword()
 
 window.onload = function()
 {	
-	document.getElementById("button1").style.visibility = "hidden";
+	//document.getElementById("button1").style.visibility = "hidden";
 	
 	checkForPassword();
 	

@@ -26,6 +26,8 @@
         $('#button1').click(function () {
         // set up session level variables leaving sessionUserID and numberofrecordschosen
         var sessID = sessionStorage.getItem("sessionUserID");
+        alert("b");
+        alert(sessID);
         sessionStorage.clear();
         sessionStorage.setItem("sessionUserID", sessID);
         sessionStorage.setItem("numberOfRecordsChosen", "0");

@@ -75,8 +75,10 @@ var userid = "";
                   
                   {
                     
-                    sessionStorage.setItem("sessionUserID", result[0].UserID);
-                    
+                    //sessionStorage.setItem("sessionUserID", result[0].UserID);
+                    sessionStorage.setItem("sessionUserID", 1);
+                    let test11 = sessionStorage.getItem("sessionUserID");
+                    alert(test11);
                     sessionStorage.setItem("numberOfRecordsChosen", "0");
 
                  

@@ -1343,6 +1343,11 @@ func displayOrdersTemplateAgain(w http.ResponseWriter, r *http.Request) {
 
 	var savedProductIDs []int
 
+	if  len(keyword) == 0  {
+
+		return 
+	}
+
 	globKeyword := keyword[0]
 
 	//string1 = ""

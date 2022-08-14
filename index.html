@@ -176,6 +176,8 @@ $(document).ready(function () {
 			var val1 = sessionStorage.getItem("sessionUserID");
 			
 			sessionStorage.clear();
+			alert("c");
+			alert(val1);
 			sessionStorage.setItem("sessionUserID", val1);
 			
 			window.location.assign(urlValue);
@@ -601,7 +603,7 @@ else
       $('#button7').click(function () {
               
 
-             window.location.href = "callTemplateTwo.html";
+             window.location.href = "callTemplateTwo.html?fromCallTemplate = 1&";
 
               
               
@@ -1025,7 +1027,7 @@ function DoesKeywordAlreadyExist( searchword, string)
 		var storedArray2 = [searchword];
 		var storedArray = [];
 		
-		
+		//debugger;
 		//there are no keywords
 		if(!( storedArray = JSON.parse(sessionStorage.getItem("keywords"))))
 		{
@@ -1075,8 +1077,16 @@ function DoesKeywordAlreadyExist( searchword, string)
 		{
 			
 			//storedArray.push(searchword);
+			let id = sessionStorage.getItem("sessionUserID");
 			sessionStorage.clear();	
+			alert("is clear called1");
+			
+			
 			sessionStorage.setItem("keywords", JSON.stringify(storedArray));
+			sessionStorage.setItem("sessionUserID", id)
+			
+			
+
 			querystring = ("var=" + searchword + "&");
 		}
 		
@@ -1337,9 +1347,82 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 
 };
 
+////////
 
+function test(){
+
+alert("test here!");
+term = "removethis";
+searchterm = "1";
+/////////
+let keys = Object.keys(sessionStorage);
+
+for(let key of keys) {
+
+
+
+	
+//var keyAsInt = Number(key);
+
+
+let value = false;
+if (parseInt(key, 10))
+{
+	
+	value = true;
+}
+
+
+if(key != "keywords" && key != "sessionUserID" && value == false) 
+{
+	
+	
+
+	sessionStorage.removeItem(key);	
+}
+
+
+}
+
+sessionStorage.setItem("numberOfRecordsChosen", "0");
+
+
+
+
+////////////
+
+//erase keywords
+
+
+//erase productID
+
+
+
+
+if (searchterm == "1")
+{
+
+displayOrdersTemplateAgain();
+//displayFromSearch('0');
+}
+
+//let bt1 = document.getElementById('button7').value;
+	//make visible
+	//bt1.disabled =false;
+
+	//button7.disabled = false;
+	//document.getElementById("button7").style.visibility = "visible";
+
+return(1);
+////////
+
+//loadData();
+
+////////
+//  loadajax();
+};
 //////////////
-
+//this is for no login but is also if the page is refreshed which 
 function checkForPassword()
 {
 	
@@ -1348,6 +1431,7 @@ function checkForPassword()
 	//is no password
 	if (!isThereACorrectPassword)
 	{
+	//alert("is here the password");
 	window.location.href = "login.html";
 	}
 	else
@@ -1356,10 +1440,10 @@ function checkForPassword()
 	document.getElementById("search").style.visibility = "visible";
 	document.getElementById("button6").style.visibility = "visible";
 	document.getElementById("button8").style.visibility = "visible";
-	
-
-}
-	
+	alert("wasnt here");
+	//let term = "washere"
+	test();
+	}
 }
 
 
@@ -1382,8 +1466,9 @@ window.onload = function()
 /////////////
 
 
-$(function(){
+$(function (){
 
+alert("test here1!");
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);

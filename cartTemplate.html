@@ -164,36 +164,44 @@
 
 
 
-
+//cart dispalys fine and refreshes fine, check no password
 //
 function checkPassword()
 {
-  var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
+  let isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
 	//alert("pass");
   //alert(isThereACorrectPassword);
 	//is no password
+  //alert("here5");
+  //alert(isThereACorrectPassword);
 	if (!isThereACorrectPassword)
 	{
+    //alert("this is wrong");
+    
 	window.location.href = "login.html";
  //alert("pass");
 	}
 	else
   {
-    alert("made it here");
+    window.location.href  = "index.html"
   
   }
   
 }
 
 
-window.onload = function()
+//fromCallTemplate
+
+//window.onload = function()
+
+$(function()
 {
  
   document.getElementById("wholeTable").style.display = 'none';
   
   checkPassword();
   
-}
+})
 
 
       </script>
@@ -201,30 +209,6 @@ window.onload = function()
       <script>
 
 
-
-
-function aFunc(vari)
-{
-  if(vari == "{{.AmountToBuyID}}")
-  {
-    alert("no template");
-  }
-  else
-  {
-    alert("template");
-    document.getElementById("wholeTable").style.display = 'block';
-  }
-  alert(vari);
-return(1);
-}
-  
-
-//function changeColorToBlack(AmountToBuyID)
-//{
-//  document.getElementById(AmountToBuyID).style.color = "black";
-//  document.getElementById(AmountToBuyID).value = "";
-// 
-//}
 
 function hideRow(rowId)
 {
@@ -435,7 +419,8 @@ function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
       
       
       var sessID1 = sessionStorage.getItem("sessionUserID");
-      
+      alert("a");
+      alert(sessID1);
       sessionStorage.clear();
       sessionStorage.setItem("sessionUserID", sessID1);
       sessionStorage.setItem("numberOfRecordsChosen", "0");
