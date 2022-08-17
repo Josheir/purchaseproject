@@ -55,382 +55,45 @@ function restoreOriginalOrder()
 	return(1);
 
 }
+
+/////////
+
+function checkForPassword()
+{
+	
+	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
+	
+	//is no password
+	if (!isThereACorrectPassword)
+	{
+	
+	window.location.href = "login.html";
+	}
+	else
+	{
+	document.getElementById("button1").style.visibility = "visible";
+	
+
+}
+	
+}
+
+
+/////////
+
 //loads ajax on page start
 $(function(){
 
 ////////
+document.getElementById("button1").style.visibility = "hidden";
+	
+	checkForPassword();
 
 loadData();
 
 ////////
 //  loadajax();
 });
-
-/*
-      //pressed return to order near checkout to displayOrdersTemplateAgain
-        function displayOrdersTemplateAgain(){
-
-			
-        var querystring = "";
-        
-        let keys = Object.keys(sessionStorage);
-
-      
-        var counter = -1;
-        var array = [];
-        for(let key of keys) {
-
-
-          if(key == "keywords")
-          {
-            counter++;
-            
-           
-            var item = sessionStorage.getItem(key);
-            
-            //item = item.slice(2);
-			      //item = item.substring(0, item.length - 2);
-            array = JSON.parse(item);
-           
-            
-            
-
-            for(var i = 0; i<array.length ; i++)
-            {
-            
-              querystring += "var=" + array[i] + "&";
-            }
-
-            
-            
-
-          }
-          else if(key == "sessionUserID")
-          {
-			var item = sessionStorage.getItem(key);
-			querystring += "uid=" + item + "&"
-          }
-          else
-          {
-            var item = sessionStorage.getItem(key);
-            querystring += "id=" + key + "&amtTryingToPurchase" + item + "&";
-          } 
-
-        }
-
-        querystring += "numofkeywords=" + counter+1 + "&";
-
-        var url = "http://localhost:8080/displayOrdersTemplateAgain";
-        //var queryString = "user_name=jerry&password=666666&user_name=marry&password=11111";
-
-
-
-                    $.ajax({
-                    type:"GET",
-                    url:url,
-                    data:querystring,
-                    async:false,
-                    success: function (result) {
-
-                      /
-                      
-
-
-                    var retVals = [];
-                    
-                    retVals = forBuildingHTML(result);
-                    
-                    //final keyword
-                    var item1 = retVals[0];  
-                    //html with keyword removed
-                    var ourNewWord = retVals[1]; 
-                    var item = retVals[2];
-                    
-                    
-                    
-                    
-                    
-                      document.getElementById('removeButton').innerHTML   = "";
-
-                      //hack : i.e  ["apple3"] dispalyed above yellow when these two lines are not altered
-                      //var val1 = '["' + array[counter] +  '"]';
-
-                      //ourNewWord = ourNewWord.replaceAll(val1 , '');
-
-                      //retVals = forBuildingHTML(ourNewWord);
-
-                      //document.getElementById('removeMe').innerHTML   = retVals[1];
-                      
-                      
-
-
-                      for(var i = 0 ; i < array.length ; i++)
-                      {
-                        ////
-
-                        //hack : i.e  ["apple3"] dispalyed above yellow when these four lines are not altered
-                        var val1 = '["' + array[i] +  '"]';
-
-                        ourNewWord = ourNewWord.replace(val1 , '');
-
-                        retVals = forBuildingHTML(ourNewWord);
-
-                        document.getElementById('removeMe').innerHTML   = retVals[1];
-
-
-                        /////
-
-
-                        var result1a = "<a href='#" + array[i] + "'>" + array[i] + "</a><br>";
-                        document.getElementById('linksHere').innerHTML   += result1a;
-                      }
-
-                      document.getElementById('buttonHere').innerHTML   =
-                       " <input   id='button'  type='button' value='checkout'/> " +
-                       "<input   name = 'search' type='text' id='search' name='search' placeholder= 'apple1' value='apple2'/>" +
-                       "<input   id='button6' onclick = 'displayFromSearch(\"0\")' type='button' value='Search'/> ";
-
-
-                      
-
-                   
-                    }
-                });
-
-
-
-
-      
-    }
-	*/
-
-    ///////////////
-    //function displayFromSearch(flag)
-    //{
-    
-    //}
-
-    ///////////////////////////
-
-
-    //////////////////
-		/*
-      	//flag2 set with a 1 means came from template2 and is returning to old keyword
-		function displayFromSearch( flag2)
-		{
-
-			
-		
-		var string = ""
-        let keys = Object.keys(sessionStorage);
-
-		
-		for(let key of keys) {
-
-		
-        
-        var wasKeys = "no";
-
-     
-        
-		
-		//if key is a number
-	
-		var keyAsInt =  parseInt(key); 
-		
-		//console.log(keyAsInt);
-		if (key != "sessionUserID" && key != "keywords" && key  != "alreadyZero" && key !=  "numberOfRecordsChosen") 
-		{
-			
-			var item = sessionStorage.getItem(key);
-			
-       		string =  string + "id=" + key + "&amtTryingToPurchase" + item + "&";
-  
-       		wasKeys = "yes";
-			   
-		}
-		
-		else if(key == "sessionUserID")
-        {
-			
-			var item = sessionStorage.getItem(key);
-			string = string + "uid="  + item + "&";
-        }
-
- 	// keyword checked below after ajax
-	}
-
-
-	
-
-
-
-			
-
-		
-		/*else if(key == "searchterms")
-        {
-			var item = sessionStorage.getItem(key);
-
-			item = item.slice(2);
-			item = item.substr(0, item.length - 2);
-			
-			
-			
-
-			
-			string = string + "var=" + item + "&";
-			
-			continue;
-		}*/
-
-
-	
-		/*
-
-			/////////////
-
-			
-		//GLOBWORD :   ["APPLE"] is sent as result from display1 to index.html
-		//sent as keywords tried to make this just one element...uses K....
-		//these are held in store   and globcounter saved is counter of just one 
-	  var val1 = document.getElementById("search").value;
-
-	  //check if this keyword has any records, already have these records needs to be consideree
-	  //return yes or no to include  this in keyword list
-	  
-	  if(val1 == "" )
-	  {
-			return(1);
-	  }
-
-
-	  
-	  //these are for keywords
-	  //THERE ARE URLS ALREADY
-	  var val2 = [];
-      if(wasKeys == "yes"){
-
-		val2 = DoesKeywordAlreadyExist(true, val1, string, flag2);
-	  }
-	  //THERE ARNT URLS NOW 
-	  else
-      {
-		val2 = DoesKeywordAlreadyExist(false, val1, string, flag2);
-
-	  }
-	  
-	  
-		var gflag = val2[0];
-		var querystring = val2[1] + string;
-
-		//flag2 is one if coming from template2
-		//otherwise 0
-		//ft : from template
-		//querystring = querystring + "ft=" + flag2 + "&";  
-		
-		
-
-	
-		
-	///////////
-
-			
-
-
-	  ////////////
-	
-
-        
-        
-        
-       
-	   
-	   //querystring = "var=apple&var=apple1";
-       
-	 
-	 	  $.ajax({
-              url: "http://localhost:8080/display",
-              type: 'POST',
-              dataType: 'html',
-              contentType: "application/x-www-form-urlencoded",
-              crossDomain: true,
-              data: querystring,
-              success: function (result) {
-                var result1 = "";
-				let keys = Object.keys(sessionStorage);
-
-				//check if this link/keyword is first time and only useage
-				var  gkeywordArray = "";
-				
-				
-				//(result)
-
-				var retVals = [];
-				//item1, ourNewWord = forBuildingHTML(result);
-				retVals = forBuildingHTML(result);
-				
-				var item1 = retVals[0];  
-				var ourNewWord = retVals[1]; 
-				var item = retVals[2];
-				
-				
-				
-				
-
-			
-			for(let key of keys)
-			{
-				
-			
-			
-			//https://stackoverflow.com/questions/38083241/sessionstorage-into-array-and-print-all-values-in-the-array
-			//saved array of different keywords, like :  apple1, apple6, apple7
-			if (key == "keywords")
-			{
-				
-				
-
-
-			/////////this is the first item of this name so it is displayed one time for link above records
-			if (gflag == "isntin" && item != "[]" )
-			{
-				
-				result1 = "<a href='#" + item1 + "'>" + item1 + "</a><br>";
-			}
-			
-
-			}
-
-			}
-
-
-				
-				
-				
-
-
-
-
-      
-
-                document.getElementById('linksHere').innerHTML   += result1;
-
-                //web page rather for display records, this:
-                document.getElementById('buttonHere').innerHTML   += ourNewWord;
-                          
-                //$("#buttonHere").append(ourNewWord);
-                              
-             
-              
-                }
-         
-      });
-	
-
-		};
-
-		*/
 
 
     //////////////////
@@ -623,25 +286,6 @@ var url = "http://localhost:8080/cartTemplate";
 
 /////////////
 
-function checkForPassword()
-{
-	
-	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
-	
-	//is no password
-	if (!isThereACorrectPassword)
-	{
-		alert("is here, odd.");
-	//window.location.href = "login.html";
-	}
-	else
-	{
-	document.getElementById("button1").style.visibility = "visible";
-	
-
-}
-	
-}
 
 
 
@@ -652,9 +296,7 @@ function checkForPassword()
 
 window.onload = function()
 {	
-	//document.getElementById("button1").style.visibility = "hidden";
 	
-	checkForPassword();
 	
 }
 

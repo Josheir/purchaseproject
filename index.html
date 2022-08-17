@@ -37,21 +37,6 @@
 
 window.sessionStorage
 
-
-
-
-	
-	
-	
-
-	////
-
-
-
-
-	////
-
-	
 var MAXRECORDS = 4;
 const MAXKEYWORDS = 4;
 
@@ -61,30 +46,19 @@ var var3 ;
 var3 = var1 + var2;
 //
 
-//////
 
-
-
-
-
-
-
-
-
-
-////////
 
 
 </script>
 
 
      <div id = "wholeGui">
-      <input   id="button7"  type="button" value="checkout" />
+      <!--<input   id="button7"  type="button" value="checkout" />
 	  
       <input    name = "search" type="text" id="search" name="search" placeholder= "apple1" value="apple1"/>
-      <input   id="button6" type = "button" onclick = "displayFromSearch('0')" value="Search" visibility ="hidden"/>
-	  <input   id="button8" type = "button" onclick = "resetCall()" type="button" value="Reset"/>
-
+      //<input   id="button6" type = "button" onclick = "displayFromSearch('0')" value="Search" />
+	  //<input   id="button8" type = "button" onclick = "resetCall()" type="button" value="Reset"/>
+	  -->
 
       <br>
       <div id = "firstdiv" ></div>
@@ -102,54 +76,7 @@ var3 = var1 + var2;
 <script>
 
 
-//var array1 = [];
-//function insert(pid, quantLeft) {
-//    array1.push({
-//        pid: pid,
-//        quant: quant,
-//       
-//    });        
-//}
 
-
-
-
-
-
-
-/*
-$(document).ready(function () {
-      $('#button3').click(function () {
-
-
-        
-  //https://stackoverflow.com/questions/8951810/how-to-parse-json-data-with-jquery-javascript
-  // https://stackoverflow.com/questions/5061310/jquery-returning-parsererror-for-ajax-request
-    
-        //example
-       $.ajax({
-              url: 'http://localhost:8080/getMessages',
-              type: 'POST',
-              dataType: 'json',
-              contentType: "application/json",
-              //data: { name: "John", age: 30, city: "New York" },
-              data:{post_data: cars}, //JSON.stringify({ "name": name, "city": city }),
-              crossDomain: true,
-             
-            success: function (data1) {
-             
-              console.log(data1[2].Age);
-              
-              
-              
-              }
-              });
-          
-         });
-
-    });
-
-*/
 	
 	
 		
@@ -193,13 +120,6 @@ $(document).ready(function () {
 		//pushed search (button 6) display1
 		function displayFromSearch( )
 		{
-
-
-			
-			let a = 1 / 3;
-console.log("test");
-console.log(a);
-
 
 			//keeeps track of keywords displaying, only so many allowed
 			let amt1 = sessionStorage.getItem("amtOfKeywords");
@@ -292,46 +212,6 @@ console.log(a);
 		{
 
 			
-			
-			
-			///////////////////
-
-			/*
-			//var item = sessionStorage.getItem(key);
-
-
-			//cehck for duplicates
-			productIDArray = JSON.parse(sessionStorage.getItem(key));
-
-			
-			var counter = 0;
-			if(productIDArray)
-			{
-			for(var i = 0; i < productIDArray.length ; i++)
-			{
-			if (productIDArray[i] == key)
-			{
-				counter = counter + 1;
-				
-				
-				if(counter > 1)
-				{
-					continue;
-				}
-			}
-
-
-			}
-
-			}
-
-
-			*/
-
-
-
-			////////////////////
-
 
 			
 			var item = sessionStorage.getItem(key);
@@ -383,53 +263,6 @@ console.log(a);
 	  }
 
 	  
-
-		//cehck for duplicates if so returns out
-		//storedArray = JSON.parse(sessionStorage.getItem("keywords"));
-
-		
-		
-	  	
-		
-		
-		/*now in doeskeywordalreadyexist
-		if(storedArray)
-		{
-		for(var i = 0; i < storedArray.length ; i++)
-		{
-		if (storedArray[i] == searchWord)
-		{
-			
-			
-			
-			return(-1);
-		}
-		
-		
-		}
-		
-	}*/
-
-	//////////////
-
-
-
-
-
-
-
-
-
-	///////////////
-
-
-
-
-
-
-
-////////
-
 
 //storedarray has only the relevant keywords
 
@@ -1239,29 +1072,11 @@ for(let key of keys) {
 //no id quant
 if (gflag1 == 0)
 {
-	alert("Alert : there are no products in session storage...");
+	//ALERT
+	//alert("Alert : there are no products in session storage...");
 	//return(1);
 }
-//if (gflag1 == 4)
-//{
-//	
-//	return(1);
-//}
 
-
-
-
-
-
-
-// 8237 characters tested:
-
-/*
-querystring = "var=" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "&"
-+ "var=" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "aaaaaaaaaa" + "bbbbbbbbbb" + "&"
-*/
-
-/////////
 
 
 
@@ -1351,10 +1166,8 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 
 function test(){
 
-alert("test here!");
-term = "removethis";
-searchterm = "1";
-/////////
+//alert("test here!");
+
 let keys = Object.keys(sessionStorage);
 
 for(let key of keys) {
@@ -1388,41 +1201,19 @@ sessionStorage.setItem("numberOfRecordsChosen", "0");
 
 
 
-
-////////////
-
-//erase keywords
-
-
-//erase productID
-
-
-
-
-if (searchterm == "1")
-{
-
 displayOrdersTemplateAgain();
-//displayFromSearch('0');
-}
 
-//let bt1 = document.getElementById('button7').value;
-	//make visible
-	//bt1.disabled =false;
-
-	//button7.disabled = false;
-	//document.getElementById("button7").style.visibility = "visible";
+	//is here and still flashes on redirect to login
+	document.getElementById("button7").style.visibility = "visible";
+	document.getElementById("search").style.visibility = "visible";
+	document.getElementById("button6").style.visibility = "visible";
+	document.getElementById("button8").style.visibility = "visible";
 
 return(1);
-////////
 
-//loadData();
-
-////////
-//  loadajax();
 };
-//////////////
-//this is for no login but is also if the page is refreshed which 
+
+////////////// 
 function checkForPassword()
 {
 	
@@ -1434,16 +1225,14 @@ function checkForPassword()
 	//alert("is here the password");
 	window.location.href = "login.html";
 	}
-	else
-	{
-	document.getElementById("button7").style.visibility = "visible";
-	document.getElementById("search").style.visibility = "visible";
-	document.getElementById("button6").style.visibility = "visible";
-	document.getElementById("button8").style.visibility = "visible";
-	alert("wasnt here");
-	//let term = "washere"
+	
+	//const button = document.createElement('button');
+	//button.innerText = 'Can you click me?';
+
 	test();
-	}
+
+	
+	
 }
 
 
@@ -1452,15 +1241,14 @@ function checkForPassword()
 //https://stackoverflow.com/questions/588040/window-onload-vs-document-onload
 //https://www.skillsugar.com/how-to-use-document-onload-in-javascript
 
-
-window.onload = function()
-{	
-	document.getElementById("search").style.visibility = "hidden";
+document.getElementById("search").style.visibility = "hidden";
 	document.getElementById("button7").style.visibility = "hidden";
 	document.getElementById("button8").style.visibility = "hidden";
 	document.getElementById("button6").style.visibility = "hidden";
 	
 	checkForPassword();
+window.onload = function()
+{	
 	
 }
 /////////////
@@ -1468,82 +1256,11 @@ window.onload = function()
 
 $(function (){
 
-alert("test here1!");
-
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-//fix this, here, done
-var searchterm = urlParams.get('displayOrdersTemplateAgain');
-
-
-/////////
-let keys = Object.keys(sessionStorage);
-
-for(let key of keys) {
-
-
-
 	
-//var keyAsInt = Number(key);
-
-
-let value = false;
-if (parseInt(key, 10))
-{
-	
-	value = true;
-}
-
-
-if(key != "keywords" && key != "sessionUserID" && value == false) 
-{
-	
-	
-
-	sessionStorage.removeItem(key);	
-}
-
-
-}
-
-sessionStorage.setItem("numberOfRecordsChosen", "0");
-
-
-
-
-////////////
-
-//erase keywords
-
-
-//erase productID
-
-
-
-
-if (searchterm == "1")
-{
-
-displayOrdersTemplateAgain();
-//displayFromSearch('0');
-}
-
-//let bt1 = document.getElementById('button7').value;
-	//make visible
-	//bt1.disabled =false;
-
-	//button7.disabled = false;
-	//document.getElementById("button7").style.visibility = "visible";
-
-return(1);
-////////
-
-//loadData();
-
-////////
-//  loadajax();
 });
 
+
+//any good code was here?
 
 </script>
 
