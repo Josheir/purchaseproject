@@ -26,59 +26,27 @@
 
     window.sessionStorage
 
-    /////
-    function checkForPassword()
+
+////
+function checkForPassword()
 {
-	
 	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
 	
 	//is no password
 	if (!isThereACorrectPassword)
 	{
-	//alert("is here the password");
-	window.location.href = "login.html";
+		window.location.href = "login.html";
 	}
 	
-	//const button = document.createElement('button');
-	//button.innerText = 'Can you click me?';
-
-	test();
-
-	
-	
 }
+////
 
-
-
-//https://stackoverflow.com/questions/51300809/load-html-first-before-javascript
-//https://stackoverflow.com/questions/588040/window-onload-vs-document-onload
-//https://www.skillsugar.com/how-to-use-document-onload-in-javascript
-
-	//document.getElementById("search").style.visibility = "hidden";
-	//document.getElementById("button7").style.visibility = "hidden";
-	//document.getElementById("button8").style.visibility = "hidden";
-	//document.getElementById("button6").style.visibility = "hidden";
 	
 	checkForPassword();
 
-
-    /////
-
-/*
-    //called when address typed in 
-    $(async function(){
+/////
 
 
-     
-      
-      
-      //alert("doesValueExist2");
-    
-      var ret = await callHideTable();
-
-
-});
-*/
 
   </script>
 

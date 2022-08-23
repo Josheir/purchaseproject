@@ -46,6 +46,240 @@ var var3 ;
 var3 = var1 + var2;
 //
 
+
+////
+
+
+
+//pressed return to purchase from template2
+function displayOrdersTemplateAgain(){
+
+//debugger;
+var querystring = "";
+var counter = -1;
+var array = [];
+var gflag1 = 0;
+//var gcounter1 = 0;
+let keys = Object.keys(sessionStorage);
+
+for(let key of keys) {
+
+//	
+//	
+
+if(key == "keywords")
+{
+counter++;
+
+
+let item = sessionStorage.getItem(key);
+
+
+array = JSON.parse(item);
+//console.log(array);
+
+//one iteration on fresh array
+for(var i = 0; i<array.length ; i++)
+{
+
+  querystring += "var=" + array[i] + "&";
+alert("array");
+  
+}
+
+}
+
+else if(key == "sessionUserID")
+{
+	var item = sessionStorage.getItem(key);
+	querystring += "uid=" + item + "&";
+}
+else if(key == "numberOfRecordsChosen")
+{
+
+}
+//else if(key == "alreadyZero")
+//{
+//
+// }
+else if(key == "amtOfSelectdedRecords")
+{
+
+
+
+}
+
+//product id with amount to purchase
+else
+{
+var val1 = "";
+var item = sessionStorage.getItem(key);
+
+//dont build query with zero product "item"
+if(item == "0")
+{
+	
+	continue;
+}
+//else{
+
+	
+	//is a poduct or are products
+	gflag1 = 1;
+	
+	
+		querystring += "id=" + key + "&amtTryingToPurchase=" + item + "&";
+	
+//}
+
+} 
+
+}// end key loop
+
+//no id quant
+if (gflag1 == 0)
+{
+//ALERT
+//alert("Alert : there are no products in session storage...");
+//return(1);
+}
+
+
+
+
+var url = "http://localhost:8080/displayOrdersTemplateAgain";
+//var queryString = "user_name=jerry&password=666666&user_name=marry&password=11111";
+
+
+
+
+		
+		
+
+		$.ajax({
+		type:"POST",
+		datatype: 'html',
+		url:url,
+		data:querystring,
+		async:false,
+		success: function (result) {
+
+			
+			
+			
+			
+
+
+		//var retVals = [];
+		//fix this, here, done :  two variables
+		//var tempstringfortesting = "banana";
+		//result is html of displaying orders again (after cartTemplate)
+
+		//changed parameter two and commented out
+		//retVals = forBuildingHTML(result , result.globKeyword);
+		
+		//fix this, here, done
+		//var item1 = retVals[0];  
+		
+		var ourNewWord = result; 
+		//var item = retVals[2];
+		
+		
+		
+		
+		
+		
+		
+		  
+	
+
+
+
+
+			//removes [var here],  builds secon cart template html, draws links to different keyword categories
+		  for(var i = 0 ; i < array.length ; i++)
+		  {
+
+			alert("our rne word");
+			console.log(array);
+			//debugger;
+			var val1 = 1; // '["' + array[i] +  '"]';
+					
+			console.log("our new word");
+			console.log(ourNewWord);
+			//html
+			ourNewWord = ourNewWord.replace(val1 , '');
+			//fix this, here
+			//retVals = forBuildingHTML(ourNewWord);
+			//create link to each keyword start
+			var result1a = "<a href='#" + array[i] + "'>" + array[i] + "</a><br>";
+			alert("buttons");
+			alert(result1a);
+			//positioning div at top of page
+			document.getElementById('buttons').innerHTML   += result1a;
+		  }
+
+
+		  //positioning div at top of page
+		  document.getElementById('templateOneHere').innerHTML   += ourNewWord;
+		 
+		}
+	});
+
+}
+
+////////
+////
+function test(){
+
+//alert("test here!");
+
+let keys = Object.keys(sessionStorage);
+
+for(let key of keys) {
+
+
+
+	
+//var keyAsInt = Number(key);
+
+
+let value = false;
+if (parseInt(key, 10))
+{
+	
+	value = true;
+}
+
+
+if(key != "keywords" && key != "sessionUserID" && value == false) 
+{
+	
+	
+
+	sessionStorage.removeItem(key);	
+}
+
+
+}
+
+sessionStorage.setItem("numberOfRecordsChosen", "0");
+
+
+
+displayOrdersTemplateAgain();
+
+	//is here and still flashes on redirect to login
+	//document.getElementById("button7").style.visibility = "visible";
+	//document.getElementById("search").style.visibility = "visible";
+	//document.getElementById("button6").style.visibility = "visible";
+	//document.getElementById("button8").style.visibility = "visible";
+
+return(1);
+
+}
+
+////
 function checkForPassword()
 {
 	alert("is it here?");
@@ -105,7 +339,7 @@ function checkForPassword()
       
       <div id = "lastdiv"></div>
 	</div>
-	<h6>v11</h6>
+	<h6>v12</h6>
 <script>
 
 
@@ -999,248 +1233,12 @@ return [ourNewWord];
 //////
 
 var gKeywordRecordNumber = 0;
-//pressed return to purchase from template2
-function displayOrdersTemplateAgain(){
 
-	//debugger;
-	
 
 
 
-var querystring = "";
 
 
-
-
-var counter = -1;
-var array = [];
-
-
-
-var gflag1 = 0;
-//var gcounter1 = 0;
-
-let keys = Object.keys(sessionStorage);
-
-
-
-
-for(let key of keys) {
-
-//	
-//	
-
- if(key == "keywords")
-  {
-	counter++;
-	
-   
-	let item = sessionStorage.getItem(key);
-	
-	
-	array = JSON.parse(item);
-   //console.log(array);
-
-	//one iteration on fresh array
-	for(var i = 0; i<array.length ; i++)
-	{
-	
-	  querystring += "var=" + array[i] + "&";
-    alert("array");
-	  
-	}
-
-  }
-
-
-
-  
-  else if(key == "sessionUserID")
-  {
-		var item = sessionStorage.getItem(key);
-		querystring += "uid=" + item + "&";
-  }
-  else if(key == "numberOfRecordsChosen")
-  {
-
-  }
-  //else if(key == "alreadyZero")
-  //{
-//
- // }
-  else if(key == "amtOfSelectdedRecords")
-  {
-	
-	
-	
-  }
- 
-  //product id with amount to purchase
-  else
-  {
-	var val1 = "";
-	var item = sessionStorage.getItem(key);
-	
-	//dont build query with zero product "item"
-	if(item == "0")
-	{
-		
-		continue;
-	}
-	//else{
-
-		
-		//is a poduct or are products
-		gflag1 = 1;
-		
-		
-			querystring += "id=" + key + "&amtTryingToPurchase=" + item + "&";
-		
-	//}
-	
-  } 
-
-}// end key loop
-
-//no id quant
-if (gflag1 == 0)
-{
-	//ALERT
-	//alert("Alert : there are no products in session storage...");
-	//return(1);
-}
-
-
-
-
-var url = "http://localhost:8080/displayOrdersTemplateAgain";
-//var queryString = "user_name=jerry&password=666666&user_name=marry&password=11111";
-
-
-
-
-			
-			
-
-			$.ajax({
-			type:"POST",
-			datatype: 'html',
-			url:url,
-			data:querystring,
-			async:false,
-			success: function (result) {
-
-				
-				
-				
-				
-
-
-			//var retVals = [];
-			//fix this, here, done :  two variables
-			//var tempstringfortesting = "banana";
-			//result is html of displaying orders again (after cartTemplate)
-
-			//changed parameter two and commented out
-			//retVals = forBuildingHTML(result , result.globKeyword);
-			
-			//fix this, here, done
-			//var item1 = retVals[0];  
-			
-			var ourNewWord = result; 
-			//var item = retVals[2];
-			
-			
-			
-			
-			
-			
-			
-			  
-		
-
-
-
-
-				//removes [var here],  builds secon cart template html, draws links to different keyword categories
-			  for(var i = 0 ; i < array.length ; i++)
-			  {
-
-				
-				
-
-
-				alert("our rne word");
-        console.log(array);
-          //debugger;
-        var val1 = 1; // '["' + array[i] +  '"]';
-				
-        console.log("our new word");
-        console.log(ourNewWord);
-				//html
-				ourNewWord = ourNewWord.replace(val1 , '');
-				//fix this, here
-				//retVals = forBuildingHTML(ourNewWord);
-				//create link to each keyword start
-				var result1a = "<a href='#" + array[i] + "'>" + array[i] + "</a><br>";
-				
-				//positioning div at top of page
-				document.getElementById('buttons').innerHTML   += result1a;
-			  }
-			  //positioning div at top of page
-			  document.getElementById('templateOneHere').innerHTML   += ourNewWord;
-			 
-			}
-		});
-
-};
-
-////////
-
-function test(){
-
-//alert("test here!");
-
-let keys = Object.keys(sessionStorage);
-
-for(let key of keys) {
-
-
-
-	
-//var keyAsInt = Number(key);
-
-
-let value = false;
-if (parseInt(key, 10))
-{
-	
-	value = true;
-}
-
-
-if(key != "keywords" && key != "sessionUserID" && value == false) 
-{
-	
-	
-
-	sessionStorage.removeItem(key);	
-}
-
-
-}
-
-sessionStorage.setItem("numberOfRecordsChosen", "0");
-
-
-
-displayOrdersTemplateAgain();
-
-	
-
-return(1);
-
-};
 
 ////////////// 
 

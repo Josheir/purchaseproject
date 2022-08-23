@@ -3,6 +3,32 @@
 	
 		
 	  
+/////
+<script>
+
+////
+function checkForPassword()
+{
+	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
+	
+	//is no password
+	if (!isThereACorrectPassword)
+	{
+		window.location.href = "login.html";
+	}
+	
+}
+////
+
+/////
+	
+	checkForPassword();
+
+/////
+
+</script>
+
+
 
 
 	

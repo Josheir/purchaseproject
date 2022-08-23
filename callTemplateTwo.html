@@ -34,6 +34,22 @@
 
 window.sessionStorage
 
+////
+
+function checkForPassword()
+{
+	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
+	
+	//is no password
+	if (!isThereACorrectPassword)
+	{
+		window.location.href = "login.html";
+	}
+	
+}
+
+////
+
 //this is in callTemplateTwo.html and index.html
 var MAXRECORDS = 20
 
