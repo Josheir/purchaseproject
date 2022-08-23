@@ -46,19 +46,51 @@ var var3 ;
 var3 = var1 + var2;
 //
 
+function checkForPassword()
+{
+	
+	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
+	
+	//is no password
+	if (!isThereACorrectPassword)
+	{
+	//alert("is here the password");
+	window.location.href = "login.html";
+	}
+	
+	//const button = document.createElement('button');
+	//button.innerText = 'Can you click me?';
 
+	test();
+
+	
+	
+}
+
+
+
+//https://stackoverflow.com/questions/51300809/load-html-first-before-javascript
+//https://stackoverflow.com/questions/588040/window-onload-vs-document-onload
+//https://www.skillsugar.com/how-to-use-document-onload-in-javascript
+
+	//document.getElementById("search").style.visibility = "hidden";
+	//document.getElementById("button7").style.visibility = "hidden";
+	//document.getElementById("button8").style.visibility = "hidden";
+	//document.getElementById("button6").style.visibility = "hidden";
+	
+	checkForPassword();
 
 
 </script>
 
 
      <div id = "wholeGui">
-      <!--<input   id="button7"  type="button" value="checkout" />
+    <input   id="button7"  type="button" value="checkout" />
 	  
       <input    name = "search" type="text" id="search" name="search" placeholder= "apple1" value="apple1"/>
-      //<input   id="button6" type = "button" onclick = "displayFromSearch('0')" value="Search" />
-	  //<input   id="button8" type = "button" onclick = "resetCall()" type="button" value="Reset"/>
-	  -->
+      <input   id="button6" type = "button" onclick = "displayFromSearch('0')" value="Search" />
+	  <input   id="button8" type = "button" onclick = "resetCall()" type="button" value="Reset"/>
+	
 
       <br>
       <div id = "firstdiv" ></div>
@@ -1214,39 +1246,7 @@ return(1);
 };
 
 ////////////// 
-function checkForPassword()
-{
-	
-	var isThereACorrectPassword = sessionStorage.getItem("sessionUserID");
-	
-	//is no password
-	if (!isThereACorrectPassword)
-	{
-	//alert("is here the password");
-	window.location.href = "login.html";
-	}
-	
-	//const button = document.createElement('button');
-	//button.innerText = 'Can you click me?';
 
-	test();
-
-	
-	
-}
-
-
-
-//https://stackoverflow.com/questions/51300809/load-html-first-before-javascript
-//https://stackoverflow.com/questions/588040/window-onload-vs-document-onload
-//https://www.skillsugar.com/how-to-use-document-onload-in-javascript
-
-document.getElementById("search").style.visibility = "hidden";
-	document.getElementById("button7").style.visibility = "hidden";
-	document.getElementById("button8").style.visibility = "hidden";
-	document.getElementById("button6").style.visibility = "hidden";
-	
-	checkForPassword();
 window.onload = function()
 {	
 	
