@@ -825,15 +825,17 @@ func createCartTemplate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var i = 0
+	
 	length := len(r.Form["id"])
 	if length > 0 {
-
+		gAllProductIds= nil
+		gAllPurchaseAmounts = nil
 		//save query into arrays
 		for i = 0; i < (length); i++ {
 
 			gAllProductIds = append(gAllProductIds, []string{r.Form["id"][i]}...)
 			gAllPurchaseAmounts = append(gAllPurchaseAmounts, []string{r.Form["amtTryingToPurchase"][i]}...)
-
+			
 			//save to global
 
 			//////////
@@ -1642,8 +1644,6 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 
 		}
 
-	} else {
-
 	}
 
 	length = len(r.Form["var"])
@@ -1653,10 +1653,8 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 			keyword = append(keyword, []string{r.Form["var"][i]}...)
 
 		}
-
-	} else {
-
 	}
+	
 
 	// 13, 11, 13, 12
 	length = len(r.Form["id"])
@@ -1665,10 +1663,11 @@ func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 	if length > 0 {
 
 		/////////
+		for i = 0; i < (length); i++ {
 
 		ProdID = append(ProdID, []string{r.Form["id"][i]}...)
 		keyTotalAmountBought = append(keyTotalAmountBought, []string{r.Form["quant"][i]}...)
-
+		}
 	}
 	//////////
 	/*

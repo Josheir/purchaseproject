@@ -49,15 +49,27 @@ var3 = var1 + var2;
 
 ////
 
-
+//moved here
+var ourNewWord ="";
+var garray = [];
 
 //pressed return to purchase from template2
 function displayOrdersTemplateAgain(){
 
+
+	const qString = window.location.search;
+	const urlParams = new URLSearchParams(qString);
+	const continue1 = urlParams.get('displayOrdersTemplateAgain');
+	if(continue1 != 1 )
+	{
+		alert("leaving");
+		return(1);
+	}
+
 //debugger;
 var querystring = "";
 var counter = -1;
-var array = [];
+
 var gflag1 = 0;
 //var gcounter1 = 0;
 let keys = Object.keys(sessionStorage);
@@ -75,14 +87,14 @@ counter++;
 let item = sessionStorage.getItem(key);
 
 
-array = JSON.parse(item);
+garray = JSON.parse(item);
 //console.log(array);
 
 //one iteration on fresh array
-for(var i = 0; i<array.length ; i++)
+for(var i = 0; i<garray.length ; i++)
 {
 
-  querystring += "var=" + array[i] + "&";
+  querystring += "var=" + garray[i] + "&";
 alert("array");
   
 }
@@ -127,7 +139,7 @@ if(item == "0")
 	//is a poduct or are products
 	gflag1 = 1;
 	
-	
+		alert("duh!");
 		querystring += "id=" + key + "&amtTryingToPurchase=" + item + "&";
 	
 //}
@@ -164,65 +176,11 @@ var url = "http://localhost:8080/displayOrdersTemplateAgain";
 		async:false,
 		success: function (result) {
 
-			
-			
-			
-			
-
-
-		//var retVals = [];
-		//fix this, here, done :  two variables
-		//var tempstringfortesting = "banana";
-		//result is html of displaying orders again (after cartTemplate)
-
-		//changed parameter two and commented out
-		//retVals = forBuildingHTML(result , result.globKeyword);
+		ourNewWord = result; 
 		
-		//fix this, here, done
-		//var item1 = retVals[0];  
-		
-		var ourNewWord = result; 
-		//var item = retVals[2];
-		
-		
-		
-		
-		
-		
-		
-		  
-	
-
-
-
 
 			//removes [var here],  builds secon cart template html, draws links to different keyword categories
-		  for(var i = 0 ; i < array.length ; i++)
-		  {
-
-			alert("our rne word");
-			console.log(array);
-			//debugger;
-			var val1 = 1; // '["' + array[i] +  '"]';
-					
-			console.log("our new word");
-			console.log(ourNewWord);
-			//html
-			ourNewWord = ourNewWord.replace(val1 , '');
-			//fix this, here
-			//retVals = forBuildingHTML(ourNewWord);
-			//create link to each keyword start
-			var result1a = "<a href='#" + array[i] + "'>" + array[i] + "</a><br>";
-			alert("buttons");
-			alert(result1a);
-			//positioning div at top of page
-			document.getElementById('buttons').innerHTML   += result1a;
-		  }
-
-
-		  //positioning div at top of page
-		  document.getElementById('templateOneHere').innerHTML   += ourNewWord;
-		 
+		  
 		}
 	});
 
@@ -339,7 +297,7 @@ function checkForPassword()
       
       <div id = "lastdiv"></div>
 	</div>
-	<h6>v12</h6>
+	<h6>v12a</h6>
 <script>
 
 
@@ -483,7 +441,7 @@ function checkForPassword()
 			
 			var item = sessionStorage.getItem(key);
 			
-			
+			alert("wow");
        		string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
 			
 			
@@ -1244,6 +1202,33 @@ var gKeywordRecordNumber = 0;
 
 window.onload = function()
 {	
+	for(var i = 0 ; i < garray.length ; i++)
+		  {
+
+			alert("our rne word");
+			console.log(garray);
+			//debugger;
+			var val1 = 1; // '["' + array[i] +  '"]';
+					
+			console.log("our new word");
+			console.log(ourNewWord);
+			//html
+			ourNewWord = ourNewWord.replace(val1 , '');
+			//fix this, here
+			//retVals = forBuildingHTML(ourNewWord);
+			//create link to each keyword start
+			var result1a = "<a href='#" + garray[i] + "'>" + garray[i] + "</a><br>";
+			alert("buttons");
+			alert(result1a);
+			//positioning div at top of page
+			document.getElementById('buttons').innerHTML   += result1a;
+		  }
+
+
+		  //positioning div at top of page
+		  document.getElementById('templateOneHere').innerHTML   += ourNewWord;
+		  
+		 
 	
 }
 /////////////

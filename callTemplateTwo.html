@@ -17,6 +17,8 @@
 
 
 
+
+
 <div id = "div1"> </div>
   <input type="hidden" id="val" name="val" value="1">
   <div id = "removeButton">
@@ -33,6 +35,398 @@
 <script>  
 
 window.sessionStorage
+
+
+/////
+
+//newest, just created
+function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
+
+
+let grandTotal = new bigDecimal("1.0");
+let grandTotal1 = "";// new bigDecimal("1.0");
+let total = "";
+//var gTotalNum1 = "";
+
+var gTotalNum1 = new  bigDecimal("1.0");
+			  
+
+
+
+
+var gtotal = parseFloat(gtotal);
+
+
+//leading letter for ids that are used in cart template
+var val1 = "";
+
+var var1 = "A";
+
+var var2 = "C";
+
+var var3 = "D"; 
+
+var var4 = "B";
+
+var var5 = "V";
+
+var var6 = "P";
+
+var counter = -1;
+var string = "";
+
+var item = 0;
+var AmountToBuyID = 0;
+var AmountOfCostID = 0;
+var AmountOfQuantityID = 0; 
+var bought = 0;
+
+  
+  var flagToReturnOut = false;
+  let keys = Object.keys(sessionStorage);
+  
+  var amtOfHiddenProducts = 0;
+
+  //each iteration is one purchase
+  for(let key of keys) {
+	  counter++;
+	  if(key =="sessionUserID")
+	  {
+		counter--;
+	   
+		continue;
+	  }
+	  
+	  if(key =="keywords")
+	  {
+		counter--;
+		
+		continue;
+	  }
+	  if(key =="numberOfRecordsChosen")
+	  {
+		counter--;
+	   
+		continue;
+	  }
+	  //if(key =="alreadyZero")
+	  //{
+	  //  counter--;
+	  // 
+	  //  continue;
+	  //}
+	  if(key =="amtOfKeywords")
+	  {
+		counter--;
+	   
+		continue;
+	  }
+
+	 
+
+	  
+	  //if here, is productid and a quantity
+	  AmountToBuyID = var1 + counter;
+	  AmountOfCostID = var2 + counter;
+	  AmountOfQuantityID = var3 + counter;
+	  BoughtID = var4 + counter;
+	  oneDivID = var5 + counter;
+	  ProductIDID = var6 + counter;
+	
+	  var bought = (document.getElementById(BoughtID).value);
+	  var amtInBuyBox =(document.getElementById(AmountToBuyID).value);
+	  var quantityInBox = (document.getElementById(AmountOfQuantityID).value);
+	  var costInBox = (document.getElementById(AmountOfCostID).value); 
+	  var Product = (document.getElementById(ProductIDID).value); 
+	 
+	  var item = amtInBuyBox;
+	 
+	  
+	 
+	  //because amount to buy is nothing than change buying to nothing
+	  if (item == "")
+	  { 
+		
+		item = bought;
+	  
+	  }
+	  //check if is decimal
+	  if(item % 1 != 0)
+	  {
+		
+		return(1);
+		
+	  }
+
+	  if(item == 0)
+	  {
+
+			   
+				hideRow(oneDivID);
+				amtOfHiddenProducts++;
+			   
+		//continue;
+		
+	  }
+	  
+	  else if(item < 0 ) 
+	  {
+		
+		//var str2 = amtInBuyBox.toString();
+	   
+		flagToReturnOut= true;
+	  }
+	  else if (isNaN(item ))
+	  {
+		
+		//var str2 = amtInBuyBox.toString();
+	   
+		flagToReturnOut= true;
+	  }
+
+	  
+	  if (flagToReturnOut == true)
+	  {
+		return;
+	  }
+
+	  //id and amount trying to buy
+	  string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
+
+	 
+		
+	  
+
+  }//end
+
+
+  /*
+  //fills in all innital values so can be used to set available with "Amount to buy"
+  for (var i = 0; i< counter+1 ;i++)
+			  {
+				
+				
+				var buyThisManyID = "A" + i;
+				let initialValues = document.getElementById(buyThisManyID).value;
+				initialValues.push(initialValues);
+				
+				
+				
+				console.log(initialValues);
+				
+			  }
+
+*/
+
+  
+  //all products are hidden, so do this
+  if (amtOfHiddenProducts == (counter + 1))
+  {
+	
+
+	//window.location.href = "index.html";
+	//window.location = "https://localhost/golangproj/index.html?displayOrdersTemplateAgain=1";
+
+	
+	//reset sessio variables because goint baack to index
+	
+	
+	var sessID1 = sessionStorage.getItem("sessionUserID");
+	alert("a");
+	alert(sessID1);
+	sessionStorage.clear();
+	sessionStorage.setItem("sessionUserID", sessID1);
+	sessionStorage.setItem("numberOfRecordsChosen", "0");
+	
+
+	
+	window.location.href = "index.html";
+	return(1);
+	
+	
+  
+  }
+  //build string
+  string = string + "userid=1&";//sessionStorage.getItem("sessionUserID");
+
+  //removed &
+var queryString = string;//.substring(0, string.length-1);
+
+let flagisEnoughProduct = true;
+
+
+			$.ajax({
+			url: 'http://localhost:8080/sendBackNewCartData',
+			type: 'GET',
+			dataType: 'json',
+			
+			
+			data:queryString,
+			crossDomain: true,
+		   
+			success: function (data) {
+			  
+
+			  
+
+			  //no records
+			  if(data.length == null){
+
+			  
+			  window.location.href = "index.html";
+			  return(1);
+			  //window.location.href = "index.html";
+			   }
+
+			  //fills in all innital values so can be used to set available with "Amount to buy"
+			  /*
+			  for (var i = 0; i< data1.length ;i++)
+			  {
+				
+				
+				var buyThisManyID = "A" + i;
+				let initialValues = document.getElementById(buyThisManyID).value;
+				initialValues.push;
+				
+				
+				
+				console.log(initialValues);
+				
+			  }
+			  */
+			  for (var i = 0; i< data.length ;i++)
+			  {
+				
+				
+			  if(data[i].IsEnoughQuantity == false)
+			  {
+			
+
+				
+
+				flagisEnoughProduct = false;
+				break;
+			  //flag = "not enough";
+			  
+			 
+			  }
+
+			  }
+
+			  
+
+
+			  if (flagisEnoughProduct == true)
+			  {
+				
+				window.location.href = "donePurchase.html";
+				return(1);
+			  }
+
+
+			  //if here, there is at least one record that doesnt have enough product
+			  
+
+			var lengthOfData = data.length;
+
+			
+			
+			console.log(data);
+
+
+			  //var grandTotal = 0;
+			  //initalize big ints for money system
+			  //let GrandTotal = BigInt(0);
+			  //let GrandTotalDiv = BigInt(0);
+			  //from jquery call to main.go functino:sendbackcartdata
+			  
+			 
+
+			 
+			  for(var i = 0; i<(lengthOfData) ; i++)
+			  {
+
+			   //for ids of carttemplate's ids
+			  var boughtid = "B" + i; 
+			  var buyThisManyID = "A" + i;
+			  var availableID =  "D" + i;
+			  var costID = "C" + i;
+			  var totalCostID = "TC" + i;
+			  var GrandTotalStringID = "GT" + i;
+			  var mainDivID =  "V" + i;
+			  
+		   
+			  var isEnoughQuantity = false;
+			  //still in loop
+			  isEnoughQuantity = data[i].IsEnoughQuantity;
+			  
+			 
+			 
+			  //wasnt enough, so make red
+
+
+			  if (isEnoughQuantity == false)
+			  {  
+				//debugger;
+				
+				//RED
+				//change settings of cart template if the current record doesn't have enough product in db for request 
+				var avail = (document.getElementById(availableID).value);
+				document.getElementById(buyThisManyID).value = 0;
+				let boughtValue = (document.getElementById(boughtid).value);
+				
+				
+				
+				document.getElementById(availableID).style.color = 'red';
+				
+				//amount to buy
+				document.getElementById(buyThisManyID).value = 0;
+				//buying
+				document.getElementById(boughtid).value = 0;
+				//total cost for productID
+				document.getElementById(totalCostID).value = "$0.00";
+				
+				document.getElementById(availableID).value = (parseInt(avail) + parseInt(boughtValue) );
+
+				//is enough quantity
+			  }else{
+			  
+				document.getElementById(availableID).style.color = 'black';
+				///////
+				
+				//amount to buy
+				let amountToBuy1 = document.getElementById(buyThisManyID).value; //3
+			   
+				costID = "C" + i;
+			  var totalCostID = "TC" + i;
+
+				//
+			  var a = 1/6
+			  //////////
+			  let parsedAmountToBuy1 = parseInt(amountToBuy1);
+
+			  document.getElementById(boughtid).value =  Number(parsedAmountToBuy1);
+			  document.getElementById(availableID).value = Number(document.getElementById(availableID).value) -  Number(parsedAmountToBuy1);  
+			  SetTotalCostAndSumGrandTotal(costID, boughtid, totalCostID);
+
+
+			  }
+
+			}
+
+			if (TotaledAtLeastOnceFLag == true)
+			{
+			  setGrandTotal(GrandTotalStringID);
+			  TotaledAtLeastOnceFLag  = false;
+			}
+
+		   
+
+		  
+		}
+
+		});
+}//function
 
 ////
 
@@ -53,24 +447,7 @@ function checkForPassword()
 //this is in callTemplateTwo.html and index.html
 var MAXRECORDS = 20
 
-function restoreOriginalOrder()
-{
-	
-	//if(val1 = sessionStorage.getItem("numberOfRecordsChosen"))
-	//{
-	//	
-	//	if (val1 == MAXRECORDS)
-	//	{
-	//		
-	//		return;
-	//	}
-	//}
 
-	
-	//window.location.href = "index.html?displayOrdersTemplateAgain=1";
-	return(1);
-
-}
 
 /////////
 
@@ -175,7 +552,7 @@ for(let key of keys) {
 
 
   
-  
+  alert("should be here!");
   string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
   
   
