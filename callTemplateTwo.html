@@ -36,23 +36,34 @@
 
 window.sessionStorage
 
+/////
+function restoreOriginalOrder()
+{
+	
+	//if(val1 = sessionStorage.getItem("numberOfRecordsChosen"))
+	//{
+	//	
+	//	if (val1 == MAXRECORDS)
+	//	{
+	//		alert("AT RECORD MAXIMUM, YOU MUST REMOVE A RECORD TO RETURN TO PURCHASE!");
+	//		return;
+	//	}
+	//}
 
+	//alert("restoreOriginalOrder");
+	window.location.href = "index.html?displayOrdersTemplateAgain=1";
+	return(1);
+
+}
 /////
 
 //newest, just created
 function checkAllAvailableProducts(quantity, gtotal, grandTotalID){
 
 
-let grandTotal = new bigDecimal("1.0");
-let grandTotal1 = "";// new bigDecimal("1.0");
+
+let grandTotal1 = "";
 let total = "";
-//var gTotalNum1 = "";
-
-var gTotalNum1 = new  bigDecimal("1.0");
-			  
-
-
-
 
 var gtotal = parseFloat(gtotal);
 
@@ -200,23 +211,7 @@ var bought = 0;
   }//end
 
 
-  /*
-  //fills in all innital values so can be used to set available with "Amount to buy"
-  for (var i = 0; i< counter+1 ;i++)
-			  {
-				
-				
-				var buyThisManyID = "A" + i;
-				let initialValues = document.getElementById(buyThisManyID).value;
-				initialValues.push(initialValues);
-				
-				
-				
-				console.log(initialValues);
-				
-			  }
-
-*/
+ 
 
   
   //all products are hidden, so do this
@@ -224,9 +219,7 @@ var bought = 0;
   {
 	
 
-	//window.location.href = "index.html";
-	//window.location = "https://localhost/golangproj/index.html?displayOrdersTemplateAgain=1";
-
+	
 	
 	//reset sessio variables because goint baack to index
 	
@@ -278,22 +271,7 @@ let flagisEnoughProduct = true;
 			  //window.location.href = "index.html";
 			   }
 
-			  //fills in all innital values so can be used to set available with "Amount to buy"
-			  /*
-			  for (var i = 0; i< data1.length ;i++)
-			  {
-				
-				
-				var buyThisManyID = "A" + i;
-				let initialValues = document.getElementById(buyThisManyID).value;
-				initialValues.push;
-				
-				
-				
-				console.log(initialValues);
-				
-			  }
-			  */
+			  
 			  for (var i = 0; i< data.length ;i++)
 			  {
 				
@@ -334,14 +312,7 @@ let flagisEnoughProduct = true;
 			console.log(data);
 
 
-			  //var grandTotal = 0;
-			  //initalize big ints for money system
-			  //let GrandTotal = BigInt(0);
-			  //let GrandTotalDiv = BigInt(0);
-			  //from jquery call to main.go functino:sendbackcartdata
 			  
-			 
-
 			 
 			  for(var i = 0; i<(lengthOfData) ; i++)
 			  {

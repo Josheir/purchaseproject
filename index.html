@@ -60,7 +60,7 @@ function displayOrdersTemplateAgain(){
 	const qString = window.location.search;
 	const urlParams = new URLSearchParams(qString);
 	const continue1 = urlParams.get('displayOrdersTemplateAgain');
-	if(continue1 != 1 )
+	if(continue1 == 2 )
 	{
 		alert("leaving");
 		return(1);
@@ -364,6 +364,7 @@ function checkForPassword()
 			
 
 			
+			
 		//check for login
 		
 	
@@ -440,7 +441,7 @@ function checkForPassword()
 
 			
 			var item = sessionStorage.getItem(key);
-			
+			debugger;
 			alert("wow");
        		string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
 			
