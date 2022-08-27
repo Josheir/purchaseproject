@@ -1609,8 +1609,10 @@ type display5 struct {
 
 //////////
 
+
 func displayOrdersTemplate(w http.ResponseWriter, r *http.Request) {
 
+	savedProductIDs = nil;
 	counter1A := -1
 	//var savedProductIDs []int
 

@@ -346,6 +346,7 @@ function checkForPassword()
 		function displayFromSearch( )
 		{
 
+			//debugger;
 			//keeeps track of keywords displaying, only so many allowed
 			let amt1 = sessionStorage.getItem("amtOfKeywords");
 			if (amt1 != null)
@@ -363,7 +364,7 @@ function checkForPassword()
 			
 			
 
-			
+
 			
 		//check for login
 		
@@ -428,6 +429,7 @@ function checkForPassword()
 		
 		///////////////
 		
+		
         
         var wasKeys = "no";
 
@@ -441,7 +443,7 @@ function checkForPassword()
 
 			
 			var item = sessionStorage.getItem(key);
-			debugger;
+			
 			alert("wow");
        		string =  string + "id=" + key + "&amtTryingToPurchase=" + item + "&";
 			
@@ -526,31 +528,10 @@ else
 		
 		querystring = string;
 		querystring += val2[1];
-		
+		debugger;
 		var url = "";
 	
 	  
-	  
-	 
-
-	  
-	  
-
-
-
-
-			
-
-
-
-
-
-			
-			
-
-			 
-			 
-				//searchWord = "here";
 				var b = 0;
 			 $.ajax({
                 url: "http://localhost:8080/displayOrderFormFromTemplate",
@@ -572,65 +553,10 @@ else
 					}
 
 
-					
-					
-			
-			 
-					
-
-				//ourNewWord2 = result;
-
-				
-
-				
-                //var result1 = "";
-				//let keys = Object.keys(sessionStorage);
-
-				
-				//var  gkeywordArray = "";
-				
-				//var retVals = [];
-				
-				//var toRemove = "null";
-				//result = result.replaceAll(toRemove, '');
-
-
-
-				
-				
-				//console.log(result2);
-				//console.log(result);
-				//retVals = forBuildingHTML(result, searchWord);
-				
-				
-				//fix this, here, done
-				//var item1 = retVals[0];  
 				
 				var ourNewWord2 = searchWord; //
 				
-				//var item = retVals[2]; 
 				
-				
-				
-				
-				
-				
-
-				
-				//fix this, here, done
-				//var val1a = '"' + item1 +  '"';   
-				
-				
-
-////////
-
-
-				
-				
-				
-				
-				
-
 				////////////
 				//displays link for every grouping by product group to go there
 				result1a = "<a href='#" + searchWord + "'>" + searchWord + "</a><br>";
